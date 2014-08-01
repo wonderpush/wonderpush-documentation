@@ -1,0 +1,43 @@
+[[api-reference]]
+= API reference
+
+[partintro]
+--
+Please choose your platform:
+--
+
+[role="section-link"]
+== <<android-api-reference,Android>>
+
+--
+--
+
+[role="section-link"]
+== <<ios-api-reference,iOS>>
+
+--
+--
+
+[role="section-link"]
+== <<windowsphone-api-reference,Windows Phone>>
+
+--
+--
+
+[role="section-link"]
+== <<web-api-reference,Web>>
+
+--
+--
+
+[role="section-link"]
+== http://www.wonderpush.com/docs/reference/api/v1[REST API]
+
+--
+--
+
+[role="section-link"]
+== http://www.wonderpush.com/docs/reference/api/v1#service_ManagementService[Management API]
+
+--
+--

@@ -1,0 +1,14 @@
+[[android]]
+= Android
+
+[partintro]
+--
+--
+
+include::android/getting-started.asciidoc[]
+
+include::android/developers-guide.asciidoc[]
+
+include::android/sdk.asciidoc[]
+
+include::android/api-reference.asciidoc[]

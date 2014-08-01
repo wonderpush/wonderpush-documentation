@@ -1,0 +1,6 @@
+[[android-getting-started]]
+[role="chunk-page section-link"]
+== http://wonderpush.github.io/wonderpush-android-sdk/[Getting started]
+
+The WonderPush Android SDK guide to Getting started is available on GitHub at
+http://wonderpush.github.io/wonderpush-android-sdk/.

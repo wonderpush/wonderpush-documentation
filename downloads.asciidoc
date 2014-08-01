@@ -1,0 +1,50 @@
+[[downloads]]
+[role="chunk-page chunk-toc"]
+= Downloads
+
+[role="sub-title"]
+--
+Dive into our Getting Started guides and integrate with your app in minutes.
+--
+
+[role="illustration"]
+--
+--
+
+[role="section"]
+.Android
+--
+[icon icon-android]#{empty}#
+
+* <<android-sdk,SDK>>
+--
+
+[role="section"]
+.iOS
+--
+[icon icon-ios]#{empty}#
+
+* <<ios-sdk,SDK>>
+--
+
+[role="section"]
+.Windows Phone
+--
+[icon icon-windowsphone]#{empty}#
+
+* <<windowsphone-sdk,SDK>>
+--
+
+[role="section"]
+.Web
+--
+[icon icon-web]#{empty}#
+
+* <<web-sdk,SDK>>
+--
+
+[role="clear"]
+--
+--
+
+// TODO: Add a changelog per platform

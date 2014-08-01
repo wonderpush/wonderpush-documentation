@@ -1,0 +1,14 @@
+[[how-to]]
+[role="chunk-page chunk-toc"]
+= How To
+
+[partintro]
+--
+// TODO: Maybe a list of articles from the blog (tagged how-to) for different specific use cases.
+_Coming soon._
+--
+
+// [[how-to-how-to-display-a-players-friends-progress-on-a-map]]
+// == How to display a player's friends progress on a map
+//
+// TODO: (Someone)

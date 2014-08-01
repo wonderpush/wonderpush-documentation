@@ -1,0 +1,625 @@
+/*********************
+ * Collapsible menus *
+ *********************/
+
+#main.developerDocsPage .halfMenu {
+  display:inline-block;
+  vertical-align:top;
+  width:200px;
+}
+#main.developerDocsPage .halfMenu .developerDocsMenuModule > UL > LI {
+  border-bottom:1px solid #CCC;
+  padding:0.5em 0;
+}
+#main.developerDocsPage .halfMenu .developerDocsMenuModule > UL > LI:last-child {
+  border-bottom:none;
+}
+
+#main.developerDocsPage .halfContentWrap {
+  display:inline-block;
+  vertical-align:top;
+  width:780px;
+  padding-left:10px;
+  padding-right:10px;
+}
+#main.developerDocsPage .halfContentWrap .widthColumn {
+  width:auto;
+}
+#main.developerDocsPage .halfMenuBtn {
+  width:30px;
+  position:fixed;
+  left:10px;
+  margin-top:0.7em;
+}
+
+#main.developerDocsPage .developerDocMenuButton {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #A3A2A2;
+  border-radius: 4px;
+  cursor: pointer;
+  /* BEGIN #gradient > .vertical(#FFF, #D0D9E0);*/
+  background-color: #ecf0f3;
+  background-image: -moz-linear-gradient(top, #ffffff, #d0d9e0);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#d0d9e0));
+  background-image: -webkit-linear-gradient(top, #ffffff, #d0d9e0);
+  background-image: -o-linear-gradient(top, #ffffff, #d0d9e0);
+  background-image: linear-gradient(to bottom, #ffffff, #d0d9e0);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffd0d9e0', GradientType=0);
+  /* END #gradient > .vertical(#FFF, #D0D9E0); */
+}
+
+.arrow_opened,
+.arrow_closed {
+  width: 9px;
+  height: 9px;
+  background-repeat: no-repeat;
+  display: inline-block
+}
+.arrow_opened { background-image: url('/docs/img/icons/arrow_opened.png'); }
+.arrow_closed { background-image: url('/docs/img/icons/arrow_closed.png'); }
+
+@media screen and (max-width: 1000px) {
+  #main.developerDocsPage .halfMenu {
+    display:none;
+  }
+
+  #main.developerDocsPage .halfMenu.opened {
+    display:block;
+    position:fixed;
+    z-index:5;
+    bottom:0;
+    left:50px;
+    right:0;
+    width:auto;
+    padding-top:0;
+    margin-top:0;
+    margin-right:0;
+    background-color:#EFEFEF;
+    overflow-x:auto;
+  }
+  #main.developerDocsPage .halfMenu.opened .developerDocsMenuSection {
+    margin-top:0.7em;
+  }
+
+  #main.developerDocsPage .halfMenu .menuRetractable {
+    font-size:1.5em;
+  }
+
+  #main.developerDocsPage .halfMenu .menuRetractable LI {
+    padding-top:0.7em;
+    padding-bottom:0.7em;
+  }
+  #main.developerDocsPage .halfMenu .menuRetractable LI LI:last-child {
+    padding-bottom:0;
+  }
+
+  #main.developerDocsPage .halfMenu .menuRetractable .menuRetractable {
+    /* change font for root menuRetractable only */
+    font-size:1em;
+  }
+
+  #main.developerDocsPage .halfContentWrap {
+    width:100%;
+    padding-left:0;
+    padding-right:0;
+  }
+  #main.developerDocsPage .halfContent {
+    padding-left:50px;
+    padding-right:0;
+  }
+}
+
+
+@media screen and (min-width:1001px) {
+  #main.developerDocsPage .halfMenuBtn {
+    display:none;
+  }
+}
+
+
+/*
+ * Left menu
+ */
+
+.developerDocsMenuModule,
+.article .tocwrapper .toc {
+  padding:1em 0.5em 1em 1em;
+  margin:0;
+  color:#808080;
+}
+
+.menuRetractable {
+  list-style-type: none;
+  margin: 0;
+}
+
+.menuRetractable LI {
+  margin-left:1.25em;
+  line-height:1.2em;
+  padding:0.25em 0;
+}
+
+.menuRetractable UL {
+  display:none;
+}
+
+.menuRetractable UL.opened {
+  display:block;
+}
+
+.menuRetractable .openable {
+  position:relative;
+  cursor:pointer;
+}
+.menuRetractable .openable:hover {
+  text-decoration:underline;
+}
+
+.menuRetractable .arrow {
+  display:inline-block;
+  width:1.25em;
+  margin-left:-1.25em;
+}
+
+.menuRetractable A {
+  color:#808080;
+  line-height:1.1em;
+}
+
+.menuRetractable LI.selected > A,
+.menuRetractable LI.selected > .openable,
+.menuRetractable LI.selected > .openable A {
+  font-weight:bold;
+  color:#777;
+}
+
+
+/*******************
+ * Designer styles *
+ *******************/
+
+#main.developerDocsPage > .widthFull > .widthColumn {
+  background-color:#EFEFEF;
+}
+#main.developerDocsPage .developerDocsMenuSection {
+  border-width:0;
+  background-color:inherit;
+}
+#main.developerDocsPage .halfContentWrap {
+  background-color:#FFF;
+  min-height:1000px; /* hmmm */
+}
+
+#main.developerDocsPage A[target=_blank]:after {
+  content:" ➚";
+}
+
+/*******************
+ * full-width page *
+ *******************/
+@media screen and (min-width:1001px) {
+  #main.developerDocsPage > .widthFull > .widthColumn {
+    width:auto;
+    padding-left:200px;
+    position:relative;
+    /* limiting the width of the doc page */
+    max-width:1700px;
+  }
+  #main.developerDocsPage .halfMenu {
+    position:absolute;
+    left:0;
+    top:0;
+  }
+  #main.developerDocsPage .halfContentWrap {
+    width:auto;
+  }
+}
+
+
+/***********
+ * Article *
+ ***********/
+
+
+/*
+ * Icons
+ */
+
+#main.developerDocsPage .header .page-badge {
+  float: left;
+  padding-right: 1em;
+  width: 8.4em;
+  height: 8.4em;
+  background-size: 8.4em;
+  background-image: url('/docs/img/badge_wonderpush.png');
+  background-repeat: no-repeat;
+}
+#main.developerDocsPage.guide-social-networks    .header .page-badge {background-image:url('/docs/img/badge_network.png');}
+#main.developerDocsPage.guide-push-notifications .header .page-badge {background-image:url('/docs/img/badge_notification.png');}
+#main.developerDocsPage.windowsphone             .header .page-badge {background-image:url('/docs/img/badge_windowsphone.png');}
+#main.developerDocsPage.android                  .header .page-badge {background-image:url('/docs/img/badge_android.png');}
+#main.developerDocsPage.ios                      .header .page-badge {background-image:url('/docs/img/badge_ios.png');}
+#main.developerDocsPage.web                      .header .page-badge {background-image:url('/docs/img/badge_web.png');}
+
+
+.article > .header {
+  min-height: 8.4em;
+}
+
+/*
+ * Headers
+ */
+
+.article h1,
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+  /* revert change from bootstrap/type.less */
+  line-height:normal;
+  margin-top:1.25em;
+  margin-bottom:.25em;
+}
+.article h1 { font-size:2.5em; font-weight:normal; }
+.article h2 { font-size:1.66em; font-weight:normal; }
+.article h3 { font-size:1.25em; }
+.article h4 { font-size:1.1em; }
+.article h5 { font-size:1.0em; }
+.article h6 { font-size:0.9em; }
+.article h2 {
+  border-bottom: 2px solid #CCC;
+}
+
+.article > .header h1 {
+  margin-top: -.2em;
+}
+
+.article > .header .breadcrumb {
+  font-size: 1em;
+  padding-top: 1.7em;
+  color: #888;
+}
+.article > .header .breadcrumb A,
+.article > .header .breadcrumb A:visited,
+.article > .header .breadcrumb A:hover {
+  color: inherit;
+}
+
+
+/*
+ * Table of Contents
+ */
+
+.article .tocwrapper {
+  clear: left;
+  float:right;
+  width:30%;
+  border-top:1em solid #FFF;
+  border-left:1em solid #FFF;
+  border-bottom:1em solid #FFF;
+}
+.article .tocwrapper .toc {
+  padding: 0.5em;
+  background-color:#F9F9F9;
+}
+.article .tocwrapper .toc .toctitle {
+  color: #666;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.article .tocwrapper .toc UL {
+  margin: 0;
+}
+
+.android-getting-started H2,
+.windowsphone-getting-started H2,
+.ios-getting-started H2,
+.web-getting-started H2 {
+  border-bottom:0;
+}
+
+@media screen and (max-height: 639px), screen and (max-width: 639px) {
+  .article .tocwrapper {
+    float: none;
+    width: auto;
+    border-right:1em solid #FFF;
+  }
+}
+
+/*
+ * Footer
+ */
+
+.article > .footer {
+  line-height:normal;
+  margin-top:3em;
+}
+.article > .footer .footer-text,
+.article > .footer .footer-license {
+  margin-top:1em;
+  font-size:70%;
+  color:#666;
+}
+.article > .footer .footer-license img {
+  opacity:.5;
+  margin-bottom:.5em;
+}
+.article > .footer .footer-license:hover img {
+  opacity:1;
+}
+
+
+/*
+ * Miscellaneous
+ */
+
+.article > .content .monospaced {
+  font-family: Cousine,"Liberation Mono",monospace;
+  /*font-weight: normal;*/
+  font-size:0.9em;
+  white-space: pre-wrap;
+  padding: 2px 3px 0px;
+  background-color: #EFEFEF;
+  border: 1px solid #e2e2e2;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.article > .content PRE {
+  margin-left:0;
+  padding:8px 2px 8px 18px;
+  border-style:solid;
+  border-color:#0072e4;
+  border-width:0 0 0 3px;
+  font-size:0.85em;
+  line-height:1.6em;
+  max-height:25em; /* 25/1.6 ~ 15 lines of code */
+  overflow:auto;
+  background-color:#EFEFEF;
+  border-radius:0 5px 5px 0;
+  -webkit-border-radius:0 5px 5px 0;
+}
+
+.article > .content .clear {
+  clear: both;
+}
+
+
+/*
+ * Adminition blocks
+ */
+
+.article > .content div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+.article > .content div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+.article > .content div.admonitionblock .icon {
+  vertical-align: top;
+  width: 48px;
+  /*
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  */
+  padding-right: 0.5em;
+}
+.article > .content div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+
+/*
+ * Definition lists
+ */
+
+.article > .content dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+.article > .content dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+}
+.article > .content dd > *:first-child {
+  margin-top: 0.1em;
+}
+.article > .content dd {
+  margin-left: 1.5em;
+}
+.article > .content div.hdlist,
+.article > .content div.dlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+.article > .content div.hdlist tr {
+  padding-bottom: 15px;
+}
+.article > .content dt.hdlist1.strong,
+.article > .content td.hdlist1.strong {
+  font-weight: bold;
+}
+.article > .content td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+.article > .content td.hdlist2 {
+  vertical-align: top;
+}
+.article > .content div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+
+/*
+ * Tables
+ */
+
+.article > .content table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+.article > .content thead,
+.article > .content p.tableblock.header {
+  font-weight: bold;
+}
+.article > .content p.tableblock {
+  margin-top: 0;
+}
+.article > .content table.tableblock {
+  border-width: 1px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #ddd;
+  border-collapse: collapse;
+}
+.article > .content th.tableblock,
+.article > .content td.tableblock {
+  border-width: 1px;
+  padding: .5em;
+  border-style: solid;
+  border-color: #ddd;
+}
+
+.article > .content table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+.article > .content table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+.article > .content table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+.article > .content th.tableblock.halign-left,
+.article > .content td.tableblock.halign-left {
+  text-align: left;
+}
+.article > .content th.tableblock.halign-center,
+.article > .content td.tableblock.halign-center {
+  text-align: center;
+}
+.article > .content th.tableblock.halign-right,
+.article > .content td.tableblock.halign-right {
+  text-align: right;
+}
+
+.article > .content th.tableblock.valign-top,
+.article > .content td.tableblock.valign-top {
+  vertical-align: top;
+}
+.article > .content th.tableblock.valign-middle,
+.article > .content td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+.article > .content th.tableblock.valign-bottom,
+.article > .content td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+.article > .content table thead tr {
+  background-color: #f0f0f0;
+}
+.article > .content table tbody tr:nth-child(even) {
+  background-color: #fcfcfc;
+}
+.article > .content table td > p:last-child {
+  margin-bottom: 0;
+}
+
+
+/*****************
+ * Page specific *
+ *****************/
+
+/*
+ * Index and Downloads
+ */
+
+#main.developerDocsPage.downloads- .article > .header,
+#main.developerDocsPage.index-     .article > .header {
+  min-height: initial;
+  text-align: center;
+}
+#main.developerDocsPage.index-     .article > .header .page-badge,
+#main.developerDocsPage.index-     .article > .header .breadcrumb,
+#main.developerDocsPage.downloads- .article > .header .page-badge,
+#main.developerDocsPage.downloads- .article > .header .breadcrumb {
+  display: none;
+}
+
+#main.developerDocsPage.index-     .article > .content .sub-title,
+#main.developerDocsPage.downloads- .article > .content .sub-title {
+  text-align: center;
+}
+
+#main.developerDocsPage.index-     .article > .content .illustration,
+#main.developerDocsPage.downloads- .article > .content .illustration {
+  width: 100%;
+  height: 14.1em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 20.125em;
+  background-image: url('/docs/img/index_img.png');
+  margin-top: 1em;
+}
+
+#main.developerDocsPage.index-     .article > .content .section,
+#main.developerDocsPage.downloads- .article > .content .section {
+  float: left;
+  width: 50%;
+  height: 13em;
+  min-width: 18em;
+}
+#main.developerDocsPage.index-     .article > .content .section UL,
+#main.developerDocsPage.downloads- .article > .content .section UL {
+  list-style: none;
+}
+#main.developerDocsPage.downloads- .article > .content .section .title,
+#main.developerDocsPage.index-     .article > .content .section .title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
+  line-height: 1.4em;
+}
+#main.developerDocsPage.downloads- .article > .content .section .icon,
+#main.developerDocsPage.index-     .article > .content .section .icon {
+  float: left;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 8em;
+  width: 8em;
+  height: 8em;
+  margin-right: 1em;
+}
+#main.developerDocsPage.index- .article > .content .section .icon-windowsphone { background-image: url('/docs/img/index_windowsphone.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-android      { background-image: url('/docs/img/index_android.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-ios          { background-image: url('/docs/img/index_ios.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-web          { background-image: url('/docs/img/index_web.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-rest-api              { background-image: url('/docs/img/index_rest_api.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-management-api        { background-image: url('/docs/img/index_management_api.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-features              { background-image: url('/docs/img/index_design.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-downloads             { background-image: url('/docs/img/index_download.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-community-and-support { background-image: url('/docs/img/index_community.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-third-party-clients   { background-image: url('/docs/img/index_tools.png'); }
+#main.developerDocsPage.downloads- .article > .content .section .icon-windowsphone { background-image: url('/docs/img/index_windowsphone.png'); }
+#main.developerDocsPage.downloads- .article > .content .section .icon-android      { background-image: url('/docs/img/index_android.png'); }
+#main.developerDocsPage.downloads- .article > .content .section .icon-ios          { background-image: url('/docs/img/index_ios.png'); }
+#main.developerDocsPage.downloads- .article > .content .section .icon-web          { background-image: url('/docs/img/index_web.png'); }

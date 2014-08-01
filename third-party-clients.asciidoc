@@ -1,0 +1,16 @@
+[[third-party-clients]]
+[role="chunk-page"]
+= Third party clients
+
+[partintro]
+--
+There are no third party clients for now.
+
+If you have made a client feel free to contact us or to open a pull
+request and add it here. Contributions are more than welcome!
+
+If you think that a WonderPush client is missing for your platform or
+language of choice don't hesitate to contact us or even to start
+developing a client, we will be more than happy to help you through the
+process.
+--

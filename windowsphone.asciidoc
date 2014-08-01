@@ -1,0 +1,14 @@
+[[windowsphone]]
+= Windows Phone
+
+[partintro]
+--
+--
+
+include::windowsphone/getting-started.asciidoc[]
+
+include::windowsphone/developers-guide.asciidoc[]
+
+include::windowsphone/sdk.asciidoc[]
+
+include::windowsphone/api-reference.asciidoc[]

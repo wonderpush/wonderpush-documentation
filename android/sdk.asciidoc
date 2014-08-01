@@ -1,0 +1,6 @@
+[[android-sdk]]
+[role="chunk-page section-link"]
+== https://github.com/wonderpush/wonderpush-android-sdk/releases/latest[SDK]
+
+The WonderPush Android SDK is available on GitHub at
+https://github.com/wonderpush/wonderpush-android-sdk/releases/latest.

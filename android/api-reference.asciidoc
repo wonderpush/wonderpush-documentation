@@ -1,0 +1,6 @@
+[[android-api-reference]]
+[role="chunk-page section-link"]
+== http://wonderpush.github.io/wonderpush-android-sdk/api.html[API reference]
+
+The WonderPush Android SDK API reference is available on GitHub at
+http://wonderpush.github.io/wonderpush-android-sdk/api.html.

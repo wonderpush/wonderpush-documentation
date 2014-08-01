@@ -1,0 +1,50 @@
+:doctype: book
+
+
+
+[preface]
+= Preface
+
+TODO book export preface.
+
+
+
+include::main-content.asciidoc[]
+
+
+
+:numbered!:
+
+[appendix]
+
+= Appendix A's name
+
+=== Sub-section directly
+
+Bla
+
+[glossary]
+
+= Glossary
+
+Bla
+
+[glossary]
+Term::
+  Definition.
+
+
+[colophon]
+
+= Colophon
+
+TODO colophon
+
+
+[index]
+
+= Index
+
+////////////////////////////////////////////////////////////////////////
+Left empty
+////////////////////////////////////////////////////////////////////////
