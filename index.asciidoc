@@ -34,28 +34,6 @@ Dive into our Getting Started guides and integrate with your app in minutes.
 --
 
 [role="section"]
-.Windows Phone
---
-[icon icon-windowsphone]#{empty}#
-
-* <<windowsphone-getting-started,Getting started>>
-* <<windowsphone-developers-guide,Developer's guide>>
-* <<windowsphone-sdk,SDK>>
-* <<windowsphone-api-reference,API reference>>
---
-
-[role="section"]
-.Web
---
-[icon icon-web]#{empty}#
-
-* <<web-getting-started,Getting started>>
-* <<web-developers-guide,Developer's guide>>
-* <<web-sdk,SDK>>
-* <<web-api-reference,API reference>>
---
-
-[role="section"]
 .REST API
 --
 [icon icon-rest-api]#{empty}#

@@ -27,22 +27,6 @@ Dive into our Getting Started guides and integrate with your app in minutes.
 * <<ios-sdk,SDK>>
 --
 
-[role="section"]
-.Windows Phone
---
-[icon icon-windowsphone]#{empty}#
-
-* <<windowsphone-sdk,SDK>>
---
-
-[role="section"]
-.Web
---
-[icon icon-web]#{empty}#
-
-* <<web-sdk,SDK>>
---
-
 [role="clear"]
 --
 --

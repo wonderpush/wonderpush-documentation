@@ -10,10 +10,6 @@ include::android.asciidoc[]
 
 include::ios.asciidoc[]
 
-include::windowsphone.asciidoc[]
-
-include::web.asciidoc[]
-
 include::third-party-clients.asciidoc[]
 
 include::community-and-support.asciidoc[]

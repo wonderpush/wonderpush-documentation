@@ -17,15 +17,3 @@ Choose your platform:
 
 --
 --
-
-[role="section-link"]
-== <<windowsphone-getting-started,Windows Phone>>
-
---
---
-
-[role="section-link"]
-== <<web-getting-started,Web>>
-
---
---
