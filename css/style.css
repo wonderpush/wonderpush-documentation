@@ -7,6 +7,9 @@
   vertical-align:top;
   width:200px;
 }
+#main.developerDocsPage .halfMenu .developerDocsMenuModule UL {
+  padding: 0;
+}
 #main.developerDocsPage .halfMenu .developerDocsMenuModule > UL > LI {
   border-bottom:1px solid #CCC;
   padding:0.5em 0;
@@ -311,6 +314,7 @@
   font-weight: bold;
 }
 .article .tocwrapper .toc UL {
+  padding: 0;
   margin: 0;
 }
 
