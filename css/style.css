@@ -19,11 +19,12 @@
 }
 
 #main.developerDocsPage .halfContentWrap {
-  display:inline-block;
+  display:block;
   vertical-align:top;
   width:780px;
   padding-left:10px;
   padding-right:10px;
+  overflow: hidden; /* create BFC */
 }
 #main.developerDocsPage .halfContentWrap .widthColumn {
   width:auto;
