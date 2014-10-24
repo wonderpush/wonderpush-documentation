@@ -1,0 +1,531 @@
+[[guide-api-conventions]]
+[role="chunk-page"]
+== API conventions
+
+This section describes general API conventions that can be applied
+throughout the REST API, unless otherwise specified.
+
+[[guide-api-conventions-http-verbs]]
+=== HTTP verbs
+
+Where possible, API strives to use appropriate HTTP verbs.
+
+[cols="1,5",options="header,autowidth"]
+|===
+^|Verb
+^|Description
+
+|GET
+|Used for retrieving resources.
+
+|POST
+|Used for creating resources.
+
+|PUT
+|Used for fully updating resources.
+
+|PATCH
+|Used for partially updating resources.
+
+|DELETE
+|Used for deleting resources.
+|===
+
+[[guide-api-conventions-errors]]
+[role="chunk-toc"]
+=== Errors
+
+--
+--
+
+[[guide-api-conventions-errors-http-statuses]]
+==== HTTP statuses
+
+If everything is ok, the response is returned with an HTTP status 200.
+
+In case of errors, the following HTTP statuses can be used:
+
+[cols="1,5",options="header,autowidth"]
+|===
+^|Status
+^|Description
+
+|400
+|Bad Request from the client.
+
+|403
+|Forbidden. The client is now allowed.
+
+|404
+|Not Found. The resource does not exist.
+
+|409
+|Conflict. Version control conflict.
+
+|500
+|Internal Server Error. There is server side error. This should not happen.
+
+|503
+|Service Unavailable. There is a temporary service migration. The call can be retried after a short delay.
+|===
+
+[[guide-api-conventions-errors-structure]]
+==== Structure
+
+The following represents a common error response resulting from a failed
+API request:
+
+[source,js]
+----
+{
+  "error": {
+    "status": 400, //<1>
+    "code": 11003, //<2>
+    "message": "The provided access token is invalid" //<3>
+  }
+}
+----
+<1> the HTTP status.
+<2> WonderPush error code.
+<3> human friendly error description.
+
+[[guide-api-conventions-errors-reference]]
+==== Reference
+
+Here are the various errors that can be returned by WonderPush,
+presented here ordered by code:
+
+[cols="1,1,5",options="header"]
+|===
+^|Code
+^|Status
+^|Description
+
+|10000
+|404
+|No handler found
+
+|10001
+|400
+|When an invalid parameter is given
+
+|10002
+|400
+|When a mandatory parameter has been omitted
+
+|10005
+|400
+|When http is used for a method where https is mandatory
+
+|12000
+|404
+|When an application does not exist
+
+|12001
+|404
+|When a staff member does not exist
+
+|12002
+|404
+|When a user does not exist
+
+|12003
+|409
+|When a user already exists
+
+|12009
+|500
+|When an unexpected error occured
+
+|12010
+|403
+|When a staff has not the rights for the action
+
+|12011
+|403
+|When a user has not the rights for the action
+
+|12012
+|404
+|When a staff member answers to an unexisting invitation
+
+|12013
+|404
+|When someone is not part of a staff as it is intended
+
+|12014
+|400
+|When submitting an invalid certificate
+
+|12015
+|400
+|When a staff member tries to use the API without having a verified email
+
+|12016
+|404
+|When certificate does not exist
+
+|12017
+|400
+|When an expected request signature is invalid
+
+|12018
+|400
+|When there is a security risk
+
+|12019
+|400
+|When using API with an unsupported platform
+
+|12020
+|403
+|When the provided service access token is invalid
+
+|12024
+|404
+|When accessing the user of a userless installation
+
+|12025
+|400
+|When an expected installation body is invalid
+
+|12026
+|400
+|When an expected user body is invalid
+|===
+
+[[guide-api-conventions-pretty-printing]]
+=== Pretty printing
+
+For all endpoints returning JSON response you can append +?pretty=true+ to
+your requests to pretty print the result (use it for debugging purpose
+only).
+
+[[guide-api-conventions-pagination]]
+=== Pagination
+
+Some endpoints return multiple items at once. In that case, when
+relevant +prev+ and +next+ cursors are returned in the response. You can use
+these cursors to navigate in both directions throughout the result
+items. A +count+ parameter is also exposed to define how much items to
+return.
+
+[[guide-api-conventions-partial-response]]
+=== Partial response
+
+If you don't need the whole content of the response, some endpoints
+allow specifying a set of fields to return by setting the +fields+ parameter.
+The +fields+ parameter is given as a comma separated list of field names.
+
+[[guide-api-conventions-booleans]]
+=== Booleans
+
+All REST APIs parameters support providing boolean
+_false_ as the values: +0+, +false+, +f+, +n+, +no+, +false+
+and _true_ as the values: +1+, +true+, +t+, +y+, +yes+.
+
+[[guide-api-conventions-timestamps]]
+=== Timestamps
+
+Unix timestamp in milliseconds.
+The name of fields containing such values end with +date+.
+
+[[guide-api-conventions-durations]]
+=== Durations
+
+The name of fields containing durations end with +time+.
+
+Durations can be defined in two ways. As an integer or as a human
+readable string.
+
+When defining a time as an integer, WonderPush interprets it as a value
+in milliseconds.
+
+Milliseconds are not really handy to represent durations. For
+convenience, WonderPush let's you express durations as strings. An
+integer value followed by a unit (optionally separated by a space).
+
+Here is a list of the units you can use:
+
+* Milliseconds: +ms+, +millisecond+ or +milliseconds+
+* Seconds: +s+, +sec+, +second+ or +seconds+
+* Minutes: +m+, +min+, +minute+, +minutes+
+* Hours: +h+, +hr+, +hour+ or +hours+
+* Days: +d+, +day+ or +days+
+* Weeks: +w+, +week+ or +weeks+
+
+Examples: +5s+, +120 sec+, +15 minutes+, +36 hours+, +3 day+, +4 weeks+.
+
+[[guide-api-conventions-internationalization]]
+=== Internationalization
+
+WonderPush supports multi-lingual and locale-sensitive texts and number formatting.
+
+The following language codes are supported:
+
+[cols="4,1",options="header,autowidth"]
+|===
+^|Language
+^|Code
+
+|Afrikaans
+|af
+
+|Arabic
+|ar
+
+|Belarusian
+|be
+
+|Bulgarian
+|bg
+
+|Bengali
+|bn
+
+|Catalan
+|ca
+
+|Czech
+|cs
+
+|Danish
+|da
+
+|German
+|de
+
+|Greek
+|el
+
+|English
+|en
+
+|English (UK)
+|en_GB
+
+|English (US)
+|en_US
+
+|Spanish
+|es
+
+|Spanish (Spain)
+|es_ES
+
+|Spanish (Mexico)
+|es_MX
+
+|Estonian
+|et
+
+|Persian
+|fa
+
+|Finnish
+|fi
+
+|French
+|fr
+
+|French (France)
+|fr_FR
+
+|French (Canada)
+|fr_CA
+
+|Hebrew
+|he
+
+|Hindi
+|hi
+
+|Croatian
+|hr
+
+|Hungarian
+|hu
+
+|Indonesian
+|id
+
+|Icelandic
+|is
+
+|Italian
+|it
+
+|Japanese
+|ja
+
+|Korean
+|ko
+
+|Lithuanian
+|lt
+
+|Latvian
+|lv
+
+|Macedonian
+|mk
+
+|Malay
+|ms
+
+|Norwegian Bokmal
+|nb
+
+|Dutch
+|nl
+
+|Panjabi
+|pa
+
+|Polish
+|pl
+
+|Portuguese
+|pt
+
+|Portuguese (Portugal)
+|pt_PT
+
+|Portuguese (Brazil)
+|pt_BR
+
+|Romanian
+|ro
+
+|Russian
+|ru
+
+|Slovak
+|sk
+
+|Slovenian
+|sl
+
+|Albanian
+|sq
+
+|Serbian
+|sr
+
+|Swedish
+|sv
+
+|Swahili
+|sw
+
+|Tamil
+|ta
+
+|Thai
+|th
+
+|Tagalog
+|tl
+
+|Turkish
+|tr
+
+|Ukrainian
+|uk
+
+|Vietnamese
+|vi
+
+|Chinese
+|zh
+
+|Chinese (Simplified)
+|zh_CN
+
+|Chinese (Hong Kong)
+|zh_HK
+
+|Chinese (Traditional)
+|zh_TW
+|===
+
+[[guide-api-conventions-versioning]]
+=== Versioning
+
+WonderPush API endpoints are versioned and the version has to be
+specified in the path of every API call. Current version is 1,
+therefore all API calls begins with +https://api.wonderpush.com/v1/*+.
+
+The API version will only be incremented if we introduced major changes
+breaking backward compatibility. In that case, calls to previous API
+version will continue to work for a few months to ensure that already
+released applications will continue to work properly.
+
+The API versioning has a direct incidence on our official SDKs
+versioning.
+
+We use a four-part version number which consists of a major version, a
+minor version, a feature number and patch number. The patch number is
+incremented for minor changes and bug fixes. The feature number is
+incremented when the SDK exposes a new feature. The minor version is
+incremented for SDK releases that are not backward compatible. The major
+version matches the WonderPush API version. For example, an SDK versioned
+1.x.x.x is designed to interact with the WonderPush API v1, upgrading
+between 1.0.x.x to 1.1.x.x will imply code changes, 1.0.1.x will expose
+new functionalities compared to 1.0.0.x, while being fully compatible
+with the latter, and 1.0.0.1 only contains bugfixes compared to 1.0.0.0.
+
+Should you decide to implement and distribute your own clients for
+WonderPush, we encourage you to follow the same versioning scheme.
+
+[[guide-api-conventions-platforms-and-models]]
+[role="chunk-toc"]
+=== Platforms & Models
+
+--
+--
+
+[[guide-api-conventions-platforms-and-models-platforms]]
+==== Platforms
+
+As of now WonderPush allows the following platforms for your applications:
+
+* iOS
+* Android
+* Windows Phone
+* Firefox OS
+* BlackBerry OS
+* BlackBerry TabletOS
+* Bada
+* Brew
+* GridOS
+* MeeGo
+* Mer Project
+* S40
+* SHR
+* Symbian OS
+* WebOS
+* Adobe Flash
+* Web
+* Linux
+* Mac OS X
+* Windows
+
+If you think that your platform of choice is missing feel free to
+https://github.com/wonderpush/wonderpush/issues/new?labels=enhancement&title=Add%20support%20for%20platform%20X["open an issue", window="_blank"]
+and we will add it.
+
+[[guide-api-conventions-platforms-and-models-models]]
+==== Models
+
+There are no restriction for the models you can use except that when
+using iOS as a platform you have to provide a model compatible with it
+(iPhone*, iPod*, iPad*...).
+
+[[guide-api-conventions-cross-origin-resource-sharing]]
+=== Cross-Origin Resource Sharing
+
+The API supports Cross Origin Resource Sharing (CORS) for AJAX requests.
+You can read the http://www.w3.org/TR/cors/["CORS W3C working draft", window="_blank"], or
+http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity["this
+intro", window="_blank"] from the HTML 5 Security Guide.

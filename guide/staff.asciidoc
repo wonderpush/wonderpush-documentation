@@ -1,0 +1,36 @@
+[[guide-staff]]
+[role="chunk-page chunk-toc"]
+== Staff
+
+--
+--
+
+[[guide-staff-concepts]]
+=== Concepts
+
+When first using WonderPush, you will need to create your staff member
+account.
+
+Such staff account identifies you personally and you should not share
+it with others. WonderPush handles roles and permissions appropriately,
+this way you can grant access to your application to multiple other
+staff members.
+
+[[guide-staff-interact]]
+=== Interact
+
+[[guide-staff-interact-create-account]]
+==== Create your account
+
+Creating your account in WonderPush is simple:
+
+* Click the _Login_ link in the page header or follow
+  https://dashboard.wonderpush.com/account/signup["this link"].
+* Fill the sign up form with your email and a password of your choice.
+* Submit.
+* Remember to validate your email by clicking the link that was sent
+  to the email address you provided.
+
+You are now directly redirected to your dashboard, where you can
+either directly try the service using the demo application, or
+<<guide-application-interact-register,register your own application>>.

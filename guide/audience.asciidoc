@@ -1,0 +1,65 @@
+[[guide-audience]]
+[role="chunk-page chunk-toc"]
+== Audience
+
+--
+--
+
+[[guide-audience-concepts]]
+=== Concepts
+
+The audience represents the entire population of users who installed
+your application that are registered in WonderPush.
+
+The entire audience may not be reachable by push notifications as
+we respect opt-in/opt-out choices of the users, which are enforced
+by the system on some platforms.
+
+Using the SDK, you can easily tag and track meaningful events performed
+by the user directly from your application. This enables you to perform
+powerful segmentation of your audience. Such parts of the audience are
+called _segments_. WonderPush permits you to define numerous segments.
+
+Segments are used as the target for your <<guide-notifications,notifications>>.
+
+[[guide-audience-interact]]
+=== Interact
+
+[[guide-audience-interact-create]]
+==== Create a segment
+
+Creating a segment in WonderPush is easy:
+
+* Select _Audience_ in the left menu of your https://dashboard.wonderpush.com/["dashboard"].
+* Click the _Create segment_ button on the right.
+* Name the segment you wish to create. +
+  WonderPush will use this name in diverse places of the interface.
+  A good name describing the audience segment is important to always
+  remember precisely what group of users is covered by the segment. +
+  You can always edit this name afterwards.
+* Click the _Add criteria_ button to start selecting users of interest.
+* The interface will intuitively make you build phrases that describe
+  your criteria:
+** The first selector proposes multiple kind of criteria to choose from.
+** The other fields adapt to the chosen kind and the second selector
+   lets you choose an operator to apply.
+** The third field expects for a value to complete the criterion.
+* Add as many criterion as needed to nail down the audience to the
+  precise segment you wish. +
+  When multiple criteria exist, you can choose whether a user should
+  either match _all_ of the criteria, or if it has to match _any_ of
+  them.
+* As you edit the rules defining the segment, you can see a preview
+  of the matching users in the list below the editor. +
+  The number of matching users is especially important when using the
+  segment as a target for a <<guide-notifications,notification>>.
+* Once happy with the result, hit _Save_.
+
+[[guide-audience-interact-preview]]
+==== Preview a segment
+
+* Select _Audience_ in the left menu of your
+  https://dashboard.wonderpush.com/["dashboard"].
+* Click the _Preview_ button on the line of the desired segment.
+* A summary of the segment definition rules is proposed, along with a
+  live preview of matching users.

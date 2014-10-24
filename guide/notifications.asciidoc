@@ -1,0 +1,189 @@
+[[guide-notifications]]
+[role="chunk-page chunk-toc"]
+== Notifications
+
+--
+--
+
+[[guide-notifications-concepts]]
+=== Concepts
+
+Notifications are at the heart of WonderPush. A notification is composed
+of an short message shown in the notification center, and a longer
+message shown when the user clicks on the notification. Additional data
+can be added, for your application consumption.
+
+All these parts are optional. A notification without short message is
+called in-app, and will only show up when your application is opened.
+A notification without the longer message will merely open your
+application when clicked. Finally, a notification without any message
+will be handled by your application to react to any additional data.
+
+WonderPush proposes several types of rich notifications, among them:
+
+* Text message
+* HTML message
+* Web page
+* Location map
+* Coupon
+* Poll
+
+A notification can be comprised of _multiple variants_ to automatically
+setup an A/B test. WonderPush will choose a variant per user, on a small
+portion of the target <<guide-audience,audience>>, before selecting
+which message works best and send it to the rest of the target.
+
+A notification is targetted to a particular <<guide-audience,audience
+segment>>, but you can may also choose to broadcast it to all users.
+For convinience, you can reuse a
+<<guide-audience-interact-create-a-segment,previously created segment>>
+segment, modify one, or create a brand new segment.
+
+Lastly, notifications are scheduled for automatic delivery. WonderPush
+handles multiple modes such as recurrent deliveries, or event based
+triggers.
+
+[[guide-notifications-interact]]
+=== Interact
+
+[[guide-notifications-create-templated]]
+==== Create a templated notification
+
+TIP: This is the simplest way to start discovering the amazing potential
+of mobile push notifications. +
+It will likely rings a bell deep inside you, triggering your
+inventiveness and new use cases will start to come to your mind
+naturally.
+
+* Select _Notifications_ in the left menu of your https://dashboard.wonderpush.com/["dashboard"].
+* Click the _Create notification_ button on the right.
+* Choose one of the templates proposed in the popup list.
+* Adapt the proposed texts to your needs.
+* Click _Create_.
+* You can also click _Customize_ to open the full-featured editor.
+** Make any adjustment you wish and hit _Save and continue_ to advance
+   through the three steps. +
+   For more help, read the following <<guide-notifications-create,Create
+   a custom notification>> section.
+** Hit _Save_ on the third step.
+* Your notification is created! +
+  You get redirected to the list of notifications.
+* When ready, click the _ON/OFF_ switch to activate delivery.
+
+[[guide-notifications-create]]
+==== Create a custom notification
+
+TIP: We present here a detailed walkthrough the notification editor.
+We have worked hard to make is super easy to use. +
+The best thing to do is give it a try, and come back here if you have
+any question that as not already been answered by the interface itself.
+
+* Select _Notifications_ in the left menu of your https://dashboard.wonderpush.com/["dashboard"].
+* Click the _Create notification_ button on the right.
+* Choose _Custom notification_ in the popup list.
+* First step: _Compose message_
+** Name the notification you wish to create. +
+   WonderPush will use this name in diverse places of the interface.
+   A good name describing the desired communication and an idea of its
+   intended audience is important to always remember precisely what we
+   are talking about. +
+   You can always edit this name afterwards.
+** Compose a short message the notification will appear with in the
+   notification center. +
+   You can also deactivate this by clicking the _ON/OFF_ switch, so that
+   the notification only shows up when the application is opened.
+** Choose what type of rich notification you want to use. +
+   This will setup a second screen, displayed by the SDK once the user
+   clicks the notification.
+   A _simple notification_ has no such screen, it mere launches the
+   application when clicked. A _data_ notification has no such screen
+   either, and does not show in the notification center either.
+   These are the only two exceptions.
+** Compose the rich notification message, or enter an URL or select a
+   geographic location, depending on the chosen rich notification type.
+** You can then add and edit the buttons that are shown under your
+   message. +
+   A button is comprised of a label and optional actions.
+** Optionally, you can edit platform-specific settings, like the sound
+   or iOS badge number.
+** Optionally. you can add arbitrary key-value pairs to appear in the
+   notification object received by the application.
+** Click _Save and continue_.
+** After completing this step you can find your new notification listed.
+* Second step: _Target audience_
+** Select whether you wish to broadcast the notification to all users
+   of your audience, or whether to user an existing
+   <<guide-audience-interact-create,segment>> or to create a new one.
+*** If selecting an existing segment, you can still edit it, but doing
+    so will create a new one, in order to make sure that you do not
+    inadvertently affect other notifications. You will hence need to
+    give it a new name.
+*** If creating a new segment, you can refer to the section describing
+    <<guide-audience-interact-create,how to create a segment>>.
+** Click _Save and continue_.
+* Second step: _Schedule delivery_
+** Select the desired schedule mode:
+*** _As soon as detected in the audience_ +
+    Users matching the audience segment will receive the notification.
+    As soon as a non-matching user falls in the segment, it will be
+    notified. As such if a user repeatedly quits and re-enters the
+    target segment, it will receive a notification each time. +
+    Optionally, you can decide to postpone the sending of a notification
+    for a fixed delay.
+*** _Recurrently_ +
+    Notifications will be sent daily, weekly or monthly, to all the
+    users in the target audience at the time of delivery.
+** If confident, you can hit the _ON/OFF_ switch to activate the
+   notification right away. +
+   If unsure, leave it off, you can always come back later to edit the
+   notification and activating or suspensing a notification is easy.
+** Click _Save_.
+* Your notification is created! +
+  You get redirected to the list of notifications.
+* When ready, click the _ON/OFF_ switch to activate delivery.
+
+[[guide-notifications-edit]]
+==== Edit a notification
+
+* Select _Notifications_ in the left menu of your
+  https://dashboard.wonderpush.com/["dashboard"].
+* Click the _Edit_ button on the line of the desired notification.
+* You are presented with the notification editor described in the
+  previous section. +
+  You can navigate between the three steps by clicking the stepper at
+  the top. Note that changes made in the page are only saved if you
+  click the _Save_ button at the bottom.
+
+[[guide-notifications-preview]]
+==== Preview a notification
+
+* Select _Notifications_ in the left menu of your
+  https://dashboard.wonderpush.com/["dashboard"].
+* Click the _Preview_ button on the line of the desired notification.
+* A summary of the main information is presented, as well as a preview
+  of each message variant.
+* This page proposes two buttons to quickly <<guide-notifications-edit,edit>>
+  the notification or <<guide-notifications-reports,view reports>>.
+
+[[guide-notifications-reports]]
+==== See notification reports
+
+* Select _Notifications_ in the left menu of your
+  https://dashboard.wonderpush.com/["dashboard"].
+* Click the _Reports_ button on the line of the desired notification.
+* A detailed an interactive view of the graphs presented in the
+  https://dashboard.wonderpush.com/overview["overview"] of your
+  dashboard is shown.
+* You can add more events to the graphs using the appropriate button.
+* You can also see conversion graphs:
+** Click the _conversion_ tab.
+** Select the _desired event_ to calculate conversion against.
+
+[[guide-notifications-suspend-resume]]
+==== Suspend or resume a notification
+
+* Select _Notifications_ in the left menu of your
+  https://dashboard.wonderpush.com/["dashboard"].
+* Click the _ON/OFF_ switch on the line of the desired notification. +
+  _ON_ will enable the sending of notifications, while _OFF_ will
+  suspend it.

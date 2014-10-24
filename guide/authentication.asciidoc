@@ -1,0 +1,65 @@
+[[guide-authentication]]
+[role="chunk-page chunk-toc"]
+== Authentication
+
+In order to interact with the WonderPush API, an installation has to authenticate to obtain
+an access token.
+
+The SDK does it for you, but we describe the process here for reference.
+
+[[guide-authentication-user-authentication]]
+=== User authentication
+
+[[guide-authentication-user-authentication-concepts]]
+==== Concepts
+
+An installation is uniquely identified by the application credentials, the user id,
+and the device id and platform it is attached to.
+You have to provide these three pieces of information to create or retrieve
+the associated access token.
+
+[[guide-authentication-user-authentication-interact]]
+==== Interact
+
+[[guide-authentication-user-authentication-interact-authenticating-user]]
+===== Authenticating a user
+
+[source,sh]
+----
+$> curl -XPOST -H 'X-WonderPush-Lenient: yes'\
+'https://api.wonderpush.com/v1/authentication/accessToken'\
+'?clientId=<CLIENT_ID>'\
+'&clientSecret=<CLIENT_SECRET>'\
+'&devicePlatform=<PLATFORM>'\
+'&deviceId=<DEVICE_ID>'\
+'&userId=<OPTIONAL_USER_ID>'
+----
+
+[source,js]
+----
+{
+   "id": "N1BDQZ4oCtyk+wyCINW4GCO4zNaTPiePDPNZ0VO2EC3sGucoPqnf0s3VzfW1B3D7WaFysGQIfkJmtlCrNH96P7",
+   "clientId": "<CLIENT_ID>",
+   "creationDate": 1408377553813,
+   "updateDate": 1408377553813,
+   "token": "N1BDQZ4oCtyk+wyCINW4GCO4zNaTPiePDPNZ0VO2EC3sGucoPqnf0s3VzfW1B3D7WaFysGQIfkJmtlCrNH96P7",
+   "scope": "installation",
+   "expiresAt": 0,
+   "data": {
+      "installationId": "e94d5b5a42dddea0dcea9e1a7a8239fc1a7983bb",
+      "applicationId": "0194ufrh86gs0ktf",
+      "sid": "bcb318434a6a6e7d854327c560d778bb57487b67ab196d03e0b45d25db49ec14"
+   }
+}
+----
+
+You can now use the string in the +token+ field as the access token to interact with the WonderPush API.
+
+
+[[guide-authentication-guest-authentication-reference]]
+==== Reference
+
+[[guide-authentication-guest-authentication-reference-apis]]
+===== APIs
+
+* http://www.wonderpush.com/docs/reference/api/v1#post_{empty}_v1_authentication_accessToken[authentication/accessToken reference].

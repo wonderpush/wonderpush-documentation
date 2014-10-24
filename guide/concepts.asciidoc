@@ -1,0 +1,249 @@
+[[guide-concepts]]
+[role="chunk-page"]
+== Concepts
+
+--
+--
+
+[[guide-concepts-overview]]
+=== Overview
+
+WonderPush is a mobile CRM platform, designed for marketers.
+We provide services to increase usage, retention and revenues to your
+apps and let you reach out, interact and gain insights from your users
+on mobile.
+
+We offer a rich set of features including:
+
+* Push notifications
+* In-app messages
+* Audience segmentation and targeting
+* Message creation, A/B testing and personalization
+* Deep Linking
+* Cross Promotion
+* Geozones
+* Automation
+* Analytics
+* And a whole lot more!
+
+[[guide-concepts-philosophy]]
+=== Philosophy
+
+When developing WonderPush we always try to respect these few core
+principles:
+
+* Scalability. We are distributed worldwide and using state of the art
+  technologies (http://cassandra.apache.org/["Cassandra", window="_blank"],
+  http://www.elasticsearch.org/["Elasticsearch", window="_blank"],
+  http://www.rabbitmq.com/["RabbitMQ", window="_blank"], http://www.erlang.org/["Erlang", window="_blank"]).
+* Simplicity. You will be able to start and test a standard integration
+  in minutes. We provide some sensible defaults, prepackaged notifications
+  and SDKs for a quick integration.
+* Flexibility. There are many different kind of applications and platforms
+  and a wide variety of use cases. We want to make sure that everything is
+  as flexible and configurable as needed to fulfill your needs.
+* Customizability. You have the choice to pick only some of the services
+  we offer. You are able to customize everything for a deeper integration
+  in your application. You are able to go SDK-less and decide how you want
+  to interact with WonderPush.
+* You own your data. You can decide to stop using WonderPush dynamically
+  at any time. You can fetch all your application data from your users'
+  profiles to their tracked events.
+* Availability. We provide a 99.99% SLA. If we fall under, we'll credit
+  you based on the time the service was unavailable. It's that simple.
+
+[[guide-concepts-api-organization]]
+=== API organization
+
+WonderPush exposes
+http://en.wikipedia.org/wiki/Representational_state_transfer["REST", window="_blank"] http://en.wikipedia.org/wiki/Application_programming_interface["APIs", window="_blank"] through
+http://en.wikipedia.org/wiki/JSON["JSON", window="_blank"] over
+http://en.wikipedia.org/wiki/HTTP_Secure["HTTPS", window="_blank"].
+
+All API access is over http://en.wikipedia.org/wiki/HTTP_Secure["HTTPS", window="_blank"],
+and accessed over the +api.wonderpush.com+ domain.
+
+The REST API is two-part:
+
+. The Management API, exposed to developers, can be used directly to
+  manage applications and configurations without using the WonderPush
+  dashboard website. It can be quite useful for batch operations, for
+  example if you want to create many notifications.
+  It must not be called directly from your application.
+. The API, called from your applications, to perform all user-related
+  tasks, like tracking events, adding a tag, editting notification
+  preferences or reading in-app messages.
+  Those endpoints return data in JSON.
+
+[[guide-concepts-api-clients]]
+=== API clients
+
+Any HTTPS-enabled client can interact directly with WonderPush through
+the REST API. +
+For more convenience, we provide
+http://en.wikipedia.org/wiki/Software_development_kit["SDKs", window="_blank"] for the main
+languages and platforms (Android, iOS, Windows Phone, Web).
+
+[[guide-concepts-security]]
+[role="chunk-toc"]
+=== Security
+
+--
+--
+
+[[guide-concepts-security-http-https-calls]]
+==== HTTP/HTTPS calls
+
+All API access is over http://en.wikipedia.org/wiki/HTTP_Secure["HTTPS", window="_blank"].
+
+[[guide-concepts-security-api-access]]
+==== API access
+
+[[guide-concepts-security-api-access-access-token-and-sid]]
+===== Access token and sid
+
+Most API calls are made for a given user on a specific application
+on a device. Therefore, before interacting with the API endpoints,
+the user must first obtain an access token.
+
+The access token has to be given to all JSON API calls.
+
+Access tokens are associated on the server side to:
+
+* A device
+* An installation
+* A user
+* An application
+
+[[guide-concepts-security-api-access-authentication]]
+===== Authentication
+
+In order to interact with the WonderPush API you have first to
+authenticate your user to obtain an access token.
+
+If you are using one of our SDKs, you do not need to take care of this,
+the SDKs do it for you.
+
+You can learn more about user authentication in the more detailed
+<<guide-authentication,authentication>> section.
+
+[[guide-concepts-security-api-access-signature]]
+===== Signature
+
+All API calls leading to side-effects i.e. with POST, PUT, PATCH or
+DELETE HTTP verbs, need to provide a signature.
+
+If you are using one of our SDKs, you do not need to take care of this,
+the SDKs do it for you.
+
+The signature algorithm is inspired by OAuth 1.0, described
+https://tools.ietf.org/html/rfc5849#section-3.4["here", window="_blank"],
+using HMAC-SHA1 keyed with the application's client_secret.
+The signature has to be given as a header with the following format:
+
++X-WonderPush-Authorization: WonderPush sig="ENCODED_CALCULATED_SIGNATURE", meth="0"+
+
+For convenience, you can interact with the service from your console
+without providing the signature by using the header
++X-WonderPush-Lenient: yes+ and providing your client secret using
+an additional +clientSecret+ parameter. This is available only for
+debug purpose only and you shouldn't rely on this behavior in production.
+If you use the lenient mode and don't provide
+a signature, the response will contain the following header
++X-WonderPush-Warning: Invalid request signature.+
+
+The exact algorithm to compute the signature from your request is
+commonly used and implemented in our SDKs, as well as in various
+languages and libraries.
+
+If you're going SDK-less, you'll need to reimplement it as follows:
+
+. Compute the clear signature, summarizing the whole request.
+. Hash it using your game's clientSecret.
+. Format the authorization header to add the signature to your request.
+
+The clear signature is composed of the following fields, encoded (see
+below) and joined with "&":
+
+* HTTP method, uppercased
+* URI: as the concatenation of
+
+** Scheme: "http" or "https", lowercased
+** "://"
+** HTTP host, lowercased
+** Query path, until the first "?". Must always start with a "/".
+
+* Parameters: encode keys and values, sort on keys, join keys and values
+with "=", join them with "&".
+* Raw body if not Content-Type: application/x-www-form-urlencoded. If
+Content-Type: application/x-www-form-urlencoded, consider this part as
+an empty string.
+
+This string contains all the information we will sign, hence protecting
+you against tampering.
+
+The encoding method is as follows as defined in
+https://tools.ietf.org/html/rfc5849#section-3.6["here", window="_blank"]:
+
+* Text values are first encoded as UTF-8 octets if they are not
+already. +
+This does not include binary values that are not intended for human
+consumption (ie. everything except application/x-www-form-urlencoded
+data).
+* The values are then escaped using the percent-encoding (%XX) mechanism
+as follows, considering the string byte by byte:
+
+* Leave intact the characters from the following unreserved character
+set: (ALPHA:"a-zA-Z", DIGIT:"0-9", "-", ".", "_", "~"). They must not be
+encoded.
+* Encode every other byte as sprintf("%%%02X", ord($char)). This means a
+"%" percent sign, followed by a 2 digit hexadecimal value of the byte,
+in uppercase. +
+Note that e acute (é), would get encoded into "%C3%A9".
+
+Hash the clear signature using the HMAC-SHA1 procedure, keyed with your
+game's clientSecret. This step both proves that you are in possession of
+this secret, and hence permits not to disclose it in the request.
+
+The calculated signature should further be:
+
+* base64 encoded (as per
+https://tools.ietf.org/html/rfc2045#section-6.8["RFC2045 §6.8", window="_blank"], using the
+charset A-Za-z0-9+/ and padding "=")
+* then percent encoded (for "+", "/", and "=")
+
+This step is necessary to output a well-formed header.
+
+Finally add the following header to the request:
+
++X-WonderPush-Authorization: WonderPush sig="ENCODED_CALCULATED_SIGNATURE", meth="0"+
+
+Here is an valid example:
+[source,sh]
+----
+curl -XPOST\
+'https://api.wonderpush.com/v1/authentication/accessToken'\
+'?clientId=eff6e7cb401d17367078be29792d132da3eb54cd'\
+'&sdkVersion=Android-1.0.9.1'\
+'&devicePlatform=Android'\
+'&deviceModel=Nexus+4'\
+'&deviceId=e1df74bcff7a3775'\
+-H 'X-WonderPush-Authorization: WonderPush sig="QZfnGkioRhAnjaYNKQZKpPNQVtw%3D", meth="0"'
+# Signature before HMAC_SHA1:
+# POST&https%3A%2F%2Fapi.wonderpush.com%2Fv1%2Fauthentication%2FaccessToken&clientId%3Deff6e7cb401d17367078be29792d132da3eb54cd%26deviceId%3De1df74bcff7a3775%26deviceModel%3DNexus%25204%26devicePlatform%3DAndroid%26sdkVersion%3DAndroid-1.0.9.1&
+----
+
+As a side note, please note that the following are not allowed:
+
+* Multiple occurrence of keys in both the URI query and HTTP request
+body (for application/x-www-form-urlencoded requests).
+* enctype="multipart/form-data".
+* Array key/values, like: ?list[]=first&list[]=second.
+
+[[guide-concepts-security-management-api-access]]
+==== Management API access
+
+To interact with the Management API you have to use your staff
+access token. You can obtain your staff access token in the
+WonderPush dashboard. The staff access token must not be
+shared with anyone.

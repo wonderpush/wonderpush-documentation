@@ -1,0 +1,59 @@
+[[guide-application]]
+[role="chunk-page chunk-toc"]
+== Application
+
+--
+--
+
+[[guide-application-concepts]]
+=== Concepts
+
+In order to start integrating WonderPush in your own application,
+you must first register it in your dashboard.
+
+An application comes with its own isolated database, storing
+<<guide-user,users>>, <<guide-installation,installations>> and
+<<guide-event,events>>, but also the
+<<guide-audience,audience segments>>
+and <<guide-notifications,notifications>> you create.
+
+[[guide-application-interact]]
+=== Interact
+
+[[guide-application-interact-register]]
+==== Register your application
+
+Registering your application in WonderPush is simple:
+
+* Log into your dashboard.
+* Select _New application_ under very first item of the left menu.
+* If prompted, make sure to validated your email address.
+  Simply click the link that you received by email.
+* Fill in your application name.
+* Check the appropriate platform(s).
+* Submit.
+
+[[guide-application-interact-credentials]]
+==== Get your credentials
+
+First, make sure that you selected your application in the selector
+of the very first item of the left menu.
+
+Then go to _Settings / Keys_ from the menu.
+
+You will find the _client id_ and _client secret_,
+together forming your _application credentials_ in the page.
+
+[[guide-application-interact-integrate-sdk]]
+==== Integrate the SDK
+
+The dashboard gives you links to the SDKs that you should integrate.
+These suggestions are based on the platforms supported by your
+application.
+
+If you are missing a platform, simply edit your application by clicking
+the _Edit_ button in the _Settings / Details_ menu.
+
+You can download and read the integration instructions for the SDK
+built for your platform on the
+https://www.wonderpush.com/docs/getting-started["Getting Started"] page.
