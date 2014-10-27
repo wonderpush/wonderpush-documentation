@@ -9,7 +9,7 @@
 === Concepts
 
 Notifications are at the heart of WonderPush. A notification is composed
-of an short message shown in the notification center, and a longer
+of a short message shown in the notification center, and a longer
 message shown when the user clicks on the notification. Additional data
 can be added, for your application consumption.
 
