@@ -18,3 +18,9 @@ include::guide/application.asciidoc[]
 include::guide/audience.asciidoc[]
 
 include::guide/notifications.asciidoc[]
+
+include::guide/user.asciidoc[]
+
+include::guide/installation.asciidoc[]
+
+include::guide/event.asciidoc[]

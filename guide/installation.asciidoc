@@ -1,0 +1,31 @@
+[[guide-installation]]
+[role="chunk-page chunk-toc"]
+== Installation
+
+--
+--
+
+[[guide-installation-concepts]]
+=== Concepts
+
+WonderPush identifies each device - user couple by an installation.
+It represents the actual installation of your application on the device
+of a customer.
+
+When two users log on a single device, they will be provided with two
+separate installations, to further enforce a clean separation of data.
+
+Installations can use the +null+ <<guide-user,user>> id to indicate
+that it is an anonymous installation. Such installations will not be
+considered as belonging to the same undefined user but rather as each
+belonging to a different anonymous user.
+
+The installation object can host custom data for your private use. It
+can be structured or mere key-value pairs, and they can be indexed and
+reused to build <<guide-audience,audience segments>>.
+
+[[guide-installation-interact]]
+=== Interact
+
+Look at the API reference of the SDK for the platform of your choice
+for more information.
