@@ -117,6 +117,14 @@ presented here ordered by code:
 |400
 |When http is used for a method where https is mandatory
 
+|11000
+|400
+|When an invalid client credentials are given
+
+|11003
+|403
+|The provided access token is invalid
+
 |12000
 |404
 |When an application does not exist
