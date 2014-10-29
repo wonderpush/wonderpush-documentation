@@ -1,6 +1,6 @@
 [[ios-sdk]]
 [role="chunk-page section-link"]
-== SDK
+== https://github.com/wonderpush/wonderpush-ios-sdk/releases/latest[SDK]
 
-// TODO
-_Coming soon._
+The WonderPush iOS SDK is available on GitHub at
+https://github.com/wonderpush/wonderpush-ios-sdk/releases/latest.

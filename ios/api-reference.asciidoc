@@ -1,6 +1,6 @@
 [[ios-api-reference]]
 [role="chunk-page section-link"]
-== API reference
+== http://wonderpush.github.io/wonderpush-ios-sdk/api.html[API reference]
 
-// TODO
-_Coming soon._
+The WonderPush iOS SDK API reference is available on GitHub at
+http://wonderpush.github.io/wonderpush-ios-sdk/api.html.

@@ -1,6 +1,6 @@
 [[ios-getting-started]]
-[role="chunk-page chunk-toc"]
-== Getting started
+[role="chunk-page section-link"]
+== http://wonderpush.github.io/wonderpush-ios-sdk/[Getting started]
 
-// TODO
-_Coming soon._
+The WonderPush iOS SDK guide to Getting started is available on GitHub at
+http://wonderpush.github.io/wonderpush-ios-sdk/.
