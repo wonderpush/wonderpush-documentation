@@ -36,7 +36,7 @@ which message works best and send it to the rest of the target.
 A notification is targetted to a particular <<guide-audience,audience
 segment>>, but you can may also choose to broadcast it to all users.
 For convinience, you can reuse a
-<<guide-audience-interact-create-a-segment,previously created segment>>
+<<guide-audience-interact-create,previously created segment>>
 segment, modify one, or create a brand new segment.
 
 Lastly, notifications are scheduled for automatic delivery. WonderPush
