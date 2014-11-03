@@ -49,8 +49,8 @@ principles:
 * You own your data. You can decide to stop using WonderPush dynamically
   at any time. You can fetch all your application data from your users'
   profiles to their tracked events.
-* Availability. We provide a 99.99% SLA. If we fall under, we'll credit
-  you based on the time the service was unavailable. It's that simple.
+* Availability. We'll do everything we can to achieve 100% uptime. When
+  we fall short, we'll explain why and how we'll do better next time.
 
 [[guide-concepts-api-organization]]
 === API organization
