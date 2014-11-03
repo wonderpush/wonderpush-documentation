@@ -1,9 +1,0 @@
-[[android-developers-guide]]
-[role="chunk-page chunk-toc"]
-== Developer's guide
-
-[partintro]
---
-// TODO
-_Coming soon._
---

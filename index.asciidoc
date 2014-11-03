@@ -17,7 +17,6 @@ Dive into our Getting Started guides and integrate with your app in minutes.
 [icon icon-android]#{empty}#
 
 * <<android-getting-started,Getting started>>
-* <<android-developers-guide,Developer's guide>>
 * <<android-sdk,SDK>>
 * <<android-api-reference,API reference>>
 --
@@ -28,7 +27,6 @@ Dive into our Getting Started guides and integrate with your app in minutes.
 [icon icon-ios]#{empty}#
 
 * <<ios-getting-started,Getting started>>
-* <<ios-developers-guide,Developer's guide>>
 * <<ios-sdk,SDK>>
 * <<ios-api-reference,API reference>>
 --
