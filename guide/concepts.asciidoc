@@ -61,7 +61,7 @@ http://en.wikipedia.org/wiki/JSON["JSON", window="_blank"] over
 http://en.wikipedia.org/wiki/HTTP_Secure["HTTPS", window="_blank"].
 
 All API access is over http://en.wikipedia.org/wiki/HTTP_Secure["HTTPS", window="_blank"],
-and accessed over the +api.wonderpush.com+ domain.
+and accessed over the ++api.wonderpush.com++ domain.
 
 The REST API is two-part:
 
@@ -138,7 +138,7 @@ the SDKs do it for you.
 
 The signature algorithm is inspired by OAuth 1.0, described
 https://tools.ietf.org/html/rfc5849#section-3.4["here", window="_blank"],
-using HMAC-SHA1 keyed with the application's client_secret.
+using HMAC-SHA1 keyed with the application's client secret.
 The signature has to be given as a header with the following format:
 
 +X-WonderPush-Authorization: WonderPush sig="ENCODED_CALCULATED_SIGNATURE", meth="0"+
