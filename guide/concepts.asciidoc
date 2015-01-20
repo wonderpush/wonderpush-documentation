@@ -84,6 +84,9 @@ For more convenience, we provide
 http://en.wikipedia.org/wiki/Software_development_kit["SDKs", window="_blank"] for the main
 languages and platforms (Android, iOS, Windows Phone, Web).
 
+In addition we provide a command-line client to help you try API calls:
+https://github.com/wonderpush/wonderpush-python-lib["Python command-line tool", window="_blank"].
+
 [[guide-concepts-security]]
 [role="chunk-toc"]
 === Security
@@ -134,7 +137,9 @@ All API calls leading to side-effects i.e. with POST, PUT, PATCH or
 DELETE HTTP verbs, need to provide a signature.
 
 If you are using one of our SDKs, you do not need to take care of this,
-the SDKs do it for you.
+the SDKs do it for you. +
+You can also try our <<guide-concepts-api-clients,command-line client>>,
+which also performs signature computation.
 
 The signature algorithm is inspired by OAuth 1.0, described
 https://tools.ietf.org/html/rfc5849#section-3.4["here", window="_blank"],
