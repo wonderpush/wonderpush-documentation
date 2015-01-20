@@ -145,7 +145,7 @@ The signature has to be given as a header with the following format:
 
 For convenience, you can interact with the service from your console
 without providing the signature by using the header
-+X-WonderPush-Lenient: yes+ and providing your client secret using
++X-WonderPush-Lenient: true+ and providing your client secret using
 an additional +clientSecret+ parameter. This is available only for
 debug purpose only and you shouldn't rely on this behavior in production.
 If you use the lenient mode and don't provide
