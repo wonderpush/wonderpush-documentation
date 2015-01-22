@@ -537,3 +537,13 @@ The API supports Cross Origin Resource Sharing (CORS) for AJAX requests.
 You can read the http://www.w3.org/TR/cors/["CORS W3C working draft", window="_blank"], or
 http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity["this
 intro", window="_blank"] from the HTML 5 Security Guide.
+
+[[guide-api-conventions-limits]]
+=== Limits
+
+As security measure, the maximum length of a request path and query
+string must not exceed 2048 bytes, and the maximum length of a request
+body must not exceed 4096 bytes.
+
+For the Management API, the maximum length of a request body is raised
+to 1 MB.
