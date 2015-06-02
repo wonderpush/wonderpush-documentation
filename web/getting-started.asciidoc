@@ -1,0 +1,6 @@
+[[web-getting-started]]
+[role="chunk-page section-link"]
+== http://wonderpush.github.io/wonderpush-javascript-sdk/[Getting started]
+
+The WonderPush JavaScript SDK guide to Getting started is available on GitHub at
+http://wonderpush.github.io/wonderpush-javascript-sdk/.

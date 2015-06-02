@@ -593,6 +593,20 @@
   height: 13em;
   min-width: 18em;
 }
+#main.developerDocsPage.index-     .article > .content .section.centered,
+#main.developerDocsPage.downloads- .article > .content .section.centered {
+  float: none;
+  clear: both;
+  margin-left: 25%;
+  height: 13em;
+  min-width: 18em;
+}
+@media screen and (max-width:450px) {
+  #main.developerDocsPage.index-     .article > .content .section.centered,
+  #main.developerDocsPage.downloads- .article > .content .section.centered {
+    margin-left: 0;
+  }
+}
 #main.developerDocsPage.index-     .article > .content .section UL,
 #main.developerDocsPage.downloads- .article > .content .section UL {
   list-style: none;
@@ -628,3 +642,16 @@
 #main.developerDocsPage.downloads- .article > .content .section .icon-android      { background-image: url('/docs/img/index_android.png'); }
 #main.developerDocsPage.downloads- .article > .content .section .icon-ios          { background-image: url('/docs/img/index_ios.png'); }
 #main.developerDocsPage.downloads- .article > .content .section .icon-web          { background-image: url('/docs/img/index_web.png'); }
+
+#main.developerDocsPage.downloads- .article > .content .section .title,
+#main.developerDocsPage.index-     .article > .content .section .title {
+  position: relative;
+}
+#main.developerDocsPage.downloads- .article > .content .section .title .new-textbadge,
+#main.developerDocsPage.index-     .article > .content .section .title .new-textbadge {
+  position: absolute;
+  top: -1ex;
+  color: #E44D26;
+  text-transform: uppercase;
+  font-size: 60%;
+}

@@ -6,6 +6,8 @@ include::api-reference.asciidoc[]
 
 include::guide.asciidoc[]
 
+include::web.asciidoc[]
+
 include::android.asciidoc[]
 
 include::ios.asciidoc[]

@@ -7,6 +7,12 @@ Choose your platform:
 --
 
 [role="section-link"]
+== <<web-getting-started,Web>>
+
+--
+--
+
+[role="section-link"]
 == <<android-getting-started,Android>>
 
 --

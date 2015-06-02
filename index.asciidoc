@@ -4,11 +4,21 @@
 
 [role="sub-title"]
 --
-Dive into our Getting Started guides and integrate with your app in minutes.
+Dive into our Getting Started guides and integrate with your app and website in minutes.
 --
 
 [role="illustration"]
 --
+--
+
+[role="section"]
+.Web [new-textbadge]#new!#
+--
+[icon icon-web]#{empty}#
+
+* <<web-getting-started,Getting started>>
+* <<web-sdk,SDK>>
+* <<web-api-reference,API reference>>
 --
 
 [role="section"]

@@ -7,6 +7,12 @@ Please choose your platform:
 --
 
 [role="section-link"]
+== <<web-api-reference,Web>>
+
+--
+--
+
+[role="section-link"]
 == <<android-api-reference,Android>>
 
 --

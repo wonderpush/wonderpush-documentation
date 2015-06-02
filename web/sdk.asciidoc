@@ -1,0 +1,12 @@
+[[web-sdk]]
+[role="chunk-page"]
+== SDK
+
+You don't need to download any code to integrate it, a mere copy/paste
+is all it takes to integrate it from our CDN.
+
+Head toward the <<web-getting-started,Getting started guide>> and get
+ready in minutes!
+
+TIP: The WonderPush JavaScript SDK will soon become available on GitHub
+at https://github.com/wonderpush/wonderpush-javascript-sdk/.
