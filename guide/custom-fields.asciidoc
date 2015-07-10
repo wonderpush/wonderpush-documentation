@@ -1,0 +1,133 @@
+[[guide-custom-fields]]
+[role="chunk-page chunk-toc"]
+== Custom fields
+
+--
+--
+
+[[guide-custom-fields-concepts]]
+=== Concepts
+
+WonderPush enables you to attach custom data to <<guide-user,users>>,
+<<guide-installation,installations>> and <<guide-event,events>>.
+This data can help you to further <<guide-audience,segment your
+audience>>.
+
+The custom fields have a strict naming policy, enabling us to properly
+index them for segmentation. But you can also fit free-form data using
+a specially chosen field name. This naming policy is based on
+predefined prefixes.
+
+[[guide-event-reference]]
+=== Reference
+
+Each field of a `custom` object has a name in the following format:
+`{PREFIX}_{NAME}`, where `{PREFIX}` is one of the below and `{NAME}`
+is a valid field name of your choice.
+
+Here is a list of available field prefixes and their corresponding types.
+Use these values for `{PREFIX}`.
+
+`byte`::
+An integer value between -128 and 127, inclusive.
+
+`short`::
+An integer value between -32,768 and 32,767, inclusive.
+
+`int`::
+An integer value between 2^31^ and 2^31^-1, inclusive.
+
+`long`::
+An integer value between 2^63^ and 2^63^-1, inclusive.
+
+`float`::
+An single precision floating point number.
+
+`double`::
+An double precision floating point number.
+
+`bool`::
+A boolean value, either `true` of `false`.
+
+`string`::
+A string value.
++
+The value will be indexed as-is, no word tokenization of case filtering is performed. +
+Values above 128 characters will be ignored.
+
+`date`::
+A UTC timestamp in milliseconds, or a string in the following format:
+`YYYY[-MM[-DD]][THH[:MM[:SS[.SSS]]]][Z+HH[:MM[:SS[.SSS]]]]`
++
+Here are valid examples: `2015`, `2015-12`, `2015-12-31`, `2015-12-31T23`, `2015-12-31T23:59`, `2015-12-31T23:59:59`, `2015-12-31T23:59:59.999`. +
+Here are valid offsets you can also append: `Z-06`, `Z+02:00`. In the absence of an offset, the date is taken as UTC.
+
+`geoloc`::
+A geographic localisation given as latitude and longitude, or geohash.
++
+Value as an object: `{"lat": 48.85837, "lon": 2.294481}`. +
+Value as a string: `"48.85837,2.294481"`, latitude first, longitude next. +
+Value as an array: `[2.294481, 48.85837]`, longitude first, latitude next. Note the reversed order, conforming to GeoJSON. +
+Value as a geohash: `"u09tunqu9k31"`. See the link:https://en.wikipedia.org/wiki/Geohash[Geohash article on Wikipedia].
+
+`object`::
+A nested object, obeying the same naming policy. +
+Use this to better organize your data. This has no other impact.
++
+To segment on a nested subfield, use the dot-notation. +
+For example: `object_cart.float_amount` would properly access the field
+of the following object: `{"object_cart":{"float_amount":3.14}}`.
+
+`ignore`::
+A nested object, with free-form data inside. +
+The value has to be a valid JSON object, but the values and names of the subfields is free-form.
++
+Everything under such field is ignored and won't be available for segmentation.
+
+About arrays::
+Any field can actually be an array of corresponding values. +
+For instance: `"string_followedCategories": ["international", "economics"]` or `"int_items": [849, 74, 265]` are valid examples.
++
+As far as indexing is concerned, array-valued fields behave the same
+as if the field were repeated several times, once per value.
+This implies that the corresponding object would match for any value.
+In particular for array of `object`, the fields being flattened out,
+the notion of nesting is lost and segment queries can match across
+objects that use the same dot-notation path.
+
+[WARNING]
+No type coercion is performed, and an invalid custom object will make
+the whole parent object being refused and the desired action will be
+aborted.
+
+The below object is an example of all the available features:
+
+[source,js]
+----
+{
+  "byte_tinyNumber": 12,
+  "short_smallNumber": 1024,
+  "int_integerNumber": 78134,
+  "long_longNumber": 7691328456975,
+  "float_realNumber": 3.14159,
+  "double_bigNumber": 2.18e+84,
+  "bool_truth": true,
+  "string_sex": "male",
+  "date_birth": "1961-08-04Z-10:00",
+  "date_lastPurchase": 1436527624000,
+  "geoloc_home": {
+    "lat": 38.897660,
+    "lon": -77.036541
+  },
+  "object_preferences": {
+    "string_phoneBrand": "Blackberry",
+    "geoloc_restaurant": "38.899628,-77.039649",
+    "geoloc_holidays": "87z9pwx"
+  },
+  "string_childrenFirstNames": ["Sasha", "Malia"],
+  "ignore_": {
+    "freeform-field": [123, "abc"],
+    "søm€Fi3lÐ": null
+  }
+}
+----

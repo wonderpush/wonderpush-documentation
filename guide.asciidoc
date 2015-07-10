@@ -24,3 +24,5 @@ include::guide/user.asciidoc[]
 include::guide/installation.asciidoc[]
 
 include::guide/event.asciidoc[]
+
+include::guide/custom-fields.asciidoc[]
