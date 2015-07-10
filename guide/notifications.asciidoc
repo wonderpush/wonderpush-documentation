@@ -187,3 +187,190 @@ any question that as not already been answered by the interface itself.
 * Click the _ON/OFF_ switch on the line of the desired notification. +
   _ON_ will enable the sending of notifications, while _OFF_ will
   suspend it.
+
+[[guide-notifications-reference]]
+=== Reference
+
+[[guide-notifications-reference-object-format]]
+==== Object format
+
+We describe here the object format describing a notification.
+There are two groups of notification type: simple and rich.
+Each type has its own set of fields.
+
+This is the toplevel object to describe a notification:
+
+[source,js]
+----
+{
+  "type": NOTIFICATION_TYPE,
+  "text": string, // The text displayed in the notification center
+  "data": {TYPE-SPECIFIC ADDITIONAL FIELDS} / null / missing,
+  "custom": {ANY JSON OBJECT} / null / missing,
+  "toplevelCustom": {ANY JSON OBJECT} / null / missing
+}
+----
+
+All rich notifications accept the following set of fields inside `data`:
+
+[source,js]
+----
+{
+  "title": string / null / missing, // The title of the dialog box
+  "message": string, // The content of the dialog box
+  "buttons": [
+    // At least one button is mandatory
+    // Every button implicitly bear the `close` action.
+    // You can add up to 3 buttons
+    {
+      "label": string, // The label displayed on the button
+      "actions": [
+        {
+          "type": BUTTON_ACTION,
+          ACTION-SPECIFIC ADDITIONAL FIELDS
+        }
+      ],
+      ...
+    },
+    ...
+  ]
+}
+----
+
+[[guide-notifications-reference-object-format-notification-types]]
+===== Notification types
+
+Here is the list of currently available notification types.
+Use these constants for `NOTIFICATION_TYPE`.
+
+`"simple"` notifications::
+A simple notification that is only comprised of a message displayed in the notification center. +
+There is no rich message shown once the notification is opened.
++
+No additional fields are available or required.
+
+`"text"` notifications::
+A rich notification that shows a dialog box with a simple unformatted text.
++
+`message` is a string field giving the exact content to display without formatting but with preserved newlines.
+
+`"html"` notifications::
+A rich notification that shows a dialog box with a seamless webview displaying an inline HTML document.
++
+`message` is a string field giving the full HTML source of the page to display.
++
+The webview is preconfigured so that without any HTML boilerplate the text is displayed like for a `"text"` notification,
+enabling quick and easy basic formatting to be applied to your message,
+as well as more complex and beautiful pages to be displayed. +
+As far as feasible, the webview adapts its size to the actual size of the content.
+
+`"url"` notifications::
+A rich notification that shows a dialog box with a seamless webview displaying a page loaded using a URL.
++
+There is no `message` field, but instead a `url` field giving the URL of the page to display.
++
+[source,js]
+----
+{
+  "url": string // URL of the page to display. Replaces the `message` field.
+}
+----
+
+`"map"` notifications::
+A rich notification that shows a dialog box with a map and a descriptive text.
++
+Works like a `"text"` notification with an added image displaying the desired map. +
+Works in conjunction with the `"mapOpen"` button action to direct the user to the desired location.
++
+`message` is a string field giving the exact content to display without formatting but with preserved newlines. +
+`map` is a properly formatted object pointing to a single location.
++
+[source,js]
+----
+{
+  "map": {
+      "place": {
+        "point": {
+            "lat": number, // eg: 48.85837
+            "lon": number  // eg: 2.294481
+        },
+        "zoom": number, // eg: 13
+        "name": string // eg: "Tour Eiffel"
+      }
+  }
+}
+----
+
+[[guide-notifications-reference-object-format-button-actions]]
+===== Button actions
+
+Here is the list of currently available button actions.
+Use these constants for `BUTTON_ACTION`.
+
+`"close"` action::
+Does nothing, all buttons actually close the rich dialog box.
++
+[source,js]
+----
+{
+  "type": "close"
+}
+----
+
+`"trackEvent"` action::
+Automatically triggers the `trackEvent` method of the SDK.
++
+[source,js]
+----
+{
+  "type": "trackEvent",
+  "event": {
+    "type": string, // The type of the event to be tracked
+    "custom": {CUSTOM FIELDS OBJECT} / null / missing
+  }
+}
+----
+
+`"method"` action::
+Automatically triggers a registered callback.
++
+[source,js]
+----
+{
+  "type": "method",
+  "method": string, // The name of the registered callback
+  "methodArg": string // The argument of the callback
+}
+----
+
+`"link"` action::
+Opens the given URL in the browser, or using any application that is bond with it in the system.
++
+[source,js]
+----
+{
+  "type": "link",
+  "url": string // A well formed URL
+}
+----
+
+`"rating"` action::
+Opens the application store of device platform, on the page corresponding to your application.
++
+[source,js]
+----
+{
+  "type": "rating"
+}
+----
+
+`"mapOpen"` action::
+Opens the map configured in the notification with the appropriate application. +
+Only works with rich notifications of type `"map"`, and mandatory.
++
+[source,js]
+----
+{
+  "type": "mapOpen"
+}
+----
