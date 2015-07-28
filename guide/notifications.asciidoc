@@ -243,6 +243,14 @@ All rich notifications accept the following set of fields inside `data`:
 Here is the list of currently available notification types.
 Use these constants for `NOTIFICATION_TYPE`.
 
+`"data"` notifications::
+A silent notification that merely wakes up the application in background, providing it any additional data it carries through `custom` of `toplevelCustom`. +
+There is no message displated in the notification center. +
+There is no rich message shown once the notification is opened.
++
+The `text` field is not available. +
+No additional fields are available or required.
+
 `"simple"` notifications::
 A simple notification that is only comprised of a message displayed in the notification center. +
 There is no rich message shown once the notification is opened.
