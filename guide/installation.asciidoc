@@ -29,3 +29,143 @@ reused to build <<guide-audience,audience segments>>.
 
 Look at the API reference of the SDK for the platform of your choice
 for more information.
+
+[[guide-installation-reference]]
+=== Reference
+
+[[guide-installation-reference-object-format]]
+==== Object format
+
+We describe here the object format describing an installation.
+As an example is worth a thousand words, here's one:
+
+[source,js]
+----
+{
+  "id": "e2ba48f97a45be39f6c921e7b7a2adf65ad451b5",
+  "applicationId": "01906i1feoq2cu1p",
+  "userId": null,
+  "creationDate": 1410539794529,
+  "updateDate": 1410539796299,
+  "accessToken": "Hkn6z9fZCOEiqNn8ESSLkQx7fz5EyCEUJBvoRtasoqT2LDYPxDOh4ftGQRpnEn71NFw4VPQdySx8gJi7xrwHWl",
+  "application": {
+    "id": "01906i1feoq2cu1p",
+    "sdkVersion": "Android-1.1.0.0",
+    "version": "1.0"
+  },
+  "device": {
+    "id": "c51c72f4a3700183",
+    "platform": "Android",
+    "screenHeight": 1186,
+    "model": "Nexus 4",
+    "osVersion": "19",
+    "screenWidth": 768,
+    "brand": "LGE",
+    "capabilities": {
+      "touchscreenFullHand": true,
+      "telephonyCdma": false,
+      "sensorGyroscope": true,
+      "telephonyGsm": true,
+      "sipVoip": true,
+      "touchscreenTwoFingers": true,
+      "touchscreenDistinct": true,
+      "gps": true,
+      "sensorProximity": true,
+      "sensorStepCounter": false,
+      "telephony": true,
+      "ir": false,
+      "sensorCompass": true,
+      "sensorLight": true,
+      "sensorStepDetector": false,
+      "microphone": true,
+      "camera": true,
+      "wifiDirect": true,
+      "sensorBarometer": true,
+      "usbAccessory": true,
+      "sensorAccelerometer": true,
+      "wifi": true,
+      "bluetooth": true,
+      "networkLocation": true,
+      "sip": true,
+      "frontCamera": true,
+      "bluetoothLe": true,
+      "nfc": true,
+      "usbHost": false,
+      "touchscreen": true
+    },
+    "configuration": {
+      "locale": "fr_FR",
+      "carrier": "Bouygues Telecom",
+      "timeZone": "Europe/Paris"
+    },
+    "screenDensity": 320
+  },
+  "preferences": {
+    "subscriptionStatus": "optIn"
+  },
+  "pushToken": {
+    "meta": {
+      "updateDate": 1410539796298
+    },
+    "data": "02J0fDm4dwsAylLXKr47YhN9CfjU9AimDSXVKL83OnPVwEaZU1EfcLww5LGlye_5mGGgaGcbrXtXU6HKCUXabGUHBNX0V4htJvHBAflIgABe4H5SskfwA_Ie3WHmjAfiy2whXUvMWK5gH6jRZOwQJltiMbilfoPxvF"
+  },
+  "custom": {
+    "int_age": 27,
+    "string_foo": "bar",
+    "string_likes": ["pizza", "beer"]
+  }
+}
+----
+
+And here is a smaller example of an iOS installation:
+
+[source,js]
+----
+{
+  "id": "e3e2d060c9c92ae72f5b90461fc65188863092b7",
+  "creationDate": 1436185983232,
+  "updateDate": 1436185983553,
+  "userId": "johndoe",
+  "applicationId": "01906i1feoq2cu1p",
+  "accessToken": "AgJWds5SDcMqh1Jb6LTAdsUhh2vPyaeucsPUagRfkwRGC9zVRxY5kD0OnWClaOsGShU04V1mP1yagBM5KHmc0n",
+  "application": {
+    "id": "01906i1feoq2cu1p",
+    "sdkVersion": "iOS-1.1.0.0",
+    "version": "1.0.0"
+  },
+  "device": {
+    "id": "97A180A7-5DB7-4C74-3059-BC8692A8F412",
+    "platform": "iOS",
+    "screenHeight": 1024,
+    "model": "iPad 4 (WiFi)",
+    "osVersion": "8.3",
+    "screenWidth": 768,
+    "name": "John Doe's iPad",
+    "brand": "Apple",
+    "screenDensity": 2
+  },
+  "pushToken": {
+    "data": "d94e486c61cde836c50dae573ba4903ca1aed973792e53128fd7d6bb0c657d17",
+    "meta": {
+      "updateDate": 1436186029623
+    }
+  }
+}
+----
+
+All the above fields, except `custom`, are filled by the SDK.
+
+When creating or modifying an installation, you likely only need to specify the `pushToken.data` and `custom` fields, the server will add any system fields itself.
+All fields are optional.
+
+`"preferences.subscriptionStatus"` field::
+Its values are `"optIn"` (implicit, if missing or null), and `"optOut"`.
+Setting to `"optOut"` marks the installation as soft opt-out in the dashboard,
+and it will not be sent any notifications.
+
+`"custom"` field::
+See <<guide-custom-fields,custom fields>> for more information.
+
+`"pushToken"` field::
+You can only set the `"data"` subfield, to either `null` or a string value.
+The `"meta"` subfield is automatically updated by our servers.
