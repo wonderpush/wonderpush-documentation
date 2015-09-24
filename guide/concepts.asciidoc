@@ -136,7 +136,9 @@ You can learn more about user authentication in the more detailed
 ===== Signature
 
 All API calls leading to side-effects i.e. with POST, PUT, PATCH or
-DELETE HTTP verbs, need to provide a signature.
+DELETE HTTP verbs, need to provide a signature. +
+This security measure helps keeping your application client secret
+private and protecting any undisclosed installation access token.
 
 If you are using one of our SDKs, you do not need to take care of this,
 the SDKs do it for you. +
@@ -253,3 +255,6 @@ body (for application/x-www-form-urlencoded requests).
 To interact with the Management API you have to use the application
 access token. You can obtain it in the WonderPush dashboard, under
 the _Settings / Keys_ menu.
+
+Note that the above signature calculation is not required when using
+your application access token, as it is easily kept undisclosed.
