@@ -99,6 +99,8 @@ https://github.com/wonderpush/wonderpush-python-lib["Python command-line tool", 
 
 All API access is over http://en.wikipedia.org/wiki/HTTP_Secure["HTTPS", window="_blank"].
 
+Take a look at the <<guide-api-conventions-limits,limits imposed on the requests>>.
+
 [[guide-concepts-security-api-access]]
 ==== API access
 
