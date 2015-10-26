@@ -272,16 +272,18 @@ WonderPush.ready(function() {
         modalBoxTitle: 'Google News', // defaults to init option applicationName
         modalBoxMessage: 'We will keep you posted with our latest news via Web push.<br/>You can always unsuscribe at any time.personalized notifications.',
         modalBoxButton: 'Got it!',
-        // Prefix: externalBox/subscriptionBox/popup/???
-        ?Width: 250,
-        ?Height: 200,
-        ?LogoUrl: 'https://...', // defaults to the notificationIcon config option
-        ?LogoWidth: 90,
-        ?LogoHeight: 90,
-        processingMessage: 'Subscribing...',
-        successMessage: 'Thanks for subscribing!',
-        failureMessage: 'Sorry, something went wrong.',
-        closeLabel: 'Close',
+        modalBoxCancellable: false,
+        externalBoxWidth: 250,
+        externalBoxHeight: 200,
+        externalBoxLogoUrl: 'https://...', // defaults to the notificationIcon config option
+        externalBoxLogoWidth: 90,
+        externalBoxLogoHeight: 90,
+        externalBoxProcessingMessage: 'Subscribing...',
+        externalBoxSuccessMessage: 'Thanks for subscribing!',
+        externalBoxFailureMessage: 'Sorry, something went wrong.',
+        externalBoxTooLongHint: 'Poor connection or private browsing?',
+        externalBoxCloseHint: 'Close',
+        externalBoxCloseDelay: 3000
     });
 });
 ----
@@ -347,16 +349,26 @@ Find your best integration by optimizing optional parameters of the
 |Description
 
 |+mode+
-|+"visits"+, +"direct"+, +"manual"+
-|+"visits"+ uses the afterVisits setting (default).
+|+"visits"+, +"pages"+, +"direct"+, +"manual"+
+|How automatic subscription should be performed.
 
-+"direct"+ asks the user right away.
+`"visits"` triggers at the `minVisits` -th visit of the user (default).
 
-+"manual" needs you to use the below function. Note that the switch can be used independently of the chosen mode.
+`"pages"` triggers at the `minPages` -th page view of the user.
 
-|+afterVisits+
+`"direct"` triggers at the very first page load.
+
+`"manual"` never triggers automatically.
+
+Note that the switch can be used independently of the chosen mode.
+
+|+minVisits+
 |+2+ (default)
-|+0+ or +1+ means immediate. Eg.: +2+ means at the second page visited.
+|+0+ or +1+ means immediate. Eg.: +2+ means at the second visit.
+
+|+minPages+
+|+3+ (default)
+|+0+ or +1+ means immediate. Eg.: +3+ means at the third page view.
 
 |+switchElementId+
 |+"wonderpush-subscription-switch"+
