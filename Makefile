@@ -54,6 +54,7 @@ ASCIIDOC_ARGS := \
 	--attribute disable-javascript \
 	--attribute linkattrs \
 	--conf-file $(CONF_DIR)/admonitionblocks.conf \
+	--conf-file $(CONF_DIR)/sections.conf \
 	--conf-file $(CONF_DIR)/links.conf
 
 #

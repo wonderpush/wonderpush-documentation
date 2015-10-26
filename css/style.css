@@ -8,6 +8,17 @@ BODY {
     counter-reset: lvlfirst;
 }
 
+/*
+ * Offset anchors so they're not hidden behind the header
+ */
+H1 > A.anchor,
+H2 > A.anchor,
+H3 > A.anchor,
+H4 > A.anchor {
+  position: relative;
+  top: -100px;
+}
+
 /*********************
  * Collapsible menus *
  *********************/
