@@ -458,16 +458,14 @@ BODY {
  */
 
 .article > .content div.admonitionblock {
-  margin-top: 1.0em;
-  margin-bottom: 1.5em;
-}
-.article > .content div.admonitionblock {
   margin-top: 2.0em;
   margin-bottom: 2.0em;
-  margin-right: 10%;
+  margin-right: 2.0em;
   color: #606060;
+  position: relative;
 }
-.article > .content div.admonitionblock .icon {
+.article > .content div.admonitionblock > .icon {
+  position: absolute;
   vertical-align: top;
   width: 48px;
   /*
@@ -476,9 +474,9 @@ BODY {
   text-decoration: underline;
   color: #527bbd;
   */
-  padding-right: 0.5em;
 }
-.article > .content div.admonitionblock td.content {
+.article > .content div.admonitionblock > .content {
+  margin-left: 48px;
   padding-left: 0.5em;
   border-left: 2px dotted #dddddd;
 }
