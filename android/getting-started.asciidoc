@@ -1,6 +1,695 @@
 [[android-getting-started]]
-[role="chunk-page section-link"]
-== http://wonderpush.github.io/wonderpush-android-sdk/[Getting started]
+[role="chunk-page chunk-toc"]
+== Getting started
 
-The WonderPush Android SDK guide to Getting started is available on GitHub at
-http://wonderpush.github.io/wonderpush-android-sdk/.
+
+[[android-getting-started-get-your-personal-web-key]]
+[role="numbered-lvlfirst"]
+=== Get your personal web key
+
+[role="skip-toc"]
+==== 1. Log in or sign up
+
+Log in or sign up for a free account on WonderPush at: https://dashboard.wonderpush.com/account/login
+
+image:web/getting-started/login.png[Image of login]
+
+You will be able to invite new members to join your project with
+different levels of permission (owner, editor…).
+
+[role="skip-toc"]
+==== 2. Register your application
+
+Give a name to your project. e.g. MyGame
+Make sure to check `Android` under the `Platforms` section.
+
+
+[role="skip-toc"]
+==== 3. Copy your client id and client secret
+
+Under the `Settings / Keys` menu.
+
+
+[[android-getting-started-download-sdk-for-android]]
+[role="numbered-lvlfirst"]
+=== Download WonderPush SDK for Android
+
+Download the project https://github.com/wonderpush/wonderpush-android-sdk/releases/latest["on Github", window="_blank"]. +
+Extract the sources in your workspace.
+
+You can also directly checkout the sources from git:
+
+[source,bash]
+----
+cd /path/to/your/workspace
+git clone https://github.com/wonderpush/wonderpush-android-sdk.git --branch latest
+----
+
+[[android-getting-started-set-up-workspace]]
+[role="numbered-lvlfirst"]
+=== Setup the workspace
+
+[role="skip-toc"]
+==== Using Eclipse ADT
+. The WonderPush SDK shipping resources, it must be added as a project reference rather than a mere library dependency.
+Import the WonderPush SDK project in your Eclipse workspace by doing:
++
+--
+** Click on `File > New > Other`
+** Select `Android / Android Project from Existing Code`.
+** Click `Browse` and select the checked out folder `/path/to/your/workspace/wonderpush-android-sdk`.
+** Click `Finish`.
+--
++
+The `wonderpush-android-sdk` project should now be listed in the `Package Explorer`. +
+The project has compilation errors because of a missing dependency that we add right in the next steps.
+
+. You will now have to link the WonderPush SDK (not your own application) with the Google Play Service library.
+Follow the first step of the following guide: http://developer.android.com/google/play-services/setup.html["Setting Up Google Play Services", window="_blank"].
+
+. Update the Android support library in the wonderpush-android-sdk project:
++
+--
+** Right click on the `wonderpush-android-sdk` project in the `Package Explorer`, and under `Android Tools` choose `Add Support Library...`.
+** Click `Accept License` then `Install`.
+--
++
+The WonderPush SDK project should now compile without errors.
+
+. Add the WonderPush SDK to your project:
++
+** Right click on your project in the `Package Explorer`, and select `Properties`.
+** Choose `Android` in the left list, then under `Library` click `Add`, select `wonderpush-android-sdk`, click `OK` and `Apply`.
+** Choose `Project References` in the left list, then check `wonderpush-android-sdk`.
+
+. If you experience the following build error:
++
+----
+Found 2 versions of android-support-v4.jar in the dependency list,
+    but not all the versions are identical (check is based on SHA-1 only at this time).
+    All versions of the libraries must be the same at this time.
+----
++
+Repeat the third step in your application, to make sure that your application and the WonderPush SDK both have the exact same Android Support JAR dependency.
+
+[role="skip-toc"]
+==== Using Android Studio
+*Coming soon...*
+
+[[android-getting-started-configuring-sdk]]
+[role="numbered-lvlfirst"]
+=== Configuring the SDK
+
+Add the following to your AndroidManifest.xml to receive push notifications:
+
+
+[source,xml]
+----
+<manifest>
+
+    <!-- Required permissions for push notifications -->
+    <uses-permission
+        android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.GET_ACCOUNTS"
+        android:maxSdkVersion="15" />
+    <uses-permission
+        android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <permission
+        android:name="[YOUR_APPLICATION_PACKAGE].permission.C2D_MESSAGE"
+        android:protectionLevel="signature" /> <!-- <1> -->
+    <uses-permission
+        android:name="[YOUR_APPLICATION_PACKAGE].permission.C2D_MESSAGE" /> <!-- <1> -->
+
+    <application>
+
+        <!-- Permits the SDK to initialize itself whenever needed, without need for your application to launch -->
+        <meta-data
+            android:name="wonderpushInitializerClass"
+            android:value="[YOUR_APPLICATION_PACKAGE].WonderPushInitializerImpl" /> <!-- <1> -->
+
+        <!-- Required for configuring Google Play Services for push notifications -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="GCMSenderId"
+            android:value="@string/push_sender_ids" />
+
+        <!-- Required configuration for WonderPush to properly receive and handle push notification -->
+        <receiver
+            android:name="com.wonderpush.sdk.WonderPushBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+
+            <!-- Put here the icon to be displayed in the notification -->
+            <meta-data
+                android:name="notificationIcon"
+                android:resource="[NOTIFICATION_ICON]" /> <!-- <3> -->
+
+            <!-- Put here the activity to start when the user clicks the notification -->
+            <meta-data
+                android:name="activityName"
+                android:value="[YOUR_MAIN_ACTIVITY_CLASS]" /> <!-- <2> -->
+
+            <intent-filter>
+                <action
+                    android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category
+                    android:name="[YOUR_APPLICATION_PACKAGE]" /> <!-- <1> -->
+            </intent-filter>
+
+        </receiver>
+
+        <!-- Required to properly handle deep links and notifications in foreground -->
+        <service
+            android:name="com.wonderpush.sdk.WonderPushService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="Push Notification service">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="wonderpush" />
+            </intent-filter>
+        </service>
+
+        <!-- Required configuration for WonderPush to refresh push tokens,
+             as they are not guaranteed to work after an update -->
+        <receiver android:name="com.wonderpush.sdk.WonderPushOnUpgradeReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" android:path="[YOUR_APPLICATION_PACKAGE]" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
+----
+<1> Replace *[YOUR_APPLICATION_PACKAGE]* with your application package name. +
+  Eg.: +com.your.package+.
+<2> Replace *[YOUR_MAIN_ACTIVITY_CLASS]* with the fully qualified class name of your main activity. +
+  Eg.: +com.your.package.activities.MainActivity+.
+<3> Replace *[NOTIFICATION_ICON]* with a drawable icon to be displayed in the notification. +
+  Eg.: Your application launcher icon: +@drawable/ic_launcher+.
+
+The WonderPush SDK defines the `@string/push_sender_ids` resource to `1023997258979`, which is the sender ID that WonderPush uses.
+
+[[android-getting-started-initialize-sdk]]
+[role="numbered-lvlfirst"]
+=== Initialize the SDK
+First you must initialize the SDK. The `initialize()` method must be called before any use of the SDK. +
+The best place for initialization is in the `onCreate()` method of your `Application`.
+
+[source,java]
+----
+import com.wonderpush.sdk.WonderPush;
+
+public class YourApplication extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        String loggedUserId; // assumed to be the id of the currently logged user, or null
+        WonderPush.setUserId(loggedUserId);
+        WonderPush.initialize(this);
+    }
+
+}
+----
+[TIP]
+====
+If you do not already use a custom `Application` class for your project, you can switch very easily. An `Application` class is the prefered way to initialize many SDKs.
+If you cannot, maybe because you use a framework that does not enable you to do so, you can also initialize the WonderPush SDK in the `onCreate()` method of your main `Activity`.
+
+Adding an `Application` class is two-step:
+
+. Create the `YourApplication` class, inheriting `android.app.Application`, like shown in the previous code snippet.
+. You now have to point Android to it. Add the following attribute to the `<application>` tag of your `AndroidManifest.xml`:
++
+[source,xml]
+----
+<application android:name=".MyApplication">
+----
+====
+
+Then you will need to implement the `WonderPushInitializerImpl` class referenced earlier in the `AndroidManifest.xml`.
+This class is used under the hood by the simpler `WonderPush.initialize(this)` call above. It is used in multiple places inside the SDK so it can initialize itself on some key events, without additional complexity for you.
+
+[source,java]
+----
+package [YOUR_APPLICATION_PACKAGE]; // <1>
+
+import android.content.Context;
+
+import com.wonderpush.sdk.WonderPush;
+import com.wonderpush.sdk.WonderPushInitializer;
+
+public class WonderPushInitializerImpl implements WonderPushInitializer {
+
+    public void initialize(Context context) {
+        WonderPush.initialize(context, "[YOUR_CLIENT_ID]", "[YOUR_CLIENT_SECRET]"); // <2> <3>
+    }
+
+}
+----
+<1> Replace *[YOUR_APPLICATION_PACKAGE]* with your application package name. +
+  Eg.: `com.your.package`.
+<2> Replace *[YOUR_CLIENT_ID]* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], under the `Settings / Keys` menu. +
+  Eg.: `0123456789abcdef0123456789abcdef01234567`.
+<3> Replace *[YOUR_CLIENT_SECRET]* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id described above. +
+  Eg.: `0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef`.
+
+.Special considerations for Android < 4
+[TIP]
+====
+If you target API < 14 (pre-Android 4), you should also initialize the WonderPush SDK in the `onCreate()` method of each of your activities, so that notifications can be displayed in-app over any activity of your application:
+
+[source,java]
+----
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_foo);
+    // ...
+
+    WonderPush.initialize(this);
+}
+----
+
+You should also add the following method to the main activity pointed to by manifest inside the broadcast receiver tag:
+
+[source,java]
+----
+@Override
+protected void onNewIntent(Intent intent) {
+    WonderPush.showPotentialNotification(this, intent);
+}
+----
+====
+
+[[android-getting-started-send-your-first-push-notifications]]
+[role="numbered-lvlfirst"]
+=== Send your first push notifications
+
+[role="skip-toc"]
+==== Watch for error logs
+
+
+You can now test your WonderPush-enabled application, but as nobody's perfect, not even us, we know you may run into a few setup problems.
+We advise you to look at your logs for any entry tagged `WonderPush` as the SDK will report setup issues this way. Don't hesitate to create a logcat filter by log tag `WonderPush` to see them more easily.
+
+If you have any problem or wonder what the SDK is doing, you may temporarily make it verbose.
+Simply do the following, preferably just before initializing the SDK, so as to get the most information:
+
+[source,java]
+----
+WonderPush.setLogging(true); // ← only use true in development!
+----
+
+You should not do this for a production build. Once done with the additional logs, turn verbosity off.
+
+[role="skip-toc"]
+==== Missing Google Play?
+
+If you see a message like `Google Play Services not present.`, then you are either using a wrong emulator system image, a device that does not support Google Cloud Messaging or Google Play Services, or using a very old device.
+
+If on the emulator, you should use a Google APIs system image.
+You can install one using the Android SDK Manager, and under the folder matching the desired Android version, check and install a system image whose name starts with “Google APIs”.
+Then open the Android Virtual Device Manager, edit your AVD and choose a “Google APIs” target. You may also increase your Internal storage size or SD card size if you still have some trouble.
+
+If your device does not support Google Cloud Messaging or Google Play Services, like the Amazon Kindle Fire, you should use an SDK adapted to such platform.
+
+[role="skip-toc"]
+==== Registered installation
+
+You should now see one installation in https://dashboard.wonderpush.com/["your WonderPush dashboard"].
+Click `Audience`, choose `All users`, your installation should now be listed in the preview list.
+
+[TIP]
+====
+A few statistics may be cached, click `Refresh` now if necessary.
+====
+
+Make sure your installation is displayed as pushable. If not, you probably forgot one step of the above, look for the logs for pointers.
+
+[role="skip-toc"]
+==== Send your first push notifications
+
+. Log into https://dashboard.wonderpush.com/["your WonderPush dashboard"], click `Notifications`, then under the `Create notification` menu choose `Custom notification`.
+. Give it a name, enter a short push message, then click `Save and continue`.
+. Keep `Send to all users` selected, then click `Save and continue`.
+. Keep `Once, when activated` selected, then click `Save`.
+. Now close your application in your device.
+. Click `FIRE` in the dashboard.
+. A notification should have appeared in the notification center.
+
+
+To fire your notification again, simply click `FIRE` again.
+Allow 1 minute between each send, and feel free to refresh the page if necessary.
+
+
+[role="skip-toc"]
+==== Some push notifications seem to never get received?
+
+Depending on the chosen scheduling, it may take up to 1 minute for our servers to process your notifications. Note that you must both be pushable and present in the targeted segment for your device to be delivered a notification. If in doubt, click on your notification, then click on the associated segment, and see if you are listed as pushable there.
+
+When your device receives a push notification, you can see a log like the following:
+
+----
+I/GCM     ( 1532): GCM message com.your.package 0:1423658642093464%2ced406ff9fd7ecd
+----
+In cases where the push notification is properly received but something prevented its proper handling, you will notice an additional line:
+
+----
+W/GCM-DMM ( 1532): broadcast intent callback: result=CANCELLED forIntent { act=com.google.android.c2dm.intent.RECEIVE pkg=com.wonderpush.demo (has extras) }
+----
+
+If you see the above warning and are using SDK v1.1.1.0 or ulterior, then you either:
+
+* have a setup issue, you should check the logs for the indications given by the SDK;
+* or have force-quit the application, the system won't deliver notifications to the SDK until you manually restart the app;
+* or something went wrong in the handling of the notification, the logs should contain a stacktrace that you should kindly send back to us.
+
+[role="skip-toc"]
+==== Need support?
+
+If all else fails, don't hesitate to contact us by chat, using the “Chat with us” button in the lower right corner of your WonderPush dashboard, or by email.
+
+[[android-getting-started-using-sdk]]
+[role="numbered-lvlfirst"]
+=== Using the SDK in your Android application
+
+[[android-getting-started-using-sdk-track-event]]
+==== Track your first event
+
+The SDK automatically tracks generic events. This is probably insufficient to help you analyze, segment and notify users properly.
+You will want to track events that make sense for your business, here is an simple example:
+
+[source,java]
+----
+WonderPush.trackEvent("customized_interests");
+----
+
+This would permit you to know easily whether a user kept the default set of "topics of interests", say in a newsstand application, or if they already chose a topics that represents well their center of interest.
+Your notification strategy could be to incite to customization for the lazy users, whereas you could engage in a more personalized communication with the users you performed the `customized_interests` event.
+
+[[android-getting-started-using-sdk-enriching-events]]
+==== Enriching the events
+
+Events can host a rich set of properties that WonderPush indexes to permit you to filter users based on finer criteria.
+To do so, simply give a JSON object as second parameter. Here is an example:
+
+[source,java]
+----
+JSONObject custom = new JSONObject();
+custom.put("string_category", "fashion");
+WonderPush.trackEvent("browse_catalog", custom);
+----
+
+Using this information, you could notify customers on new items for the categories that matters most to them.
+
+Here is another example:
+
+[source,java]
+----
+JSONObject custom = new JSONObject();
+custom.put("int_items", 3);
+custom.put("float_amount", 59.98);
+WonderPush.trackEvent("purchase", custom);
+----
+
+You could choose to thank customer for every purchase, or you could take advantage of the purchase amount to give differentiated coupons to best buyers.
+
+[[android-getting-started-using-sdk-tagging-users]]
+==== Tagging users
+
+Some information are better represented as properties on a user, rather than discrete events in a timeline.
+Here is an example:
+
+[source,java]
+----
+private void didAddItemToCart(String item, float price) {
+  // Variables managed by your application
+  cartItems += 1;
+  cartAmount += price;
+  // ...
+
+  // Update this information in WonderPush
+  JSONObject custom = new JSONObject();
+  custom.put("int_itemsInCart", cartItems);
+  custom.put("float_cartAmount", cartAmount);
+  WonderPush.putInstallationCustomProperties(custom);
+}
+
+private void didPurchase() {
+  // Empty the information in WonderPush
+  JSONObject custom = new JSONObject();
+  custom.put("int_itemsInCart", JSONObject.NULL);
+  custom.put("float_cartAmount", JSONObject.NULL);
+  WonderPush.putInstallationCustomProperties(custom);
+}
+----
+
+Inactive users with non-empty carts could then easily be notified. Combined with a free delivery coupon for carts above a given amount, your conversion rate will improve still!
+
+[[android-getting-started-using-sdk-opt-out]]
+==== Opt-out
+
+On Android, users are opt-in by default, and the SDK registers the device at the first opportunity (the first launch after either a new installation or an update).
+A user always has the option of opening the system settings and blocking notifications. This process does not prevent the application from receiving push notifications, but it prevents any notification from being displayed in the notification center, they are simply hidden silently, and the application has no mean to know it.
+
+If a user no longer wants to receive notifications, you will rather want them to opt out of push notifications.
+This is done very simply using the following function call, and WonderPush will no longer send push notifications to this installation:
+
+[source,java]
+----
+WonderPush.setNotificationEnabled(false);
+----
+
+Note that the device is not actually unregistered from push notifications, so the registration id continues to be valid and the device stays reachable.
+The installation is simply marked and reported as _Soft opt-out_ in the dashboard, and WonderPush filters it out from the targeted users.
+
+[[android-getting-started-using-sdk-demo-application]]
+==== Demo application
+You can read an example integration by looking at the code of our https://github.com/wonderpush/wonderpush-android-demo["Demo application, available on Github", window="_blank"].
+
+
+[[android-getting-started-using-sdk-api-reference]]
+==== API Reference
+Take a look at the functions exposed by the http://wonderpush.github.io/wonderpush-android-sdk/1.1.1.2/reference/com/wonderpush/sdk/WonderPush.html["WonderPush class", window="_blank"].
+
+
+[[android-getting-started-advanced-usage]]
+=== Advanced usage
+
+[[android-getting-started-advanced-usage-using-own-account]]
+==== Using your own account
+Sticking with the WonderPush sender ID is the simplest approach. However, you would not be able to send push notifications by other means than WonderPush.
+If you want to use another sender ID, you can change it by adding the following in the `res/values/string.xml` file _inside your own application_:
+
+[source,xml]
+----
+<string name="push_sender_ids">1023997258979,[YOUR_OWN_SENDER_ID]</string> <!-- <1> -->
+----
+<1> Replace: *[YOUR_OWN_SENDER_ID]* with your own sender id (see next paragraph). +
+  Eg.: `1186135716819`.
+
+You can get your own sender ID this way:
+
+. Open your https://console.developers.google.com/["Google Developers Console"].
+. If you haven't created an API project yet, click `Create Project`. Supply a name and click `Create`.
+. In the overview, locate your project id and project number.
+. Copy down your project number. This is your GCM sender ID.
+
+If you do not include WonderPush's sender ID in the application, don't forget to give us your browser or server API key, also known as Sender Auth Token, via https://dashboard.wonderpush.com/["your WonderPush dashboard"], under `Settings / Keys`, so we can push notifications on your behalf. Otherwise, if you include our sender ID as recommended, you don't have to take any action. Your application to be able to receive WonderPush notifications as well as notifications from other providers.
+
+[NOTE]
+====
+Updating this value will require to unregister the device, prior to re-registering it, and the resulting registration id will be different. This is handled automatically by the SDK.
+====
+
+[TIP]
+====
+Tip: If you already have push notification support in your application and require that the registration ids don't change, then only use your sender ID in the `push_sender_ids` string value. But as explained above, be sure to give us your server API key in the dashboard.
+====
+
+[[android-getting-started-advanced-usage-notification-opened]]
+==== Knowing when a notification is opened
+
+Sometimes you need to take an action when the notification is opened.
+The SDK broadcasts a local intent when the notification is opened. It gives you the original received push notification intent, so you can possibly <<android-getting-started-advanced-usage-reading-custom-key-value-payload,read custom key-value payload>>. The SDK also tells you whether the notification has been opened after the user clicked it, or if it was automatically opened because the application was already in foreground.
+
+[source,java]
+----
+// Put the following call before you initialize the SDK, in your Application class for example
+LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        // Read whether the user clicked the notification (true) or if it was automatically opened (false)
+        boolean fromUserInteraction = intent.getBooleanExtra(WonderPush.INTENT_NOTIFICATION_OPENED_EXTRA_FROM_USER_INTERACTION, true);
+        // Get the original push notification received intent
+        Intent pushNotif = intent.getParcelableExtra(WonderPush.INTENT_NOTIFICATION_OPENED_EXTRA_RECEIVED_PUSH_NOTIFICATION);
+        if (pushNotif != null) {
+            // Perform desired action, like reading custom key-value payload
+        }
+    }
+}, new IntentFilter(WonderPush.INTENT_NOTIFICATION_OPENED));
+----
+
+[[android-getting-started-advanced-usage-reading-custom-key-value-payload]]
+==== Reading custom key-value payload
+A notification can be added custom key-value pairs to it. To read them you will need to get the received push notification intent. You can either get it as <<android-getting-started-advanced-usage-own-notifications,soon as the the device receives it>>, or <<android-getting-started-advanced-usage-notification-opened,as the notification is opened>>. You would them simply use the following line of code:
+
+[source,java]
+----
+if (intent.hasExtra("custom")) {
+    try {
+        JSONObject custom = new JSONObject(intent.getExtras().getString("custom"));
+        // Process your custom payload
+    } catch (JSONException e) {
+        // This notification certainly does not come from the WonderPush push notification service
+    }
+}
+----
+
+[[android-getting-started-advanced-usage-data-notifications]]
+==== Handling data notifications
+
+Data notifications can be received while your application is either foreground or background, they do not display any alert in the notification center, nor any in-app message. As such, they have to be handled using code.
+
+The WonderPush SDK broadcasts a local intent when a data notification is received. Simply register a local broadcast received, preferably in your `Application` class:
+
+[source,java]
+----
+LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_NOTIFICATION_TYPE_DATA.equals(
+                intent.getStringExtra(WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_NOTIFICATION_TYPE))) {
+
+            Intent pushNotif = intent.getParcelableExtra(WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_RECEIVED_PUSH_NOTIFICATION);
+            // Read and process the data from the push notification intent
+
+        }
+    }
+}, new IntentFilter(WonderPush.INTENT_NOTIFICATION_WILL_OPEN));
+----
+
+[[android-getting-started-advanced-usage-own-deep-links]]
+==== Handling your own deep links
+
+The most common way of handling deep links is to add intent filters on the desired activities, so that the system can properly resolve URIs such as `yourApplicationSpecificScheme://someActivity`.
+You can set this up this way:
+
+[source,xml]
+----
+<activity android:name=".SomeActivity">
+    <!-- Makes the activity reachable from the yourApplicationSpecificScheme://someActivity URI across the system -->
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="yourApplicationSpecificScheme" android:host="someActivity"/>
+    </intent-filter>
+</activity>
+----
+
+You would then use this application-specific URI in your notification.
+When your activity is started, you can examine the data URI from the intent to extract any additional information.
+
+If desired, you can also broadcast the notification opening to let some code resolve the most appropriate action to perform.
+To do so, you would use the `wonderpush://notificationOpen/broadcast` URI in your notification.
+Here is how to listen to this local broadcast, preferably in your `Application` class:
+
+[source,java]
+----
+LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (!WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_NOTIFICATION_TYPE_DATA.equals(
+                intent.getStringExtra(WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_NOTIFICATION_TYPE))) {
+
+            Intent pushNotif = intent.getParcelableExtra(WonderPush.INTENT_NOTIFICATION_WILL_OPEN_EXTRA_RECEIVED_PUSH_NOTIFICATION);
+            // Resolve the deep link as desired using the push notification intent
+
+            // For example: Start a chosen activity
+            Intent openIntent = new Intent();
+            openIntent.setClass(context, ActivityToBeStarted.class);
+            // Give the notification to the notification for both tracking and in-app message display
+            openIntent.fillIn(intent, 0);
+            // Start the new activity with a proper parent stack
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            stackBuilder.addNextIntentWithParentStack(openIntent);
+            stackBuilder.startActivities();
+
+        }
+    }
+}, new IntentFilter(WonderPush.INTENT_NOTIFICATION_WILL_OPEN));
+----
+
+Note that this is the same intent filter as used for the <<android-getting-started-advanced-usage-data-notifications,Handling data notifications section>>, but with the test on the notification type inverted.
+
+[[android-getting-started-advanced-usage-own-notifications]]
+==== Handling your own notifications
+
+If you want to handle some notifications yourself, you will have to first create your own http://developer.android.com/reference/android/content/BroadcastReceiver.html["BroadcastReceiver"] as follows:
+
+[NOTE]
+====
+The broadcast receiver is called whenever a push notification is received. You may instead be interested in <<android-getting-started-advanced-usage-notification-opened,knowing when a push notification is opened>>, <<android-getting-started-advanced-usage-own-deep-links,handling your own deep links>>, or <<android-getting-started-advanced-usage-data-notifications,handling data notifications>>.
+====
+
+[source,java]
+----
+package com.your.package;
+
+import com.wonderpush.sdk.WonderPush;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+public class CustomBroadcastReceiver extends BroadcastReceiver {
+
+    // This function is called whenever a push notification is *received*.
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        // Call this function if you removed WonderPush's receiver in your AndroidManifest.xml
+        if (WonderPush.onBroadcastReceived(context, intent, R.drawable.icon, YourMainActivity.class)) {
+            // The notification was handled by WonderPush
+        } else {
+            // Hand the notification to others notification providers here
+        }
+    }
+
+}
+----
+
+Then setup your own `BroadcastReceiver` in your manifest:
+
+[source,xml]
+----
+<manifest>
+
+    <application>
+
+        <!-- This registers your own receiver to receive push notifications.
+             Don't forget to call WonderPush.onBroadcastReceived() in your receiver
+             if you removed WonderPush's receiver. -->
+        <receiver
+            android:name="com.your.package.CustomBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="[YOUR_APPLICATION_PACKAGE]" /> <!-- <1> -->
+            </intent-filter>
+
+        </receiver>
+
+    </application>
+
+</manifest>
+----
+<1> Replace: *[YOUR_APPLICATION_PACKAGE]* with your application package name. +
+Eg.: `com.your.package`.

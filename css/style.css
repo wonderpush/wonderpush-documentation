@@ -1,3 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,700);
+
+BODY {
+    color:#212121;
+    font: 400 16px 'Maven Pro',sans-serif;
+    line-height: 1.4em;
+    background: #eee;
+    counter-reset: lvlfirst;
+}
+
 /*********************
  * Collapsible menus *
  *********************/
@@ -5,24 +15,29 @@
 #main.developerDocsPage .halfMenu {
   display:inline-block;
   vertical-align:top;
-  width:200px;
+  width:210px;
+  background-color:#234159;
+  font-size:0.875em;
 }
 #main.developerDocsPage .halfMenu .developerDocsMenuModule UL {
   padding: 0;
 }
 #main.developerDocsPage .halfMenu .developerDocsMenuModule > UL > LI {
-  border-bottom:1px solid #CCC;
-  padding:0.5em 0;
+  border-bottom: 1px solid #2E4E6B;
+  padding: 12px 0;
 }
 #main.developerDocsPage .halfMenu .developerDocsMenuModule > UL > LI:last-child {
   border-bottom:none;
+}
+#main.developerDocsPage .halfMenu .developerDocsMenuModule > UL > LI > UL:last-child {
+  margin-bottom: 0;
 }
 
 #main.developerDocsPage .halfContentWrap {
   display:block;
   vertical-align:top;
   width:780px;
-  padding-left:10px;
+  padding-left:30px;
   padding-right:10px;
   overflow: hidden; /* create BFC */
 }
@@ -80,28 +95,8 @@
     padding-top:0;
     margin-top:0;
     margin-right:0;
-    background-color:#EFEFEF;
+    background-color:#234159;
     overflow-x:auto;
-  }
-  #main.developerDocsPage .halfMenu.opened .developerDocsMenuSection {
-    margin-top:0.7em;
-  }
-
-  #main.developerDocsPage .halfMenu .menuRetractable {
-    font-size:1.5em;
-  }
-
-  #main.developerDocsPage .halfMenu .menuRetractable LI {
-    padding-top:0.7em;
-    padding-bottom:0.7em;
-  }
-  #main.developerDocsPage .halfMenu .menuRetractable LI LI:last-child {
-    padding-bottom:0;
-  }
-
-  #main.developerDocsPage .halfMenu .menuRetractable .menuRetractable {
-    /* change font for root menuRetractable only */
-    font-size:1em;
   }
 
   #main.developerDocsPage .halfContentWrap {
@@ -129,20 +124,27 @@
 
 .developerDocsMenuModule,
 .article .tocwrapper .toc {
-  padding:1em 0.5em 1em 1em;
-  margin:0;
-  color:#808080;
+  font-size:1.2em;
+  padding:10px 10px 10px 20px;
+  margin:5px;
+  color:#4e91ca;
 }
 
 .menuRetractable {
   list-style-type: none;
-  margin: 0;
+  margin: 10px 0px;
+}
+.toc .menuRetractable {
+  font-size: 0.9em;
 }
 
 .menuRetractable LI {
-  margin-left:1.25em;
-  line-height:1.2em;
-  padding:0.25em 0;
+  margin-left:10px;
+  line-height:1.1em;
+  padding:2px 0;
+}
+.toc .menuRetractable LI {
+  padding: 0.4em 0;
 }
 
 .menuRetractable UL {
@@ -163,20 +165,24 @@
 
 .menuRetractable .arrow {
   display:inline-block;
-  width:1.25em;
-  margin-left:-1.25em;
+  width: .5em;
+  margin-left: -1em;
+  margin-right: .5em; /* width + margin-right = - margin-left */
 }
 
 .menuRetractable A {
-  color:#808080;
-  line-height:1.1em;
+  color:#4e91ca;
+  line-height: 1.5em;
+}
+.toc .menuRetractable A {
+  line-height: 1em;
 }
 
 .menuRetractable LI.selected > A,
 .menuRetractable LI.selected > .openable,
 .menuRetractable LI.selected > .openable A {
   font-weight:bold;
-  color:#777;
+  color:#fff;
 }
 
 
@@ -184,40 +190,47 @@
  * Designer styles *
  *******************/
 
-#main.developerDocsPage > .widthFull > .widthColumn {
-  background-color:#EFEFEF;
+#main.developerDocsPage > .widthColumn {
+  background-color:#234159;
 }
 #main.developerDocsPage .developerDocsMenuSection {
   border-width:0;
   background-color:inherit;
 }
 #main.developerDocsPage .halfContentWrap {
-  background-color:#FFF;
   min-height:1000px; /* hmmm */
 }
 
 #main.developerDocsPage A[target=_blank]:after {
-  content:" ➚";
+  font: normal normal normal 14px/1 FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  content:" \f08e";
+  font-size: 0.6em;
+  vertical-align: super;
 }
 
 /*******************
  * full-width page *
  *******************/
 @media screen and (min-width:1001px) {
-  #main.developerDocsPage > .widthFull > .widthColumn {
+  #main.developerDocsPage > .widthColumn {
     width:auto;
     padding-left:200px;
     position:relative;
     /* limiting the width of the doc page */
-    max-width:1700px;
   }
   #main.developerDocsPage .halfMenu {
     position:absolute;
     left:0;
-    top:0;
+    height:100%;
+    margin-top: -64px; /* header size */
+    padding-top: 64px; /* header size */
   }
   #main.developerDocsPage .halfContentWrap {
     width:auto;
+    max-width:900px;
+    margin-left:200px;
   }
 }
 
@@ -234,9 +247,9 @@
 #main.developerDocsPage .header .page-badge {
   float: left;
   padding-right: 1em;
-  width: 8.4em;
-  height: 8.4em;
-  background-size: 8.4em;
+  width: 5em;
+  height: 5em;
+  background-size: 5em;
   background-image: url('/docs/img/badge_wonderpush.png');
   background-repeat: no-repeat;
 }
@@ -249,7 +262,14 @@
 
 
 .article > .header {
-  min-height: 8.4em;
+  min-height: 5.5em;
+}
+
+.article > .content > .preamble .title {
+  font-size: 2em;
+  font-weight: normal;
+  line-height: normal;
+  margin-bottom: 0.5em;
 }
 
 /*
@@ -264,26 +284,37 @@
 .article h6 {
   /* revert change from bootstrap/type.less */
   line-height:normal;
-  margin-top:1.25em;
+  margin-top: 20px;
   margin-bottom:.25em;
 }
-.article h1 { font-size:2.5em; font-weight:normal; }
+.article h1 { font-size:1.66em; font-weight:normal; }
 .article h2 { font-size:1.66em; font-weight:normal; }
 .article h3 { font-size:1.25em; }
 .article h4 { font-size:1.1em; }
 .article h5 { font-size:1.0em; }
 .article h6 { font-size:0.9em; }
 .article h2 {
-  border-bottom: 2px solid #CCC;
+  text-transform: uppercase;
+}
+.article h2 {
+  margin-top: 20px;
+  margin-bottom: .75em;
+}
+.article h3 {
+  border-bottom: 1px solid #ccc;
+  line-height:2.2em;
+  margin-top: 1em;
+  margin-bottom: .75em;
 }
 
 .article > .header h1 {
+  color: #333333;
   margin-top: -.2em;
 }
 
 .article > .header .breadcrumb {
   font-size: 1em;
-  padding-top: 1.7em;
+  padding-top: 0.5em;
   color: #888;
 }
 .article > .header .breadcrumb A,
@@ -292,45 +323,58 @@
   color: inherit;
 }
 
+.sect1.numbered-lvlfirst > h2:before {
+    counter-increment: lvlfirst;
+    content: counter(lvlfirst);
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    position: relative;
+    top: -4px;
+    margin-right: 0.6em;
+    border-radius: 50%;
+    font-size: 0.7em;
+    line-height: 24px;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    background-color: #4784b7;
+}
+
 
 /*
  * Table of Contents
  */
 
 .article .tocwrapper {
+  background-color: #E8E8E8;
   clear: left;
-  float:right;
+  float: right;
   width:30%;
-  border-top:1em solid #FFF;
-  border-left:1em solid #FFF;
-  border-bottom:1em solid #FFF;
+  border-left: 5px solid #e8e8e8;
+  box-shadow: 0px 1px 0px 0px #c5cad8, 0 3px 3px 0px #d4d8e3;
+  margin-left: 20px;
 }
 .article .tocwrapper .toc {
-  padding: 0.5em;
-  background-color:#F9F9F9;
+  border-left: 4px solid #2196f3;
+  padding: 5px 5px 0px 15px;
+  margin-left:0px;
 }
 .article .tocwrapper .toc .toctitle {
   color: #666;
   text-transform: uppercase;
-  font-weight: bold;
+  font-size: 0.7em;
+  font-weight: bolder;
 }
 .article .tocwrapper .toc UL {
   padding: 0;
   margin: 0;
 }
 
-.android-getting-started H2,
-.windowsphone-getting-started H2,
-.ios-getting-started H2,
-.web-getting-started H2 {
-  border-bottom:0;
-}
-
 @media screen and (max-height: 639px), screen and (max-width: 639px) {
   .article .tocwrapper {
     float: none;
     width: auto;
-    border-right:1em solid #FFF;
   }
 }
 
@@ -341,6 +385,7 @@
 .article > .footer {
   line-height:normal;
   margin-top:3em;
+  margin-bottom:1em;
 }
 .article > .footer .footer-text,
 .article > .footer .footer-license {
@@ -361,7 +406,7 @@
  * Miscellaneous
  */
 
-.article > .content .monospaced {
+.article > .content SPAN.monospaced {
   font-family: Cousine,"Liberation Mono",monospace;
   /*font-weight: normal;*/
   font-size:0.9em;
@@ -381,15 +426,30 @@
   border-width:0 0 0 3px;
   font-size:0.85em;
   line-height:1.6em;
-  max-height:25em; /* 25/1.6 ~ 15 lines of code */
+  max-height:33em;/* ~ 21 lines of code */
   overflow:auto;
-  background-color:#EFEFEF;
+  background-color: #d9d9d;
   border-radius:0 5px 5px 0;
   -webkit-border-radius:0 5px 5px 0;
+}
+.article > .content PRE > CODE {
+  white-space: pre;
+  word-wrap: normal;
 }
 
 .article > .content .clear {
   clear: both;
+}
+
+.article > .content .colist {
+  margin-bottom: .5em;
+}
+.article > .content .colist > table > tbody > tr > td {
+  padding-bottom: .5em;
+}
+.article > .content .colist > table > tbody > tr > td:first-child {
+  padding-right: 1em;
+  padding-left: .5em;
 }
 
 
@@ -420,7 +480,16 @@
 }
 .article > .content div.admonitionblock td.content {
   padding-left: 0.5em;
-  border-left: 3px solid #dddddd;
+  border-left: 2px dotted #dddddd;
+}
+
+.sect1 {
+  clear:left;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  padding:1px 20px 20px 20px;
+  box-shadow: 0 1px 0 #c5cad8, 0 2px 3px #d4d8e3;
 }
 
 
@@ -573,6 +642,7 @@
 #main.developerDocsPage.index-     .article > .content .sub-title,
 #main.developerDocsPage.downloads- .article > .content .sub-title {
   text-align: center;
+  margin-bottom: 3em;
 }
 
 #main.developerDocsPage.index-     .article > .content .illustration,

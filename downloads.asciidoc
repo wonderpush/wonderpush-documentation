@@ -7,10 +7,6 @@
 Dive into our Getting Started guides and integrate with your app and website in minutes.
 --
 
-[role="illustration"]
---
---
-
 [role="section"]
 .Web [new-textbadge]#new!#
 --

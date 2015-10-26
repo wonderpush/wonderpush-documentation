@@ -1,5 +1,5 @@
 [[guide-api-conventions]]
-[role="chunk-page"]
+[role="chunk-page chunk-toc"]
 == API conventions
 
 This section describes general API conventions that can be applied
@@ -32,7 +32,6 @@ Where possible, API strives to use appropriate HTTP verbs.
 |===
 
 [[guide-api-conventions-errors]]
-[role="chunk-toc"]
 === Errors
 
 --
@@ -487,7 +486,6 @@ Should you decide to implement and distribute your own clients for
 WonderPush, we encourage you to follow the same versioning scheme.
 
 [[guide-api-conventions-platforms-and-models]]
-[role="chunk-toc"]
 === Platforms & Models
 
 --

@@ -1,6 +1,450 @@
 [[web-getting-started]]
-[role="chunk-page section-link"]
-== http://wonderpush.github.io/wonderpush-javascript-sdk/[Getting started]
+[role="chunk-page chunk-toc"]
+== Getting started
 
-The WonderPush JavaScript SDK guide to Getting started is available on GitHub at
-http://wonderpush.github.io/wonderpush-javascript-sdk/.
+
+.How to integrate Web Push notifications on a website within 5 minutes
+--
+You are probably ready to get started send push notifications to your
+site's visitors - using the WonderPush solution. The following overview
+of WonderPush shows you how to get push messaging up and running on your
+website within 5 minutes.
+
+It currently works with Chrome 42+ and will soon support Safari, and
+Firefox.
+
+[NOTE]
+====
+This SDK supports **HTTP**, **HTTPS**, and multiple subdomains
+websites!
+====
+
+WonderPush Javascript SDK is a client-side library which is invoked from
+inside your web pages. +
+WonderPush client-side APIs is basically used to display WonderPush
+switch button and to register user to web push. It makes calls to
+WonderPush servers using WonderPush APIs that are REST services using
+JSON to transport parameters and return values.
+
+Using WonderPush requires to have a WonderPush account (it’s free and
+doesn’t require any credit card) and to have a the WonderPush JavaScript
+snippet installed on your site with a personal web key you will grab
+from WonderPush dashboard.
+--
+
+[[web-getting-started-get-your-personal-web-key]]
+[role="numbered-lvlfirst"]
+=== Get your personal web key
+
+[role="skip-toc"]
+==== 1. Log in or sign up
+
+Log in or sign up for a free account on WonderPush at: https://dashboard.wonderpush.com/account/login
+
+image:web/getting-started/login.png[Image of login]
+
+You will be able to invite new members to join your project with
+different levels of permission (owner, editor…).
+
+[role="skip-toc"]
+==== 2. Register your website
+
+image:web/getting-started/register-website.png[Image of create]
+
+Give a name to your project. e.g. Google News Make sure to check _Web_
+under the _Platforms_ section.
+
+[role="skip-toc"]
+==== 3. Fill your website’s infos
+
+Pay attention to properly fill
+the Platforms configuration form. Those informations are required for
+the initialization of the SDK:
+
+image:web/getting-started/configuration.png[Image of website-infos]
+
+===== Custom domain
+The notifications will be shown are originating
+from your custom domain.
+
+- If you signed for a free plan, simply choose an alias representing
+your website, with no space, dots or uppercase letters. e.g.:
+"googlenews" and not “Google News” or news.google.com
+If so, the push subscriptions will be tied to the following domain:
+https://googlenews.by.wonderpush.com/
+
+Your Web push will look like this:
+
+image:web/getting-started/webpush-140-chars.png[Image of push-look]
+
+- If you signed for a premium plan, then you can use your very own
+domain. In this case, please contact us for instructions.
+
+[CAUTION]
+====
+Updating frequently this value could break all existing opt-in and require every user to subscribe again.
+====
+
+
+===== Website name
+That’s the displayable name of your website. In our
+example, it would be Google News with appropriate capitalization.
+
+===== Notification default URL
+This is the default URL to open when
+the user clicks on the notification. This value will be used only if
+none URL is defined within the notification itself. We’ll see further
+how you will be able to define deeplink URL when composing your first
+notification. In the case that concerns us, the notification default URL
+would be https://news.google.com
+
+===== Notification icon
+This is the default notification icon (in our
+example, G). It will be used if none is present within the notification
+itself. A square image is expected (100x100). Prefer using HTTPS. This
+prevents serving mixed content when displaying an HTTP image in an HTTPS
+page, which would result in a yellow or grey lock in the location bar.
+This image is also shown during the registration process.
+
+Then validate the form: image:web/getting-started/update-keys.png[Image of update-keys]
+
+
+
+.ADVANCED
+[TIP]
+====
+The configuration is cached, so please allow 24 hours
+before expecting updates to be taken into account. The first setup,
+however, should be available right away!
+
+Developer note: The configuration is also cached in the browser in the Local Storage, you
+can try to update things (like customDomain) there, to go forward
+faster. If you update thecustomDomain, refresh the page, and update the
+configuration cached in the Local Storage of the new domain too. > >If
+you prefer to control the initialization options from your code
+directly, you have the ability to override them by adding options to the
+javascript snippet (see STEP 2).
+====
+
+[role="skip-toc"]
+==== 4. Copy your Web key
+
+The Web key is mandatory. It is a web-based security system that provides authentification between your website and our servers. Without this, WonderPush server will return an HTTP 403 (forbidden) error. Copy [YOUR_WEBKEY], you will have to paste it in next step.
+
+
+
+[[web-getting-started-integrate-sdk-into-your-web-pages]]
+[role="numbered-lvlfirst"]
+=== Integrate SDK into your web pages
+
+Copy/Paste the following snippet into your website’s pages with your
+personal Web key and before before the closing tag. It must be integrated on any page where you want to prompt users to
+sign up for Web Push, or where you want to make WonderPush API calls.:
+
+[source,js]
+----
+<script>
+(function(w, d, s, id, n){
+    w[n] = w[n] || {q: [],
+    init: function(o) {w[n].initOpts = o;},
+    ready: function(c) {w[n].q.push(c);}};
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://cdn.by.wonderpush.com/sdk/1.1/wonderpush-loader.min.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(window, document, 'script', 'wonderpush-jssdk-loader', 'WonderPush'));
+
+WonderPush.init({
+    webKey: '[YOUR_WEBKEY]' // from the previous step
+});
+</script>
+----
+
+.Explanations
+[NOTE]
+====
+This script makes the loading of the SDK asynchronous. Thus, it won’t slow down the loading of your pages. The snippet loads a very short script that detects the minimum features required for push notification support. If browser support is present, it then injects the whole SDK. Our SDK is hosted on a worldwide CDN. It automatically loads the latest version available without risking incompatible code changes.
+====
+
+
+.ADVANCED
+[TIP]
+====
+You can call the `WonderPush.init` function whenever you want, there is no need to call it right away. For instance you can wait to retrieve the userId. Note however that the previous code block must
+appear before in the page. You can override the initialization options filled in your dashboard by adding the following options to the
+`WonderPush.init` function:
+[source,js]
+----
+WonderPush.init({
+    webKey: '[YOUR_WEBKEY]',
+    customDomain:'googlenews.by.wonderpush.com',
+    applicationName:'Google News',
+    notificationDefaultUrl:'https://news.google.com/',
+    notificationIcon:'https://news.google.com/logo/50x50.png'
+});
+----
+====
+
+[[web-getting-started-include-on-off-switch]]
+[role="numbered-lvlfirst"]
+=== Include “ON/OFF” switch
+
+We recommend that you use a subscription switch, like on the example below. This way, you register the user only when he decides. You just have to find an appropriate place in your page and use the following code:
+
+[source,html]
+----
+<div id="wonderpush-subscription-switch" data-sentence="Receive our latest news by web push:" data-on="YES" data-off="NO" />
+----
+
+image:web/getting-started/switch-in-page.png[Image of website-infos]
+
+[NOTE]
+====
+If you don’t see any switch into your pages, please check that
+your Google Chrome version is 42 or higher.
+====
+
+
+.ADVANCED
+[TIP]
+====
+However, you can also opt to register the user for push
+notifications either right away, or after some pages have been visited,
+or at any time. Using a non intrusive information message before asking
+the user for the notification permission yields better results than
+asking without prior notice.
+
+[source,js]
+----
+WonderPush.ready(function(WonderPushSDK){
+    if (WonderPushSDK.isNativePushNotificationSupported()) {
+        // For best results, test if:
+        // - user engagement is sufficient
+        // - user is willing to accept notifications,
+        //   using a non intrusive information message
+        // or use a subscription switch instead:
+        //   https://gist.github.com/ofavre/33b989284fc75997d65f
+        WonderPushSDK.askNativePushNotificationPermission();
+    }
+});`
+----
+====
+
+
+
+[[web-getting-started-test-web-push]]
+[role="numbered-lvlfirst"]
+=== Test web push
+
+Switch on the push button image:web/getting-started/switch-off.png[Image of switch off]
+
+- If your site uses HTTPS, your browser should display a permission prompt window:
+image:web/getting-started/permission-prompt.png[Image of permission prompt]
+
+Your browser is ready to register you to notifications.
+Click Allow, it’s done.
+
+The switch goes green image:web/getting-started/switch-on.png[Image of switch on]
+
+[TIP]
+====
+This permission window isn’t customizable. It is fully controlled by the
+browser.
+====
+
+- If your site supports HTTP only, you should see a modal box like this:
+image:web/getting-started/modal-box.png[Image of modal box]
+
+We cannot bypass this modal box because push subscription must happen on an HTTPS page, and we need to open a new page for that. This message prevents
+popup blocker from blocking us.
+
+.ADVANCED
+[TIP]
+====
+If your site supports HTTP only, you will certainly want to customize the additional window. Then, you will have to add to your pages, just below the WonderPush.init function, the following parameters:
+
+[source,js]
+----
+WonderPush.ready(function() {
+    WonderPushSDK.Notification.setOptInOptions({
+        modalBoxIcon: 'https://news.google.com/logo/50x50.png', // defaults to init option notificationIcon
+        modalBoxTitle: 'Google News', // defaults to init option applicationName
+        modalBoxMessage: 'We will keep you posted with our latest news via Web push.<br/>You can always unsuscribe at any time.personalized notifications.',
+        modalBoxButton: 'Got it!',
+        // Prefix: externalBox/subscriptionBox/popup/???
+        ?Width: 250,
+        ?Height: 200,
+        ?LogoUrl: 'https://...', // defaults to the notificationIcon config option
+        ?LogoWidth: 90,
+        ?LogoHeight: 90,
+        processingMessage: 'Subscribing...',
+        successMessage: 'Thanks for subscribing!',
+        failureMessage: 'Sorry, something went wrong.',
+        closeLabel: 'Close',
+    });
+});
+----
+====
+
+
+
+[[web-getting-started-receive-your-welcome-web-push]]
+[role="numbered-lvlfirst"]
+=== Receive your welcome web push
+
+If you succeed then your site should now support WonderPush web push notifications and you should see your Welcome push appear within a few seconds:
+
+image:web/getting-started/test-push.png[Image of test push]
+
+[NOTE]
+====
+If you didn’t receive a notification, then you probably removed the Default Welcome notification from the WonderPush dashboard.
+====
+
+
+
+[[web-getting-started-send-your-first-web-push]]
+[role="numbered-lvlfirst"]
+=== Send your first web push
+
+Return to your WonderPush dashboard. You should now see yourself listed
+as pushable in:
+
+**Audience > All users**
+
+image:web/getting-started/pushable-installation.png[Image of pushable installation]
+
+Go to
+
+**Notifications >**: You can see the Default Web Notification.
+
+image:web/getting-started/default-notification.png[Image of default notification]
+
+Feel free to edit it. You can now create a new notification.
+
+
+
+[[web-getting-started-advanced-usage]]
+=== **Advanced usage**
+
+
+[[web-getting-started-advanced-usage-optimize-opt-in-process]]
+==== Optimize opt-in process
+
+WonderPush recommends to use an ON/OFF switch in order to encourage your users to opt-in.
+
+This is the default mode of WonderPush SDK. An alternative to using the default mode is to prompt user the first time
+he visits a page. Another one can be to prompt user after he has been to several pages on your site, or in reaction to a click.
+
+Find your best integration by optimizing optional parameters of the
+`WonderPush.init` function:
+
+[cols=",,",options="header",]
+|=======================================================================
+|Parameter
+|Value
+|Description
+
+|+mode+
+|+"visits"+, +"direct"+, +"manual"+
+|+"visits"+ uses the afterVisits setting (default).
+
++"direct"+ asks the user right away.
+
++"manual" needs you to use the below function. Note that the switch can be used independently of the chosen mode.
+
+|+afterVisits+
+|+2+ (default)
+|+0+ or +1+ means immediate. Eg.: +2+ means at the second page visited.
+
+|+switchElementId+
+|+"wonderpush-subscription-switch"+
+|The id of the placeholder element on the page where the switch should be injected, if found.
+|=======================================================================
+
+*Ask permission on action*
+You can prompt your user in reaction to a click or any action using the `askNativePushNotificationPermission()`
+function:
+
+[source,js]
+----
+WonderPush.ready(function(WonderPushSDK){
+    WonderPushSDK.askNativePushNotificationPermission();
+});
+----
+
+[[web-getting-started-advanced-usage-explore-user-data]]
+==== Explore user data
+
+WonderPush allows you to send push notifications to your opt-in users’ whole database. But you can also target a subset of your audience by defining new segments and crossing multiple criteria. Without any action on your side, WonderPush SDK saves for you basic information such as an Installation ID that identifies your users’ devices, browser language, timezone…
+
+Using the SDK, you can easily tag and track meaningful events performed by the user directly from your website. This enables you to perform powerful segmentation of your audience.
+
+Go to:
+
+*Audience > All users* +
+And click on a User in the preview panel. You can see all the information relating to a specific installation retrieved by WonderPush SDK:
+
+image:web/getting-started/timeline.png[Image of Timeline]
+
+
+Using the SDK, you can easily tag and track meaningful events performed by the user directly from your application. This enables you to perform powerful segmentation of your audience. Such parts of the audience are called segments. WonderPush permits you to define numerous segments.
+
+[[web-getting-started-advanced-usage-add-tags-to-installations]]
+==== Add tags to installations
+
+You can then add tags to an installation using the WonderPushSDK.putInstallationCustomProperties function:
+
+[source,js]
+----
+WonderPush.ready(function(WonderPushSDK){
+    WonderPushSDK.putInstallationCustomProperties(properties);
+    // For example:
+    //   var properties = {
+    //   string_personalizedCategories: ["world", "economics"],
+    //   string_followedTopics: ["Google", "Obama"],
+    //   bool_hasCreatedAlert: "yes",
+    //   geoloc_forWeather: {"lat": 48.85837, "lon": 2.294481}
+    //   };
+    // Note that the prefix is mandatory for indexation.
+    // Consult the WonderPush documentation for more information.
+});
+----
+
+
+[[web-getting-started-advanced-usage-track-user-events]]
+==== Track user events
+
+As opposed to an installation properties (tags), an event is set in time and expires after 3 months. You can for instance query against an event that occured within the last week.
+
+[source,js]
+----
+WonderPush.ready(function(WonderPushSDK){
+    WonderPushSDK.trackEvent(type, parameters);
+    // For example:
+    //   var type = “newsRead”;
+    //   var properties = { string_categories: ["technologies", "economics"] };
+    // Note that the prefix is mandatory for indexation.
+    // Consult the WonderPush documentation for more information.
+});
+----
+
+The example above would allow Google News to target users who have read technologies news 3 days ago but have not subscribed to this category.
+
+Get more details here
+
+[NOTE]
+====
+Tracking events needs you signed with a premium plan.
+====
+
+[[web-getting-started-advanced-usage-go-further-thanks-to-our-api]]
+==== Go further thanks to our API
+
+Now that you have integrated the SDK in your site, we invite you to discover the WonderPush APIs.
+
+Thanks to them, you’ll even be able to automate the sending of your notifications directly from your CMS.
+
+
+

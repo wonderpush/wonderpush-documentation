@@ -1,3 +1,4 @@
 /scripts/*.pyc
 /scripts/*.pyo
 /scripts/*.pyw
+/build

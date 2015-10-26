@@ -1,5 +1,5 @@
 [[guide-concepts]]
-[role="chunk-page"]
+[role="chunk-page chunk-toc"]
 == Concepts
 
 --
@@ -88,7 +88,6 @@ In addition we provide a command-line client to help you try API calls:
 https://github.com/wonderpush/wonderpush-python-lib["Python command-line tool", window="_blank"].
 
 [[guide-concepts-security]]
-[role="chunk-toc"]
 === Security
 
 --
