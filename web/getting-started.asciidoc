@@ -146,8 +146,8 @@ sign up for Web Push, or where you want to make WonderPush API calls.:
 <script>
 (function(w, d, s, id, n){
     w[n] = w[n] || {q: [],
-    init: function(o) {w[n].initOpts = o;},
-    ready: function(c) {w[n].q.push(c);}};
+        init: function(o) {w[n].initOpts = o;},
+        ready: function(c) {w[n].q.push(c);}};
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
     js = d.createElement(s); js.id = id;
