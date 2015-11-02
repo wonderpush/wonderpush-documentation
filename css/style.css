@@ -272,6 +272,10 @@ H4 > A.anchor {
 #main.developerDocsPage.web                      .header .page-badge {background-image:url('/docs/img/badge_web.png');}
 
 
+.article {
+  padding-right: 1em;
+}
+
 .article > .header {
   min-height: 5.5em;
 }
@@ -358,17 +362,19 @@ H4 > A.anchor {
  */
 
 .article .tocwrapper {
+  position: relative;
+  right: -1em;
   background-color: #E8E8E8;
   clear: left;
   float: right;
-  width:30%;
+  width: 31%;
   border-left: 5px solid #e8e8e8;
-  box-shadow: 0px 1px 0px 0px #c5cad8, 0 3px 3px 0px #d4d8e3;
+  box-shadow: 0px 0px 2px 0px #c5cad8, 0 3px 3px 0px #d4d8e3;
   margin-left: 20px;
 }
 .article .tocwrapper .toc {
   border-left: 4px solid #2196f3;
-  padding: 5px 5px 0px 15px;
+  padding: 5px 0px 0px 15px;
   margin-left:0px;
 }
 .article .tocwrapper .toc .toctitle {
@@ -384,6 +390,10 @@ H4 > A.anchor {
 
 @media screen and (max-height: 639px), screen and (max-width: 639px) {
   .article .tocwrapper {
+    position: static;
+    right: 0;
+    margin-left: 0;
+    margin-top: 2em;
     float: none;
     width: auto;
   }
