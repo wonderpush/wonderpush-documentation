@@ -257,7 +257,7 @@ H4 > A.anchor {
 
 #main.developerDocsPage .header .page-badge {
   float: left;
-  padding-right: 1em;
+  margin-right: .5em;
   width: 5em;
   height: 5em;
   background-size: 5em;
