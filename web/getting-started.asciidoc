@@ -413,16 +413,16 @@ You can then add tags to an installation using the WonderPushSDK.putInstallation
 [source,js]
 ----
 WonderPush.ready(function(WonderPushSDK){
+    var properties = {
+        // For example:
+        //     string_personalizedCategories: ["world", "economics"],
+        //     string_followedTopics: ["Google", "Obama"],
+        //     bool_hasCreatedAlert: true,
+        //     geoloc_forWeather: {"lat": 48.85837, "lon": 2.294481},
+        // Note that the prefix is mandatory for indexation.
+        // Consult the documentation for more information.
+    };
     WonderPushSDK.putInstallationCustomProperties(properties);
-    // For example:
-    //   var properties = {
-    //   string_personalizedCategories: ["world", "economics"],
-    //   string_followedTopics: ["Google", "Obama"],
-    //   bool_hasCreatedAlert: "yes",
-    //   geoloc_forWeather: {"lat": 48.85837, "lon": 2.294481}
-    //   };
-    // Note that the prefix is mandatory for indexation.
-    // Consult the WonderPush documentation for more information.
 });
 ----
 
@@ -435,12 +435,14 @@ As opposed to an installation properties (tags), an event is set in time and exp
 [source,js]
 ----
 WonderPush.ready(function(WonderPushSDK){
+    var type = "newsRead";
+    var properties = {
+        // For example:
+        //     string_categories: ["technologies", "economics"],
+        // Note that the prefix is mandatory for indexation.
+        // Consult the documentation for more information.
+    };
     WonderPushSDK.trackEvent(type, parameters);
-    // For example:
-    //   var type = “newsRead”;
-    //   var properties = { string_categories: ["technologies", "economics"] };
-    // Note that the prefix is mandatory for indexation.
-    // Consult the WonderPush documentation for more information.
 });
 ----
 
