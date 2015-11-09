@@ -156,11 +156,11 @@ sign up for Web Push, or where you want to make WonderPush API calls.:
 }(window, document, 'script', 'wonderpush-jssdk-loader', 'WonderPush'));
 
 WonderPush.init({
-    webKey: '[YOUR_WEBKEY]' // <1> from the previous step
+    webKey: 'YOUR_WEBKEY' // <1> from the previous step
 });
 </script>
 ----
-<1> Replace *[YOUR_WEBKEY]* with the web key copied from the previous step. +
+<1> Replace *YOUR_WEBKEY* with the web key copied from the previous step. +
   Eg.: `5266c84d841600af7808e13432b148de6cbaf9078baefdcb92f68147d34059fa`
 
 .Explanations
@@ -179,7 +179,7 @@ appear before in the page. You can override the initialization options filled in
 [source,js]
 ----
 WonderPush.init({
-    webKey: '[YOUR_WEBKEY]', // from the previous step
+    webKey: 'YOUR_WEBKEY', // from the previous step
     customDomain:'googlenews.by.wonderpush.com',
     applicationName:'Google News',
     notificationDefaultUrl:'https://news.google.com/',
