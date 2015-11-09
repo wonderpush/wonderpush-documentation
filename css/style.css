@@ -264,7 +264,6 @@ H4 > A.anchor {
   background-image: url('/docs/img/badge_wonderpush.png');
   background-repeat: no-repeat;
 }
-#main.developerDocsPage.guide-social-networks    .header .page-badge {background-image:url('/docs/img/badge_network.png');}
 #main.developerDocsPage.guide-push-notifications .header .page-badge {background-image:url('/docs/img/badge_notification.png');}
 #main.developerDocsPage.windowsphone             .header .page-badge {background-image:url('/docs/img/badge_windowsphone.png');}
 #main.developerDocsPage.android                  .header .page-badge {background-image:url('/docs/img/badge_android.png');}
