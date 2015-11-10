@@ -477,7 +477,7 @@ You can read an example integration by looking at the code of our https://github
 
 [[android-getting-started-using-sdk-api-reference]]
 ==== API Reference
-Take a look at the functions exposed by the https://wonderpush.github.io/wonderpush-android-sdk/1.1.1.2/reference/com/wonderpush/sdk/WonderPush.html["WonderPush class", window="_blank"].
+Take a look at the functions exposed by the https://wonderpush.github.io/wonderpush-android-sdk/latest/reference/com/wonderpush/sdk/WonderPush.html["WonderPush class", window="_blank"].
 
 
 [[android-getting-started-advanced-usage]]
