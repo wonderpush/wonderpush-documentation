@@ -290,7 +290,7 @@ You can read an example integration by looking at the code of our https://github
 
 [[ios-getting-started-using-sdk-api-reference]]
 ==== API Reference
-Take a look at the functions exposed by the http://wonderpush.github.io/wonderpush-ios-sdk/latest/html/Classes/WonderPush.html["WonderPush class", window="_blank"].
+Take a look at the functions exposed by the https://wonderpush.github.io/wonderpush-ios-sdk/latest/html/Classes/WonderPush.html["WonderPush class", window="_blank"].
 
 
 [[ios-getting-started-advanced-usage]]

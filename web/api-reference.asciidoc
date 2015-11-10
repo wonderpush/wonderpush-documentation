@@ -1,6 +1,6 @@
 [[web-api-reference]]
 [role="chunk-page section-link"]
-== http://wonderpush.github.io/wonderpush-javascript-sdk/api.html[API reference]
+== https://wonderpush.github.io/wonderpush-javascript-sdk/api.html[API reference]
 
 The WonderPush JavaScript SDK API reference is available on GitHub at
-http://wonderpush.github.io/wonderpush-javascript-sdk/api.html.
+https://wonderpush.github.io/wonderpush-javascript-sdk/api.html.

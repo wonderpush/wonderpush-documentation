@@ -7,13 +7,13 @@ Please choose your platform:
 --
 
 [role="section-link"]
-== http://www.wonderpush.com/docs/reference/api/v1[REST API]
+== https://www.wonderpush.com/docs/reference/api/v1[REST API]
 
 --
 --
 
 [role="section-link"]
-== http://www.wonderpush.com/docs/reference/management-api/v1[Management API]
+== https://www.wonderpush.com/docs/reference/management-api/v1[Management API]
 
 --
 --

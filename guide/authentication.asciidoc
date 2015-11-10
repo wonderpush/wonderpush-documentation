@@ -62,4 +62,4 @@ You can now use the string in the +token+ field as the access token to interact 
 [[guide-authentication-guest-authentication-reference-apis]]
 ===== APIs
 
-* http://www.wonderpush.com/docs/reference/api/v1#post_{empty}_v1_authentication_accessToken[authentication/accessToken reference].
+* https://www.wonderpush.com/docs/reference/api/v1#post_{empty}_v1_authentication_accessToken[authentication/accessToken reference].

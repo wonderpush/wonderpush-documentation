@@ -42,7 +42,7 @@ Dive into our Getting Started guides and integrate with your app and website in 
 --
 [icon icon-rest-api]#{empty}#
 
-* http://www.wonderpush.com/docs/reference/api/v1[Read the reference]
+* https://www.wonderpush.com/docs/reference/api/v1[Read the reference]
 --
 
 [role="section"]
@@ -50,7 +50,7 @@ Dive into our Getting Started guides and integrate with your app and website in 
 --
 [icon icon-management-api]#{empty}#
 
-* http://www.wonderpush.com/docs/reference/management-api/v1[Read the reference]
+* https://www.wonderpush.com/docs/reference/management-api/v1[Read the reference]
 * <<guide-concepts-api-clients,Client libraries>>
 --
 
