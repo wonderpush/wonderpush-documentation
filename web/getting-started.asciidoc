@@ -268,7 +268,7 @@ If your site supports HTTP only, you will certainly want to customize the additi
 
 [source,js]
 ----
-WonderPush.ready(function() {
+WonderPush.ready(function(WonderPushSDK) {
     WonderPushSDK.Notification.setOptInOptions({
         modalBoxIcon: 'https://news.google.com/logo/50x50.png', // defaults to init option notificationIcon
         modalBoxTitle: 'Google News', // defaults to init option applicationName
