@@ -196,8 +196,21 @@ We recommend that you use a subscription switch, like on the example below. This
 
 [source,html]
 ----
-<div id="wonderpush-subscription-switch" data-sentence="Receive our latest news by web push:" data-on="YES" data-off="NO" />
+<div id="wonderpush-subscription-switch" data-sentence="Receive our latest news by web push: " data-on="YES" data-off="NO"></div>
 ----
+
+.TRANSLATION
+[TIP]
+====
+If your audience is non English speaking, translate the `data-sentence`, `data-on` and `data-off` attributes.
+
+For instance French website would rather use:
+
+[source,html]
+----
+<div id="wonderpush-subscription-switch" data-sentence="Recevoir nos dernières nouveautés par push notification web : " data-on="OUI" data-off="NON"></div>
+----
+====
 
 image:web/getting-started/switch-in-page.png[Image of website-infos]
 
@@ -261,36 +274,53 @@ image:web/getting-started/modal-box.png[Image of modal box]
 We cannot bypass this modal box because push subscription must happen on an HTTPS page, and we need to open a new page for that. This message prevents
 popup blocker from blocking us.
 
-.ADVANCED
-[TIP]
-====
-If your site supports HTTP only, you will certainly want to customize the additional window. Then, you will have to add to your pages, just below the WonderPush.init function, the following parameters:
+[[web-getting-started-test-web-push-customize-optin]]
+==== Customize opt-in
+
+If your site supports HTTP only, you will certainly want to customize the additional window.
+Just below the `WonderPush.init()` function, copy the following code which shows you the default values,
+and adapt it to your needs:
 
 [source,js]
 ----
 WonderPush.ready(function(WonderPushSDK) {
     WonderPushSDK.Notification.setOptInOptions({
-        modalBoxIcon: 'https://news.google.com/logo/50x50.png', // defaults to init option notificationIcon
-        modalBoxTitle: 'Google News', // defaults to init option applicationName
-        modalBoxMessage: 'We will keep you posted with our latest news via Web push.<br/>You can always unsuscribe at any time.personalized notifications.',
-        modalBoxButton: 'Got it!',
-        modalBoxCancellable: false,
-        externalBoxWidth: 250,
-        externalBoxHeight: 200,
-        externalBoxLogoUrl: 'https://...', // defaults to the notificationIcon config option
-        externalBoxLogoWidth: 90,
-        externalBoxLogoHeight: 90,
-        externalBoxProcessingMessage: 'Subscribing...',
-        externalBoxSuccessMessage: 'Thanks for subscribing!',
-        externalBoxFailureMessage: 'Sorry, something went wrong.',
-        externalBoxTooLongHint: 'Poor connection or private browsing?',
-        externalBoxCloseHint: 'Close',
-        externalBoxCloseDelay: 3000
+        modalBoxMessage: "We will send you personalized notifications.<br/>You can always unsubscribe at any time.",
+        modalBoxButton: "Got it!",
+        externalBoxProcessingMessage: "Subscribing...",
+        externalBoxSuccessMessage: "Thanks for subscribing!",
+        externalBoxFailureMessage: "Sorry, something went wrong.",
+        externalBoxTooLongHint: "Poor connection or private browsing?",
+        externalBoxCloseHint: "Close"
+    });
+});
+----
+
+.TRANSLATION
+[TIP]
+====
+If your audience is non English speaking, be sure to translate the above strings.
+
+For instance French website would rather use:
+
+[source,js]
+----
+WonderPush.ready(function(WonderPushSDK) {
+    WonderPushSDK.Notification.setOptInOptions({
+        modalBoxMessage: "Recevez désormais nos news en temps réel.<br/>Vous pouvez vous désinscrire à n'importe quel moment.",
+        modalBoxButton: "J'ai compris !",
+        externalBoxProcessingMessage: "Inscription en cours...",
+        externalBoxSuccessMessage: "Merci de vous être inscrit !",
+        externalBoxFailureMessage: "Désolé, un problème est survenu.",
+        externalBoxTooLongHint: "Mauvaise connexion ou navigation privée ?",
+        externalBoxCloseHint: "Fermer"
     });
 });
 ----
 ====
 
+For the complete list of available options, see
+http://wonderpush.github.io/wonderpush-javascript-sdk/latest/WonderPushSDK.Notification.html#.OptInOptions[the corresponding section of the JavaScript SDK documentation].
 
 
 [[web-getting-started-receive-your-welcome-web-push]]
