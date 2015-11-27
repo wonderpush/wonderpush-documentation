@@ -6,6 +6,40 @@
 --
 
 
+[[faq-en-general]]
+=== General
+
+[[faq-en-general-q1]]
+==== Q: Can I transfer my current user tokens from another service to WonderPush?
+
+**A:**
+Yes you can! You just need to send us the push tokens list in the following Json format and we will import them into WonderPush. 
+
+[[faq-en-general-q2]]
+==== Q: What are opt in active users?
+
+**A:**
+Opt in active users is a key indicator calculated by taking the number of unique users for a 90 day period who are still registered to your push notifications.
+
+[[faq-en-general-q3]]
+==== Q: Is WonderPush a free service?
+
+**A:**
+WonderPush is a free service with the unlimited push notifications on the Basic account. Premium account unlocks additional features like Remote API, multi-account support and more.
+
+[[faq-en-general-q4]]
+==== Q: What is your pricing model?
+
+**A:**
+You can find our regular account pricing at: https://www.wonderpush.com/pricing[https://www.wonderpush.com/pricing]
+
+[[faq-en-general-q5]]
+==== Q: Is there a limit to the number of pushes I can send?
+
+**A:**
+There are no limits on the number of push notifications.
+
+
 [[faq-en-web]]
 === Website integration
 
@@ -13,7 +47,7 @@
 ==== Q: Do web push notifications appear on mobile screens?
 
 **A:**
-[cols=",",options="header"]
+[cols=",",options="header,autowidth"]
 |=========================================================
 |Platform |Web push support 
 
@@ -60,7 +94,7 @@ Yes. WonderPush supports multiple subdomains websites, without extra work.
 **A:**
 You just have to find an appropriate place in your page and copy/paste the following code:
 
-[source]
+[source,HTML]
 ---------------------------------------------------------------------
 <div id="wonderpush-subscription-switch" data-sentence="Receive our latest news by web push: " data-on="YES" data-off="NO"></div>
 ---------------------------------------------------------------------
@@ -74,21 +108,25 @@ Note: Don't forget to also display the switch on your mobile site.
 ==== Q: I don't see the switch on my page [TROUBLESHOUTING]
 
 **A:**
-- [*] Make sure the switch div is present into the source of your page
-- [*] Make sure that the its id of "wonderpush-subscription-switch"
+
+* Make sure the switch div is present into the source of your page
+* Make sure that the its id of "wonderpush-subscription-switch"
 
 
-[[faq-en-android]]
-=== Android
+[[faq-en-ios]]
+=== iOS
 
-[[faq-en-android-q1]]
-==== Q: Example question 1?
-
-**A:**
-Example answer 1.
-
-[[faq-en-android-q2]]
-==== Q: Example question 2?
+[[faq-en-ios-q1]]
+==== Q: How can I test my application before submitting it to the iTunes App Store?
 
 **A:**
-Example answer 2.
+You can use TestFlight for testing your iOS application before submitting to Apple validation process. Applications tested through TestFlight will use the production APNS certificate.
+If you are still in active development, you can consider creating another application in the WonderPush dashboard, and change the credentials (clientId and clientSecret) given in the SDK initialization step accordingly.
+
+[[faq-en-ios-q2]]
+==== Q: How Do I Setup Both The Development (Sandboxed) And Production Notifications For IOS?
+
+**A:**
+Since you can only put one APNs push notification certificate at a time in your iOS apps, you should create two iOS projects in XCode, a test project and a publishable project. Then create two applications in the WonderPush dashboard, one for each project. They won’t share the same credentials nor certificates.
+You can also use only one iOS project, provided that you change the credentials (clientId and clientSecret) given in the SDK initialization step accordingly.
+
