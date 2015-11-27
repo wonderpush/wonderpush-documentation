@@ -159,7 +159,7 @@ class TocEntry():
         parts = []
         curr = self
         while curr.id is not None:
-            parts.append(curr.title.encode('utf-8'))
+            parts.append((curr.title if curr.title is not None else '').encode('utf-8'))
             curr = curr.parent
         parts.reverse()
         return ' / '.join(parts) \
