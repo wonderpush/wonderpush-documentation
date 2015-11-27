@@ -1,5 +1,4 @@
 [[faq]]
-[role="chunk-page"]
 = FAQ
 
 [partintro]
