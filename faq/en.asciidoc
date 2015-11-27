@@ -1,0 +1,38 @@
+[[faq-en]]
+[role="chunk-page chunk-toc"]
+== Frequently Asked Questions
+
+--
+--
+
+
+[[faq-en-web]]
+=== Web
+
+[[faq-en-web-q1]]
+==== Q: Example question 1?
+
+**A:**
+Example answer 1.
+
+[[faq-en-web-q2]]
+==== Q: Example question 2?
+
+**A:**
+Example answer 2.
+
+
+[[faq-en-android]]
+=== Android
+
+[[faq-en-android-q1]]
+==== Q: Example question 1?
+
+**A:**
+Example answer 1.
+
+[[faq-en-android-q2]]
+==== Q: Example question 2?
+
+**A:**
+Example answer 2.

@@ -1,0 +1,9 @@
+[[faq-glossary]]
+[role="chunk-page chunk-toc"]
+== Glossary
+
+Some term::
+  Some definition
+
+Some other term::
+  Some other definition.

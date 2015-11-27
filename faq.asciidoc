@@ -1,0 +1,13 @@
+[[faq]]
+[role="chunk-page"]
+= FAQ
+
+[partintro]
+--
+--
+
+include::faq/glossary.asciidoc[]
+
+include::faq/en.asciidoc[]
+
+include::faq/fr.asciidoc[]
