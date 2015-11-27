@@ -18,12 +18,12 @@ Custom event::
   A Custom Event is a user action, taken in-app or in-Website.  
 
 Google Cloud Messaging (GCM)::
-  http:https://developers.google.com/cloud-messaging/["Google Cloud Messaging (GCM),"window="_blank"] is the transport method that WonderPush employs for notification to Android devices.
+  https://developers.google.com/cloud-messaging/[Google Cloud Messaging (GCM), "window="_blank"] is the transport method that WonderPush employs for notification to Android devices.
 
-opt-in user::
+Opt-in user::
   An end user of a mobile application for which notifications are currently set to on. You may alternatively think of an opt-in user as a device that is eligible for push notifications, because an individual user, i.e., person, may have multiple devices registered with the app.
 
-opt-out user::
+Opt-out user::
   An end user of a mobile application for which notifications are currently set to off. You may alternatively think of an opt-out user as a device that is not eligible for push notifications, because an individual user, i.e., person, may have multiple devices registered with the app.
 
 UTC::
