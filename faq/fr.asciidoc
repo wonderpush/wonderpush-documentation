@@ -16,7 +16,7 @@
 Oui, c'est possible ! Vous devez simplement nous fournir une liste de vos push tokens au format Json et nous l'importerons dans votre nouveau compte WonderPush.
 
 [[faq-fr-general-q2]]
-==== Q: Que signifie Utilisateurs opt-in actifs mensuel?
+==== Q: Que signifie Utilisateurs opt-in actifs ?
 
 **A:**
 Les utilisateurs opt-in actifs, est la partie de vos utilisateurs uniques actifs des 90 derniers jours qui acceptent toujours de recevoir vos notifications.
