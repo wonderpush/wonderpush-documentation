@@ -124,7 +124,7 @@ You can use TestFlight for testing your iOS application before submitting to App
 If you are still in active development, you can consider creating another application in the WonderPush dashboard, and change the credentials (clientId and clientSecret) given in the SDK initialization step accordingly.
 
 [[faq-en-ios-q2]]
-==== Q: How Do I Setup Both The Development (Sandboxed) And Production Notifications For IOS?
+==== Q: How do I setup both the development (Sandbox) and production notifications for iOS?
 
 **A:**
 Since you can only put one APNs push notification certificate at a time in your iOS apps, you should create two iOS projects in XCode, a test project and a publishable project. Then create two applications in the WonderPush dashboard, one for each project. They won’t share the same credentials nor certificates.
