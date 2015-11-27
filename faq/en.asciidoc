@@ -7,19 +7,75 @@
 
 
 [[faq-en-web]]
-=== Web
+=== Website integration
 
 [[faq-en-web-q1]]
-==== Q: Example question 1?
+==== Q: Do web push notifications appear on mobile screens?
 
 **A:**
-Example answer 1.
+[cols=",",options="header"]
+|=========================================================
+|Platform |Web push support 
+
+|Android Chrome |YES
+
+|iOS Chrome |Not yet
+
+|iOS Safari |Not yet
+|=========================================================
 
 [[faq-en-web-q2]]
-==== Q: Example question 2?
+==== Q: What’s the difference between “Web Push Notifications” and the Push Notifications I get on my mobile phone?
 
 **A:**
-Example answer 2.
+Web push notifications and mobile push notifications are very similar. Web Push Notifications work just like push notifications for apps. They display your website icon and notification text, which users can click to go right to your website.
+
+While mobile notifications are delivered by a mobile application, Web Push are addressed by websites through web browsers. Currently Apple Safari and Google Chrome Web support push notifications. Mozilla Firefox should support soon.
+
+*How do web push notifications work on the user side?*
+
+When a user visits your site, it must register through a small prompt window displayed by the browser. Therefore, he subscribes to the push notifications that you can easily send from the WonderPush dashboard. These are instantly displayed on the screen of the user even if it 's not on your website.
+
+[[faq-en-web-q3]]
+==== Q: Will Wonderpush affect my website’s performance?
+
+**A:**
+WonderPush should have no negative impact on your website’s performance. WonderPush script makes the loading of the SDK asynchronous. Thus, it won’t slow down the loading of your pages. The snippet loads a very short script that detects the minimum features required for push notification support. If browser support is present, it then injects the whole SDK. Our SDK is hosted on a worldwide CDN. It automatically loads the latest version available without risking incompatible code changes.
+
+[[faq-en-web-q4]]
+==== Q: Does WonderPush work on HTTP-only websites?
+
+**A:**
+Sure! WonderPush works on websites that are not using HTTPS protocol, without any additional work on your part. 
+
+[[faq-en-web-q5]]
+==== Q: My site uses multiple subdomains like foobar.domain.com. Will WonderPush work on it?
+
+**A:**
+Yes. WonderPush supports multiple subdomains websites, without extra work.
+
+[[faq-en-web-q6]]
+==== Q: How do I implement a push notification subscription switch like on wonderpush.com?
+
+**A:**
+You just have to find an appropriate place in your page and copy/paste the following code:
+
+[source]
+---------------------------------------------------------------------
+<div id="wonderpush-subscription-switch" data-sentence="Receive our latest news by web push: " data-on="YES" data-off="NO"></div>
+---------------------------------------------------------------------
+Note: You must have installed the main WonderPush JavaScript snippet.
+
+Warning: Take care to not change the div id, otherwise the switch will no longer work.
+
+Note: Don't forget to also display the switch on your mobile site.
+
+[[faq-en-web-q7]]
+==== Q: I don't see the switch on my page [TROUBLESHOUTING]
+
+**A:**
+- [*] Make sure the switch div is present into the source of your page
+- [*] Make sure that the its id of "wonderpush-subscription-switch"
 
 
 [[faq-en-android]]
