@@ -285,7 +285,9 @@ def parseLevels(node, chunkToc, levels, currToc, silent=False):
     if len(sublevels) == 0: sublevels = levels
     for part in node.childNodes:
         forceSkipToc = False
-        if getNodeTag(part) != levels[0]:
+        nodeTag = getNodeTag(part)
+        if type(levels[0]) is list and nodeTag not in levels[0] \
+                or type(levels[0]) is not list and nodeTag != levels[0]:
             # Allow a few [float] elements to be recognized in the ToC
             # but make sure they don't affect written HTML by setting skipToc
             if getNodeTag(part) in ['simpara', 'bridgehead']:
@@ -313,7 +315,7 @@ def extractToc(dom, chunkToc, silent=False):
     toc = TocEntry()
     for book in dom.childNodes:
         if getNodeTag(book) != 'book': continue
-        parseLevels(book, chunkToc, ['part', 'chapter', 'section'], toc, silent)
+        parseLevels(book, chunkToc, ['part', ['chapter', 'glossary'], 'section'], toc, silent)
         break
     return toc
 
