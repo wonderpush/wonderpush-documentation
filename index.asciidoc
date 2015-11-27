@@ -93,6 +93,16 @@ Dive into our Getting Started guides and integrate with your app and website in 
 * <<community-and-support,Get in touch>>
 --
 
+[role="section"]
+.FAQ
+--
+[icon icon-faq]#{empty}#
+
+* <<faq-glossary,Glossary>>
+* <<faq-en,FAQ (English)>>
+* <<faq-fr,FAQ (Français)>>
+--
+
 [role="clear"]
 --
 --
