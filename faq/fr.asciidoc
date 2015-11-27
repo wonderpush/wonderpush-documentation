@@ -1,38 +1,132 @@
 [[faq-fr]]
 [role="chunk-page chunk-toc"]
-== Questions fréquentes
+== Frequently Asked Questions
 
 --
 --
+
+
+[[faq-fr-general]]
+=== General
+
+[[faq-fr-general-q1]]
+==== Q: Puis-je transférer mes push tokens actuels d'un autre service vers WonderPush ?
+
+**A:**
+Oui, c'est possible ! Vous devez simplement nous fournir une liste de vos push tokens au format Json et nous l'importerons dans votre nouveau compte WonderPush.
+
+[[faq-fr-general-q2]]
+==== Q: Que signifie Utilisateurs opt-in actifs mensuel?
+
+**A:**
+Les utilisateurs opt-in actifs, est la partie de vos utilisateurs uniques actifs des 90 derniers jours qui acceptent toujours de recevoir vos notifications.
+
+[[faq-fr-general-q3]]
+==== Q: WonderPush est-il un service gratuit ?
+
+**A:**
+Oui, WonderPush permet d'envoyer gratuitement un nombre illimité de push notifications sans même avoir à entrer votre numéro de carte bancaire. Un compte Premium permet de bénéficier de fonctionnalités supplémentaires comme l'accès à l'API WonderPush ou le support de comptes multi-utilisateurs.
+
+[[faq-fr-general-q4]]
+==== Q: Quel est votre modèle de facturation ?
+
+**A:**
+Vous pouvez retrouver nos taris sur la page: https://www.wonderpush.com/fr/pricing[https://www.wonderpush.com/fr/pricing]
+
+[[faq-fr-general-q5]]
+==== Y a-t-il une limite au nombre de notification que je peux envoyer ?
+
+**A:**
+Non, il n'y a aucune limite. Vous pouvez envoyer autant de notifications que vous souhaitez.
 
 
 [[faq-fr-web]]
-=== Web
+=== Sites Web
 
 [[faq-fr-web-q1]]
-==== Q: Example question 1?
+==== Q: Les push web s'affichent elle aussi sur les téléphones mobiles ?
 
 **A:**
-Example answer 1.
+[cols=",",options="header,autowidth"]
+|=========================================================
+|Plateforme |Support des push web 
+
+|Android Chrome |OUI
+
+|iOS Chrome |Pas encore
+
+|iOS Safari |Pas encore
+|=========================================================
 
 [[faq-fr-web-q2]]
-==== Q: Example question 2?
+==== Q: Quelle est la différence entre les notifications web et les notifications que je reçois sur mon mobile ?
 
 **A:**
-Example answer 2.
+Les notifications web et les notifications push mobiles sont très similaires . Elles contiennent quelques lignes de texte et une URL qui pointent vers un contenu .
 
+Alors que les notifications mobiles sont fournies par une application mobile, les Push Web sont adressées par les sites Web via les navigateurs Web. Actuellement Apple Safari et Google Chrome Web Support notifications Push. Mozilla Firefox devrait les soutenir bientôt.
 
-[[faq-fr-android]]
-=== Android
+*Comment les notifications web fonctionnent-elles du point de vue de l'utilisateur ?*
 
-[[faq-fr-android-q1]]
-==== Q: Example question 1?
+Quand un utilisateur visite votre site , il doit s'enregistrer via une petite fenêtre affichée par le navigateur. Dès lors, il est abonné aux notifications push que vous pouvez facilement envoyer depuis le tableau de bord de WonderPush. Celles-ci s'afficheront instantanément à l'écran de l'utilisateur même si celui-ci n'est pas sur votre site. 
 
-**A:**
-Example answer 1.
-
-[[faq-fr-android-q2]]
-==== Q: Example question 2?
+[[faq-fr-web-q3]]
+==== Q: WonderPush dégradera-t-il les performances de mon site ?
 
 **A:**
-Example answer 2.
+WonderPush n'aura aucun impact négatif sur les performances de votre site web. Le script WonderPush à coller sur votre site rend le chargement du SDK asynchrone. Ainsi, il ne fera pas ralentir le chargement de vos pages. Le bout de code charge un script très court qui détecte les caractéristiques minimales requises pour le soutien de notification push. Si le support du navigateur est présent, il injecte alors l'ensemble du SDK. Notre SDK est hébergé sur un CDN dans le monde entier. Il charge automatiquement la dernière version disponible sans risquer des changements de code incompatibles .
+
+[[faq-fr-web-q4]]
+==== Q: WonderPush fonctionne-t-il sur un site uniquement en HTTP ?
+
+**A:**
+Tout à fait. WonderPush fonctionne sur tous les sites, même ceux qui n'utilisent pas le protocole HTTPS et ce, sans travail supplémentaire de votre part.
+
+[[faq-fr-web-q5]]
+==== Q: Mon site utilise plusieurs sous-domaines. WonderPush fonctionnera-t-il avec?
+
+**A:**
+Oui. WonderPush fonctionne également sur les sites ayant plusieurs sous-domaines du type foobar.votresite.com, et ce sans intégration supplémentaire de votre part.
+
+[[faq-fr-web-q6]]
+==== Q: Comment intégrer un bouton oui/non comme sur le site Wonderpush.com ?
+
+**A:**
+Pour cela, il vous suffit de trouver la place la plus appropriée dans votre page et de copier coller le code suivant:
+
+[source,HTML]
+---------------------------------------------------------------------
+<div id="wonderpush-subscription-switch" data-sentence="Recevoir nos dernières infos:" data-on="OUI" data-off="NON"></div>
+---------------------------------------------------------------------
+Note: Pour que le bouton fonctionne, vous devez aussi avoir installé le code JavaScript principal.
+
+Attention: Ne changez pas l'id du div, sans quoi le bouton ne fonctionnera plus. 
+
+Note: N'oubliez pas d'afficher le bouton sur votre site mobile également.
+
+[[faq-fr-web-q7]]
+==== Q: Je ne vois pas le bouton Oui / Non sur mon site [DEPANNAGE]
+
+**A:**
+
+* Assurez-vous que le div nécessaire à l'affichage du bouton soit bien présent dans le code HTML de vos pages
+* Assurez-vous que l'id de ce div est bien "wonderpush-subscription-switch"
+
+
+[[faq-fr-ios]]
+=== iOS
+
+[[faq-fr-ios-q1]]
+==== Q: Comment puis-je tester mon application avant de la soumettre dans l'App Store iTunes ?
+
+**A:**
+Vous pouvez utiliser TestFlight pour tester votre application iOS avant de la soumettre à Apple. Les applications testées via TestFlight peuvent utiliser le certificat de production de APNS.
+Si vous êtes encore en développement actif, vous pouvez envisager de créer une autre application dans le tableau de bord WonderPush, et de modifier les informations d'identification (clientId et clientSecret) données dans l'étape d'initialisation du SDK.
+
+[[faq-fr-ios-q2]]
+==== Q: Comment configurer à la fois un environnement de production et un de developpement (Sandbox) pour les notifications sur iOS?
+
+**A:**
+Etant donné que vous ne pouvez mettre qu'un seul certificat de push notification APN à la fois dans vos applications iOS, vous devez créer deux projets iOS dans Xcode, un projet de test et un projet pour la production. Ensuite, créez deux applications dans le tableau de bord WonderPush, un pour chaque projet. Ils ne partageront pas les mêmes informations d'identification ni les mêmes certificats .
+Vous pouvez également utiliser un seul projet iOS, à condition que vous modifiez les informations d'identification (clientId et clientSecret) données dans l'initialisation étape de SDK.
+
