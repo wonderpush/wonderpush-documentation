@@ -1,13 +1,13 @@
 [[faq-fr]]
 [role="chunk-page chunk-toc"]
-== Frequently Asked Questions
+== Foire aux questions
 
 --
 --
 
 
 [[faq-fr-general]]
-=== General
+=== Général
 
 [[faq-fr-general-q1]]
 ==== Q: Puis-je transférer mes push tokens actuels d'un autre service vers WonderPush ?
