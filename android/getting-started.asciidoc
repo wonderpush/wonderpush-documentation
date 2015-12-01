@@ -84,6 +84,16 @@ allprojects {
         jcenter()
     }
 }
+
+// You can also include directly our Bintray repository if the
+// desired version is not yet available on JCenter or Maven Central.
+allprojects {
+    repositories {
+        maven {
+            url 'http://dl.bintray.com/wonderpush/maven/'
+        }
+    }
+}
 ----
 
 You're done, you can skip to the next section to <<android-getting-started-initialize-sdk,initialize the SDK>>.
