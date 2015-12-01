@@ -30,9 +30,94 @@ Make sure to check `Android` under the `Platforms` section.
 Under the `Settings / Keys` menu.
 
 
-[[android-getting-started-download-sdk-for-android]]
+[[android-getting-started-set-up-workspace]]
 [role="numbered-lvlfirst"]
-=== Download WonderPush SDK for Android
+=== Integrate the SDK
+
+[role="skip-toc"]
+==== Using Android Studio
+
+. Declare the WonderPush Android SDK as a dependency of your application
+by adding the following into your `app/build.gradle` file:
++
+[source,java]
+----
+dependencies {
+    compile 'com.wonderpush:wonderpush-android-sdk:1.2.0.0'
+}
+----
++
+. You will need to point the SDK to the notification icon
+and default activity to launch when clicking a notification.
+Simply add the following into your `app/build.gradle` file:
++
+[source,java]
+----
+android {
+    defaultConfig {
+        manifestPlaceholders = [
+                wonderpushDefaultActivity: '[YOUR_MAIN_ACTIVITY_CLASS]', // <1>
+                wonderpushNotificationIcon: '[YOUR_NOTIFICATION_ICON]'   // <2>
+        ]
+    }
+}
+----
+<1> Replace *[YOUR_MAIN_ACTIVITY_CLASS]* with the class name of your main activity. +
+  Eg.: +.MainActivity+ or +com.your.package.MainActivity+.
+<2> Replace *[YOUR_NOTIFICATION_ICON]* with a *drawable* icon to be displayed in the notification. +
+  This icon should follow the https://www.google.com/design/spec/style/icons.html#icons-product-icons[Android Notification Icon Guidelines]
+  and provide with a square, multi-resolution, 24dp, white on transparent icon with a 2dp wide margin. +
+  You can also use you launcher icon directly if its shape is easily recognizable.
+  Mipmaps are not supported however. +
+  Eg.: Your application launcher icon: +@drawable/ic_launcher+.
++
+. Click on the `Sync Project with Gradle Files` button and rebuild your project.
++
+If gradle cannot find the dependency, make sure that you include at least the `jcenter` default repository.
+Modify your top-level `build.gradle` file to include:
++
+[source,java]
+----
+// This should already be present in your top-level build.gradle
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+----
+
+You're done, you can skip to the next section to <<android-getting-started-initialize-sdk,initialize the SDK>>.
+
+[role="skip-toc"]
+==== Migrating from Eclipse ADT to Android Studio
+
+If you already have integrated the WonderPush SDK when the SDK or your project used Eclipse,
+then you will get a few errors from the Manifest Merger, this is because the WonderPush SDK
+now injects the required manifest modifications automatically thanks to Gradle.
+
+You can simply remove everything you added to your manifest.
+Look at the instructions for Eclipse ADT below for a precise list of those additions.
+
+Then follow the instructions for Android Studio.
+
+If you performed some changes or if you removed some entries however (like changing the `BroadcastReceiver` for <<android-getting-started-advanced-usage-own-notifications,handling your own notifications>>),
+you will need to http://tools.android.com/tech-docs/new-build-system/user-guide/manifest-merger#TOC-Attributes-markers-examples["instruct the manifest merger to merge them properly", window="_blank"].
+Just refer to the corresponding section in this documentation.
+
+[role="skip-toc"]
+==== Using Eclipse ADT
+
+[NOTE]
+====
+This integration mode is now deprecated.
+
+Eclipse is no longer supported officially since http://android-developers.blogspot.fr/2015/06/an-update-on-eclipse-android-developer.html["June, 26th 2015"],
+and Android Studio has now been around for a while and is mature and more flexible thanks to Gradle-based builds.
+
+If you want to stick with Eclipse, please read the rest of this section.
+====
+
+===== Download the WonderPush SDK for Android
 
 Download the project https://github.com/wonderpush/wonderpush-android-sdk/releases/latest["on Github", window="_blank"]. +
 Extract the sources in your workspace.
@@ -45,12 +130,8 @@ cd /path/to/your/workspace
 git clone https://github.com/wonderpush/wonderpush-android-sdk.git --branch latest
 ----
 
-[[android-getting-started-set-up-workspace]]
-[role="numbered-lvlfirst"]
-=== Setup the workspace
+===== Setup the workspace
 
-[role="skip-toc"]
-==== Using Eclipse ADT
 . The WonderPush SDK shipping resources, it must be added as a project reference rather than a mere library dependency.
 Import the WonderPush SDK project in your Eclipse workspace by doing:
 +
@@ -92,16 +173,9 @@ Found 2 versions of android-support-v4.jar in the dependency list,
 +
 Repeat the third step in your application, to make sure that your application and the WonderPush SDK both have the exact same Android Support JAR dependency.
 
-[role="skip-toc"]
-==== Using Android Studio
-*Coming soon...*
-
-[[android-getting-started-configuring-sdk]]
-[role="numbered-lvlfirst"]
-=== Configuring the SDK
+===== Configuring the SDK
 
 Add the following to your AndroidManifest.xml to receive push notifications:
-
 
 [source,xml]
 ----
@@ -194,6 +268,7 @@ Add the following to your AndroidManifest.xml to receive push notifications:
 
 The WonderPush SDK defines the `@string/push_sender_ids` resource to `1023997258979`, which is the sender ID that WonderPush uses.
 
+
 [[android-getting-started-initialize-sdk]]
 [role="numbered-lvlfirst"]
 === Initialize the SDK
@@ -233,8 +308,9 @@ Adding an `Application` class is two-step:
 ----
 ====
 
-Then you will need to implement the `WonderPushInitializerImpl` class referenced earlier in the `AndroidManifest.xml`.
-This class is used under the hood by the simpler `WonderPush.initialize(this)` call above. It is used in multiple places inside the SDK so it can initialize itself on some key events, without additional complexity for you.
+Then you will need to implement the `WonderPushInitializerImpl` class. It is referenced by the SDK's manifest that is merged into your application.
+This class is used under the hood by the simple `WonderPush.initialize(this)` call above. It is used in multiple places inside the SDK so it can initialize itself on some key events, without additional complexity for you.
+Place it in your main application package directly.
 
 [source,java]
 ----
@@ -260,6 +336,35 @@ public class WonderPushInitializerImpl implements WonderPushInitializer {
 <3> Replace *[YOUR_CLIENT_SECRET]* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id described above. +
   Eg.: `0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef`.
 
+[TIP]
+====
+If you wish to use another name for this class, or place it inside another package,
+just update the corresponding metadata in your application's `AndroidManifest.xml`:
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:tools="http://schemas.android.com/tools"> <!-- <1> -->
+
+    <application>
+
+        <!-- Permits the SDK to initialize itself whenever needed, without need for your application to launch -->
+        <meta-data
+            android:name="wonderpushInitializerClass"
+            android:value="[YOUR_INITIALIZER_CLASS]"
+            tools:replace="android:value" /> <!-- <2> <3> -->
+
+    </application>
+
+</manifest>
+----
+<1> Make sure the `xmlns:tools` namespace is declared in the root `<manifest>` tag.
+<2> Replace *[YOUR_INITIALIZER_CLASS]* by the fully qualified name of your initialized class. +
+  Eg.: `com.alternate.package.WonderPushInitializerImplementationAlternateName`.
+<3> `tools:replace="android:value"` indicates the manifest merger that you are willingly overriding an entry coming from the WonderPush SDK.
+====
+
 .Special considerations for Android < 4
 [TIP]
 ====
@@ -277,7 +382,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ----
 
-You should also add the following method to the main activity pointed to by manifest inside the broadcast receiver tag:
+You should also add the following method to the main activity that you used in the integration step:
 
 [source,java]
 ----
@@ -288,13 +393,13 @@ protected void onNewIntent(Intent intent) {
 ----
 ====
 
+
 [[android-getting-started-send-your-first-push-notifications]]
 [role="numbered-lvlfirst"]
 === Send your first push notifications
 
 [role="skip-toc"]
 ==== Watch for error logs
-
 
 You can now test your WonderPush-enabled application, but as nobody's perfect, not even us, we know you may run into a few setup problems.
 We advise you to look at your logs for any entry tagged `WonderPush` as the SDK will report setup issues this way. Don't hesitate to create a logcat filter by log tag `WonderPush` to see them more easily.
@@ -321,6 +426,15 @@ Then open the Android Virtual Device Manager, edit your AVD and choose a “Goog
 If your device does not support Google Cloud Messaging or Google Play Services, like the Amazon Kindle Fire, you should use an SDK adapted to such platform.
 
 [role="skip-toc"]
+==== Outdated Google Play?
+
+If you see a message like `Google Play services out of date.`, then you should see a notification inviting you to update Google Play Services, click on it.
+
+If on the emulator, you should download the newest Android SDK Platform, and create a new AVD using this API level.
+If you already use the latest available API level, they you can try finding and downloading the latest Google Play Services APK on the Internet and installing it on your emulator manually.
+You can also try to declare the `compile 'com.google.android.gms:play-services-gcm:VERSION'` dependency using a lower version than the WonderPush Android SDK for your tests.
+
+[role="skip-toc"]
 ==== Registered installation
 
 You should now see one installation in https://dashboard.wonderpush.com/["your WonderPush dashboard"].
@@ -328,7 +442,7 @@ Click `Audience`, choose `All users`, your installation should now be listed in 
 
 [TIP]
 ====
-A few statistics may be cached, click `Refresh` now if necessary.
+A few statistics may be cached, click `Refresh now` if necessary.
 ====
 
 Make sure your installation is displayed as pushable. If not, you probably forgot one step of the above, look for the logs for pointers.
@@ -375,6 +489,7 @@ If you see the above warning and are using SDK v1.1.1.0 or ulterior, then you ei
 ==== Need support?
 
 If all else fails, don't hesitate to contact us by chat, using the “Chat with us” button in the lower right corner of your WonderPush dashboard, or by email.
+
 
 [[android-getting-started-using-sdk]]
 [role="numbered-lvlfirst"]
@@ -637,7 +752,9 @@ If you want to handle some notifications yourself, you will have to first create
 
 [NOTE]
 ====
-The broadcast receiver is called whenever a push notification is received. You may instead be interested in <<android-getting-started-advanced-usage-notification-opened,knowing when a push notification is opened>>, <<android-getting-started-advanced-usage-own-deep-links,handling your own deep links>>, or <<android-getting-started-advanced-usage-data-notifications,handling data notifications>>.
+The broadcast receiver is called whenever a push notification is received.
+
+You may instead be interested in <<android-getting-started-advanced-usage-notification-opened,knowing when a push notification is opened>>, <<android-getting-started-advanced-usage-own-deep-links,handling your own deep links>>, or <<android-getting-started-advanced-usage-data-notifications,handling data notifications>>.
 ====
 
 [source,java]
@@ -669,20 +786,23 @@ Then setup your own `BroadcastReceiver` in your manifest:
 
 [source,xml]
 ----
-<manifest>
+<manifest
+    xmlns:tools="http://schemas.android.com/tools"> <!-- <1> -->
 
     <application>
 
-        <!-- This registers your own receiver to receive push notifications.
-             Don't forget to call WonderPush.onBroadcastReceived() in your receiver
-             if you removed WonderPush's receiver. -->
+        <!-- This removes the receiver provided by the WonderPush SDK. -->
         <receiver
-            android:name="com.your.package.CustomBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
+            android:name="com.wonderpush.sdk.WonderPushBroadcastReceiver"
+            tools:node="remove"/> <!-- <2> -->
+        <!-- This registers your own receiver to receive push notifications. -->
+        <receiver
+            android:name="[YOUR_CUSTOM_BROADCAST_RECEIVER_CLASS]"
+            android:permission="com.google.android.c2dm.permission.SEND"> <!-- <3> -->
 
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="[YOUR_APPLICATION_PACKAGE]" /> <!-- <1> -->
+                <category android:name="${applicationId}" /> <!-- <4> -->
             </intent-filter>
 
         </receiver>
@@ -691,5 +811,16 @@ Then setup your own `BroadcastReceiver` in your manifest:
 
 </manifest>
 ----
-<1> Replace: *[YOUR_APPLICATION_PACKAGE]* with your application package name. +
-Eg.: `com.your.package`.
+<1> Make sure the `xmlns:tools` namespace is declared in the root `<manifest>` tag. +
+  Ignore this if you still use Eclipse.
+<2> `tools:node="remove"` indicates the manifest merger that you want to remove an entry that would otherwise be merged from the WonderPush SDK. +
+  Ignore this if you still use Eclipse.
+<3> Replace: *[YOUR_CUSTOM_BROADCAST_RECEIVER_CLASS]* with the actual fully qualified class name of the class you've just created.
+  Eg.: `com.your.package.CustomBroadcastReceiver`.
+<4> If still using Eclipse, replace: *${applicationId}* with your application package name.
+  On Android Studio, if you have an error, make sure to add `applicationId "com.your.package"` inside `android.defaultConfig` in your application. +
+  Eg.: `com.your.package`.
+
+Note that it is not istrictly mandatory to remove the WonderPush SDK `BroadcastReceiver`, but in such case,
+you would have to be sure not to display a notification if the notification was meant for the WonderPush SDK
+without resorting to the `WonderPush.onBroadcastReceived()` function.
