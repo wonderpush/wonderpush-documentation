@@ -456,6 +456,9 @@ H4 > A.anchor {
   white-space: pre;
   word-wrap: normal;
 }
+.article > .content PRE > CODE img {
+  vertical-align: baseline;
+}
 
 .article > .content .clear {
   clear: both;
@@ -470,6 +473,10 @@ H4 > A.anchor {
 .article > .content .colist > table > tbody > tr > td:first-child {
   padding-right: 1em;
   padding-left: .5em;
+  vertical-align: top;
+}
+.article > .content .colist > table > tbody > tr > td:first-child img {
+  vertical-align: baseline;
 }
 
 
