@@ -31,7 +31,8 @@ def clean(soup, toc, ref):
     for link in soup.findAll('a'):
         href = link.get('href')
         if href is None:
-            print >> sys.stderr, "WARNING: Link with no href:", link
+            if link.get('class') != 'anchor':
+                print >> sys.stderr, "WARNING: Link with no href:", link
             continue
         if href.startswith('#') and href != '#':
             href = href[1:]
