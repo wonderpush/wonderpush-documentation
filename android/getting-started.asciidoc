@@ -55,16 +55,19 @@ Simply add the following into your `app/build.gradle` file:
 ----
 android {
     defaultConfig {
+        applicationId '[YOUR_PACKAGE]' // <1>
         manifestPlaceholders = [
-                wonderpushDefaultActivity: '[YOUR_MAIN_ACTIVITY_CLASS]', // <1>
-                wonderpushNotificationIcon: '[YOUR_NOTIFICATION_ICON]'   // <2>
+                wonderpushDefaultActivity:  '[YOUR_MAIN_ACTIVITY_CLASS]', // <2>
+                wonderpushNotificationIcon: '[YOUR_NOTIFICATION_ICON]'    // <3>
         ]
     }
 }
 ----
-<1> Replace *[YOUR_MAIN_ACTIVITY_CLASS]* with the class name of your main activity. +
+<1> Replace *[YOUR_PACKAGE]* with your application package. This is likely already present, make sure it's there if you encounter any error. +
+  Eg.: `com.your.package`.
+<2> Replace *[YOUR_MAIN_ACTIVITY_CLASS]* with the class name of your main activity. +
   Eg.: +.MainActivity+ or +com.your.package.MainActivity+.
-<2> Replace *[YOUR_NOTIFICATION_ICON]* with a *drawable* icon to be displayed in the notification. +
+<3> Replace *[YOUR_NOTIFICATION_ICON]* with a *drawable* icon to be displayed in the notification. +
   This icon should follow the https://www.google.com/design/spec/style/icons.html#icons-product-icons[Android Notification Icon Guidelines]
   and provide with a square, multi-resolution, 24dp, white on transparent icon with a 2dp wide margin. +
   You can also use you launcher icon directly if its shape is easily recognizable.
