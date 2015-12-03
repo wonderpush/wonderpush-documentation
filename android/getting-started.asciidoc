@@ -74,6 +74,16 @@ android {
   Mipmaps are not supported however. +
   Eg.: Your application launcher icon: +@drawable/ic_launcher+.
 +
+. Add the following to your `app/proguard-rules.pro`:
++
+[source,java]
+----
+# Keep the initializer implementation, it is referenced by classname from the manifest
+-keep public class * implements com.wonderpush.sdk.WonderPushInitializer {
+    public void initialize(android.content.Context);
+}
+----
++
 . Click on the `Sync Project with Gradle Files` button and rebuild your project.
 +
 If gradle cannot find the dependency, make sure that you include at least the `jcenter` default repository.
