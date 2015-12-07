@@ -138,7 +138,7 @@ Pour que vos applications soient en mesure de recevoir des push notifications, i
 
 Voici les étapes à suivre :
 
-. Dans Apple Developer https://developer.apple.com/account/ios/certificate/certificateList.action[Certificates], choisissez la section +Certificates, Identifiers & Profiles+ et cliquez sur +Add a new certificate+ (Ajouter un nouveau certificat)
+. Dans https://developer.apple.com/account/ios/certificate/certificateList.action[Apple Developer Certificates], choisissez la section +Certificates, Identifiers & Profiles+ et cliquez sur +Add a new certificate+ (Ajouter un nouveau certificat)
 . Sélectionnez +Apple Push Notification SSL (Production)+ et cliquez sur +Continue+
 . Sélectionnez l'+App ID+ que vous utilisez pour le certificat expiré et cliquez sur +Continue+
 . Vous devez maintenant générer un fichier CSR (Certificate Signing Request) depuis votre Mac:
