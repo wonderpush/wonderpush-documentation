@@ -134,21 +134,21 @@ Vous pouvez également utiliser un seul projet iOS, à condition que vous modifi
 ==== Q: Comment renouveler un certificat APNs (Apple Push Notification service) expiré ?
 
 **A:**
-Pour que vos applications soient en mesure de recevoir des push notifications, il est indispensable que le certificat (fichier p12) renseigné sur WonderPush (onglet Réglages / Clés) soit à jour. Si ce n'est pas le cas, vous devez générer un nouveau certificat et remplacer l'ancien sur WonderPush. Il ne sera pas nécessaire de metre à jour votre application et vous n'aurez pas à soumettre de nouvelle version de celle-ci. 
+Pour que vos applications soient en mesure de recevoir des push notifications, il est indispensable que le certificat (fichier p12) renseigné sur WonderPush[https://dashboard.wonderpush.com] (onglet +Réglages / Clés+) soit à jour. Si ce n'est pas le cas, vous devez générer un nouveau certificat et remplacer l'ancien sur WonderPush. Il ne sera pas nécessaire de metre à jour votre application et vous n'aurez pas à soumettre de nouvelle version de celle-ci. 
 
-Voici les étapes à suivre: 
+Voici les étapes à suivre :
 
-. Dans Apple Developer Certificates[https://developer.apple.com/account/ios/certificate/certificateList.action, choisissez la section "Certificates, Identifiers & Profiles" et cliquez sur "Add a new certificate" (Ajouter un nouveau certificat)
-. Sélectionnez "Apple Push Notification SSL (Production)" et cliquez sur "Continue"
-. Sélectionnez l'App ID que vous utilisez pour le certificat expiré et cliquez sur "Continue"
+. Dans Apple Developer Certificates[https://developer.apple.com/account/ios/certificate/certificateList.action], choisissez la section +Certificates, Identifiers & Profiles+ et cliquez sur +Add a new certificate+ (Ajouter un nouveau certificat)
+. Sélectionnez +Apple Push Notification SSL (Production)+ et cliquez sur +Continue+
+. Sélectionnez l'App ID que vous utilisez pour le certificat expiré et cliquez sur +Continue+
 . Vous devez maintenant générer un fichier CSR (Certificate Signing Request) depuis votre Mac:
-.. Allez dans Finder / Applications / Utilities et lancez l'application Keychain Access 
-.. Dans le menu de Keychain Access, sélectionnez Keychain Access > Certificate Assistant > Request a Certificate from a Certificate Authority
+.. Allez dans +Finder / Applications / Utilities+ et lancez l'application +Keychain Access+ 
+.. Dans le menu de Keychain Access, sélectionnez +Keychain Access > Certificate Assistant > Request a Certificate from a Certificate Authority+
 .. Entrez votre Adresse email
-.. Puis un nom du type: "VotreAppli Production APNs" (laissez CA Email vide)
-.. Sélectionnez "Saved to disk" et cliquez sur "Continue"
+.. Puis un nom du type: +VotreAppli Production APNs+ (laissez CA Email vide)
+.. Sélectionnez +Saved to disk+ et cliquez sur +Continue+
 . Vous devez Uploader le fichier que vous avez créé
-. Cliquez sur "Generate", puis "Download" et ouvrez enfin le certificat avec Keychain Access
-. Cliquez sur Fichier / Export Items (vous n'êtes pas obligé d'entrer un mot de passe)
-. Allez enfin sur WonderPush (onglet Réglages / clés) et uploader le fichier .p12
+. Cliquez sur +Generate+, puis +Download+ et ouvrez enfin le certificat avec Keychain Access
+. Cliquez sur +Fichier / Export Items+ (vous n'êtes pas obligé d'entrer un mot de passe)
+. Allez enfin sur WonderPush[https://dashboard.wonderpush.com] (onglet +Réglages / clés+) et uploader le fichier .p12
 
