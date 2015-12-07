@@ -130,3 +130,27 @@ If you are still in active development, you can consider creating another applic
 Since you can only put one APNs push notification certificate at a time in your iOS apps, you should create two iOS projects in XCode, a test project and a publishable project. Then create two applications in the WonderPush dashboard, one for each project. They won’t share the same credentials nor certificates.
 You can also use only one iOS project, provided that you change the credentials (clientId and clientSecret) given in the SDK initialization step accordingly.
 
+
+
+[[faq-fr-ios-q3]]
+==== Q: How to renew expiring iOS push notification certificates?
+
+**A:**
+For your applications to be able to receive push notifications, the certificate (.p12 file) indicated on https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / Clés+) must be up to date (fichier p12). If this is not the case , you must generate a new certificate and replace the old one on WonderPush. Nothing will need to be updated in your app and you won’t have to submit a new version of the app. 
+
+Here are the steps to follow:
+
+. In https://developer.apple.com/account/ios/certificate/certificateList.action[Apple Developer Certificates], choose the section +Certificates, Identifiers & Profiles+ and click +Add a new certificate+ (Add a new certificate)
+. Select +Apple Push Notification SSL (Production)+ and clcik +Continue+
+. Select the same App ID you are using for the current certificate and clcik +Continue+
+. You need then to generate a CSR (Certificate Signing Request) from your Mac:
+.. Go into +Finder / Applications / Utilities+ and launch +Keychain Access+ 
+.. Into Keychain Access menu, select +Keychain Access > Certificate Assistant > Request a Certificate from a Certificate Authority+
+.. Enter your +Email Address+
+.. Enter a name like: +YourApp Production APNs+ (leave CA Email blank)
+.. Select +Saved to disk+ and click +Continue+
+. You then need to Upload the file you just created
+. Click +Generate+, then +Download+ and open the certificate with Keychain Access
+. Click +Fichier / Export Items+ (you needn't to enter a password)
+. Go then to https://dashboard.wonderpush.com[WonderPush] (+Settings / Keys+ section) and upload the .p12 file
+
