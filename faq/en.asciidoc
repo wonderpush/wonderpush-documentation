@@ -13,7 +13,7 @@
 ==== Q: Can I transfer my current user tokens from another service to WonderPush?
 
 **A:**
-Yes you can! You just need to send us the push tokens list in the following Json format and we will import them into WonderPush. 
+Yes you can! You just need to send us the push tokens list in the following Json format and we will import them into WonderPush.
 
 [[faq-en-general-q2]]
 ==== Q: What are opt in active users?
@@ -49,7 +49,7 @@ There are no limits on the number of push notifications.
 **A:**
 [cols=",",options="header,autowidth"]
 |=========================================================
-|Platform |Web push support 
+|Platform |Web push support
 
 |Android Chrome |YES
 
@@ -80,7 +80,7 @@ WonderPush should have no negative impact on your website’s performance. Wonde
 ==== Q: Does WonderPush work on HTTP-only websites?
 
 **A:**
-Sure! WonderPush works on websites that are not using HTTPS protocol, without any additional work on your part. 
+Sure! WonderPush works on websites that are not using HTTPS protocol, without any additional work on your part.
 
 [[faq-en-web-q5]]
 ==== Q: My site uses multiple subdomains like foobar.domain.com. Will WonderPush work on it?
@@ -136,21 +136,20 @@ You can also use only one iOS project, provided that you change the credentials 
 ==== Q: How to renew expiring iOS push notification certificates?
 
 **A:**
-For your applications to be able to receive push notifications, the certificate (.p12 file) indicated on https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / Clés+) must be up to date (fichier p12). If this is not the case , you must generate a new certificate and replace the old one on WonderPush. Nothing will need to be updated in your app and you won’t have to submit a new version of the app. 
+For your applications to be able to receive push notifications, the certificate (.p12 file) indicated on https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / Clés+) must be up to date (fichier p12). If this is not the case , you must generate a new certificate and replace the old one on WonderPush. Nothing will need to be updated in your app and you won’t have to submit a new version of the app.
 
 Here are the steps to follow:
 
 . In https://developer.apple.com/account/ios/certificate/certificateList.action[Apple Developer Certificates], choose the section +Certificates, Identifiers & Profiles+ and click +Add a new certificate+ (Add a new certificate)
 . Select +Apple Push Notification SSL (Production)+ and clcik +Continue+
-. Select the same App ID you are using for the current certificate and clcik +Continue+
+. Select the same App ID you are using for the current certificate and click +Continue+
 . You need then to generate a CSR (Certificate Signing Request) from your Mac:
-.. Go into +Finder / Applications / Utilities+ and launch +Keychain Access+ 
-.. Into Keychain Access menu, select +Keychain Access > Certificate Assistant > Request a Certificate from a Certificate Authority+
+.. Go into +Finder / Applications / Utilities+ and launch +Keychain Access+
+.. Into Keychain Access menu, select +Keychain Access > Certificate Assistant > Request a Certificate from a Certificate Authority...+
 .. Enter your +Email Address+
-.. Enter a name like: +YourApp Production APNs+ (leave CA Email blank)
+.. Enter a name like: +YourApp Production APNs+ (leave +CA Email+ blank)
 .. Select +Saved to disk+ and click +Continue+
-. You then need to Upload the file you just created
-. Click +Generate+, then +Download+ and open the certificate with Keychain Access
-. Click +Fichier / Export Items+ (you needn't to enter a password)
-. Go then to https://dashboard.wonderpush.com[WonderPush] (+Settings / Keys+ section) and upload the .p12 file
-
+. You then need to upload the file you just created
+. Click +Generate+, then +Download+ and open the certificate with +Keychain Access+
+. Click +File / Export Items...+ (you can leave the password blank)
+. Go then to https://dashboard.wonderpush.com[WonderPush] in the +Settings / Keys+ section and upload the +.p12+ file

@@ -31,7 +31,7 @@ Oui, WonderPush permet d'envoyer gratuitement un nombre illimité de push notifi
 ==== Q: Quel est votre modèle de facturation ?
 
 **A:**
-Vous pouvez retrouver nos taris sur la page: https://www.wonderpush.com/fr/pricing[https://www.wonderpush.com/fr/pricing]
+Vous pouvez retrouver nos taris sur la page : https://www.wonderpush.com/fr/pricing[https://www.wonderpush.com/fr/pricing]
 
 [[faq-fr-general-q5]]
 ==== Y a-t-il une limite au nombre de notification que je peux envoyer ?
@@ -49,7 +49,7 @@ Non, il n'y a aucune limite. Vous pouvez envoyer autant de notifications que vou
 **A:**
 [cols=",",options="header,autowidth"]
 |=========================================================
-|Plateforme |Support des push web 
+|Plateforme |Support des push web
 
 |Android Chrome |OUI
 
@@ -68,7 +68,7 @@ Alors que les notifications mobiles sont fournies par une application mobile, le
 
 *Comment les notifications web fonctionnent-elles du point de vue de l'utilisateur ?*
 
-Quand un utilisateur visite votre site , il doit s'enregistrer via une petite fenêtre affichée par le navigateur. Dès lors, il est abonné aux notifications push que vous pouvez facilement envoyer depuis le tableau de bord de WonderPush. Celles-ci s'afficheront instantanément à l'écran de l'utilisateur même si celui-ci n'est pas sur votre site. 
+Quand un utilisateur visite votre site , il doit s'enregistrer via une petite fenêtre affichée par le navigateur. Dès lors, il est abonné aux notifications push que vous pouvez facilement envoyer depuis le tableau de bord de WonderPush. Celles-ci s'afficheront instantanément à l'écran de l'utilisateur même si celui-ci n'est pas sur votre site.
 
 [[faq-fr-web-q3]]
 ==== Q: WonderPush dégradera-t-il les performances de mon site ?
@@ -92,17 +92,18 @@ Oui. WonderPush fonctionne également sur les sites ayant plusieurs sous-domaine
 ==== Q: Comment intégrer un bouton oui/non comme sur le site Wonderpush.com ?
 
 **A:**
-Pour cela, il vous suffit de trouver la place la plus appropriée dans votre page et de copier coller le code suivant:
+Pour cela, il vous suffit de trouver la place la plus appropriée dans votre page et de copier coller le code suivant :
 
 [source,HTML]
----------------------------------------------------------------------
-<div id="wonderpush-subscription-switch" data-sentence="Recevoir nos dernières infos:" data-on="OUI" data-off="NON"></div>
----------------------------------------------------------------------
-Note: Pour que le bouton fonctionne, vous devez aussi avoir installé le code JavaScript principal.
+----
+<div id="wonderpush-subscription-switch" data-sentence="Recevoir nos dernières infos : " data-on="OUI" data-off="NON"></div>
+----
 
-Attention: Ne changez pas l'id du div, sans quoi le bouton ne fonctionnera plus. 
+Note : Pour que le bouton fonctionne, vous devez aussi avoir installé le code JavaScript principal.
 
-Note: N'oubliez pas d'afficher le bouton sur votre site mobile également.
+Attention : Ne changez pas l'id du div, sans quoi le bouton ne fonctionnera plus.
+
+Note : N'oubliez pas d'afficher le bouton sur votre site mobile également.
 
 [[faq-fr-web-q7]]
 ==== Q: Je ne vois pas le bouton Oui / Non sur mon site [DEPANNAGE]
@@ -134,21 +135,20 @@ Vous pouvez également utiliser un seul projet iOS, à condition que vous modifi
 ==== Q: Comment renouveler un certificat APNs (Apple Push Notification service) expiré ?
 
 **A:**
-Pour que vos applications soient en mesure de recevoir des push notifications, il est indispensable que le certificat (fichier p12) renseigné sur https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / Clés+) soit à jour. Si ce n'est pas le cas, vous devez générer un nouveau certificat et remplacer l'ancien sur WonderPush. Il ne sera pas nécessaire de metre à jour votre application et vous n'aurez pas à soumettre de nouvelle version de celle-ci. 
+Pour que vos applications soient en mesure de recevoir des push notifications, il est indispensable que le certificat (fichier p12) renseigné sur https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / Clés+) soit à jour. Si ce n'est pas le cas, vous devez générer un nouveau certificat et remplacer l'ancien sur WonderPush. Il ne sera pas nécessaire de metre à jour votre application et vous n'aurez pas à soumettre de nouvelle version de celle-ci.
 
 Voici les étapes à suivre :
 
 . Dans https://developer.apple.com/account/ios/certificate/certificateList.action[Apple Developer Certificates], choisissez la section +Certificates, Identifiers & Profiles+ et cliquez sur +Add a new certificate+ (Ajouter un nouveau certificat)
 . Sélectionnez +Apple Push Notification SSL (Production)+ et cliquez sur +Continue+
 . Sélectionnez l'+App ID+ que vous utilisez pour le certificat expiré et cliquez sur +Continue+
-. Vous devez maintenant générer un fichier CSR (Certificate Signing Request) depuis votre Mac:
-.. Allez dans +Finder / Applications / Utilities+ et lancez l'application +Keychain Access+ 
-.. Dans le menu de Keychain Access, sélectionnez +Keychain Access > Certificate Assistant > Request a Certificate from a Certificate Authority+
-.. Entrez votre Adresse email
-.. Puis un nom du type: +VotreAppli Production APNs+ (laissez CA Email vide)
-.. Sélectionnez +Saved to disk+ et cliquez sur +Continue+
-. Vous devez Uploader le fichier que vous avez créé
-. Cliquez sur +Generate+, puis +Download+ et ouvrez enfin le certificat avec Keychain Access
-. Cliquez sur +Fichier / Export Items+ (vous n'êtes pas obligé d'entrer un mot de passe)
-. Allez enfin sur https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / clés+) et uploadez le fichier .p12
-
+. Vous devez maintenant générer un fichier CSR (Certificate Signing Request) depuis votre Mac :
+.. Allez dans +Finder / Applications / Utilitaires+ et lancez l'application +Trousseaux d'accès+
+.. Dans le menu de Trousseaux d'accès, sélectionnez +Trousseaux d'accès > Assistant de certification > Demander un certificat à une autorité de certificat...+
+.. Entrez votre +Adresse email+
+.. Puis un nom du type : +VotreAppli Production APNs+ (laissez +CA Email+ vide)
+.. Sélectionnez +Enregistrée sur le disque+ et cliquez sur +Continuer+
+. Vous devez uploader le fichier que vous avez créé
+. Cliquez sur +Generate+, puis +Download+ et ouvrez enfin le certificat avec +Trousseaux d'accès+
+. Cliquez sur +Fichier / Export des éléments...+ (vous pouvez laisser le mot de passe vide)
+. Allez enfin sur https://dashboard.wonderpush.com[WonderPush] à l'onglet +Réglages / Clés+ et uploadez le fichier +.p12+
