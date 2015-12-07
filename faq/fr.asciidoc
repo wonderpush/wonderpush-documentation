@@ -137,7 +137,6 @@ Vous pouvez également utiliser un seul projet iOS, à condition que vous modifi
 Pour que vos applications soient en mesure de recevoir des push notifications, il est indispensable que le certificat (fichier p12) renseigné sur WonderPush (onglet Réglages / Clés) soit à jour. Si ce n'est pas le cas, vous devez générer un nouveau certificat et remplacer l'ancien sur WonderPush. Il ne sera pas nécessaire de metre à jour votre application et vous n'aurez pas à soumettre de nouvelle version de celle-ci. 
 
 Voici les étapes à suivre: 
-.Ordered
 . Dans Apple Developer Certificates[https://developer.apple.com/account/ios/certificate/certificateList.action, choisissez la section "Certificates, Identifiers & Profiles" et cliquez sur "Add a new certificate" (Ajouter un nouveau certificat)
 . Sélectionnez "Apple Push Notification SSL (Production)" et cliquez sur "Continue"
 . Sélectionnez l'App ID que vous utilisez pour le certificat expiré et cliquez sur "Continue"
