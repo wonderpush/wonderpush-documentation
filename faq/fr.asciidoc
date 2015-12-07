@@ -150,5 +150,5 @@ Voici les étapes à suivre :
 . Vous devez Uploader le fichier que vous avez créé
 . Cliquez sur +Generate+, puis +Download+ et ouvrez enfin le certificat avec Keychain Access
 . Cliquez sur +Fichier / Export Items+ (vous n'êtes pas obligé d'entrer un mot de passe)
-. Allez enfin sur https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / clés+) et uploader le fichier .p12
+. Allez enfin sur https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / clés+) et uploadez le fichier .p12
 
