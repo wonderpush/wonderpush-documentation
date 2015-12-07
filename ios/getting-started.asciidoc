@@ -118,25 +118,22 @@ If you don’t see it, make sure you have downloaded the iOS Push Service certif
 . Make sure you see a matching private key when you expand the certificate item, but select only the certificate.
 . Click on `File / Export items`. +
 +
-[CAUTION]
+[TIP]
 ====
-Do not enter any password.
+You can leave the password field blank.
 ====
 +
-. Open a command line and go to the directory where you exported the certificate.
-. Type the following command to generate the `.pem` file:
+. Then go to your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"] and upload the certificate in the `Settings / Keys` page of your application management.
 +
-[source,bash]
-----
-openssl pkcs12 -nodes -clcerts -out [name].pem -in [previously explorted file].p12
-----
-+
-[CAUTION]
+[TIP]
 ====
-Again, type no password when prompted.
-====
+There can only be one APNs iOS certificate per application.
 
-Then go to your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"] and upload the certificate in the `Settings / Keys` page of your application management.
+If you want to use your APNs Development certificate along with your APNs Production certificate,
+please consider creating an application for development and an application for production, there will be no additional charges.
+
+Switching from APNs Development to APNs Production, or vice-versa, will render every push token invalid and they will be cleaned up as soon as you'll send a notification.
+====
 
 In order to handle push notifications, you will have to modify your Application delegate so that all notifications will be forwarded to the WonderPush SDK. Add the following methods:
 
