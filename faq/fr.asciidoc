@@ -106,6 +106,25 @@ Attention : Ne changez pas l'id du div, sans quoi le bouton ne fonctionnera plus
 Note : N'oubliez pas d'afficher le bouton sur votre site mobile également.
 
 [[faq-fr-web-q7]]
+==== Q: Comment installer WonderPush en utilisant Google Tag Manager ?
+
+**R:**
+Vous utilisez déjà Google Tag Manager sur votre site et vous souhaiteriez utiliser ce moyen pour insérer le javascripot WonderPush dans vos pages.
+
+Voilà les étapes à suivre :
+
+. Connectez-vous sur https://tagmanager.google.com[Google Tag Manager]
+. Sélectionnez ‘Ajouter une balise’, puis nommez votre balise "WonderPush GTM" 
+. Choisissez ‘Balise HTML personnalisée’
+. Copiez depuis https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / Clés+), le bout de code javascript et copiez-le dans la boîte de texte sur Google Tag Manager
+. Choisissez un ’déclenchement’ sur ’toutes les pages’
+. Cliquez "Créer une balise"
+. Publiez
+
+C'est terminé, vous pouvez commencer à envoyer des push web à vos utilisateurs. 
+
+
+[[faq-fr-web-q8]]
 ==== Q : Je ne vois pas le bouton Oui / Non sur mon site [DEPANNAGE]
 
 **R :**
