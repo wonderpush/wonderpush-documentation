@@ -105,6 +105,25 @@ Warning: Take care to not change the div id, otherwise the switch will no longer
 Note: Don't forget to also display the switch on your mobile site.
 
 [[faq-en-web-q7]]
+==== Q: How to install WonderPush via Google Tag Manager?
+
+**A:**
+You already use Google Tag Manager on your website and you would like to use it to integrate the WonderPush javascript snippet into your pages.
+
+Here are the steps to follow:
+
+. Sign in to https://tagmanager.google.com[Google Tag Manager]
+. Select ‘Add a new tag’ and then choose Custom HTML Tag
+. Name your tag "WonderPush GTM"
+. Copy from https://dashboard.wonderpush.com[WonderPush] (section +Settings / Keys+), the javascript snippet and paste it into the textbox
+. Decide to fire on All Pages
+. Click "Create Tag"
+. Publish
+
+That's done, you can start sending Web push to your users. 
+
+
+[[faq-en-web-q8]]
 ==== Q: I don't see the switch on my page [TROUBLESHOUTING]
 
 **A:**
@@ -136,7 +155,7 @@ You can also use only one iOS project, provided that you change the credentials 
 ==== Q: How to renew expiring iOS push notification certificates?
 
 **A:**
-For your applications to be able to receive push notifications, the certificate (.p12 file) indicated on https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / Clés+) must be up to date (fichier p12). If this is not the case , you must generate a new certificate and replace the old one on WonderPush. Nothing will need to be updated in your app and you won’t have to submit a new version of the app.
+For your applications to be able to receive push notifications, the certificate (.p12 file) indicated on https://dashboard.wonderpush.com[WonderPush] (section +Settings / Keys+) must be up to date (fichier p12). If this is not the case , you must generate a new certificate and replace the old one on WonderPush. Nothing will need to be updated in your app and you won’t have to submit a new version of the app.
 
 Here are the steps to follow:
 
