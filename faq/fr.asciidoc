@@ -114,12 +114,12 @@ Vous utilisez déjà Google Tag Manager sur votre site et vous souhaiteriez util
 Voilà les étapes à suivre :
 
 . Connectez-vous sur https://tagmanager.google.com[Google Tag Manager]
-. Sélectionnez ‘Ajouter une balise’, puis nommez votre balise "WonderPush GTM" 
-. Choisissez ‘Balise HTML personnalisée’
+. Sélectionnez `Ajouter une balise`, puis nommez votre balise "WonderPush GTM" 
+. Choisissez `Balise HTML personnalisée`
 . Copiez depuis https://dashboard.wonderpush.com[WonderPush] (onglet +Réglages / Clés+), le bout de code javascript et copiez-le dans la boîte de texte sur Google Tag Manager
-. Choisissez un ’déclenchement’ sur ’toutes les pages’
-. Cliquez "Créer une balise"
-. Publiez
+. Choisissez un `déclenchement` sur `toutes les pages`
+. Cliquez `Créer une balise`
+. Cliquez sur `Publier`
 
 C'est terminé, vous pouvez commencer à envoyer des push web à vos utilisateurs. 
 
