@@ -113,12 +113,12 @@ You already use Google Tag Manager on your website and you would like to use it 
 Here are the steps to follow:
 
 . Sign in to https://tagmanager.google.com[Google Tag Manager]
-. Select ‘Add a new tag’ and then name your tag "WonderPush GTM"
-. choose ’Custom HTML Tag’
+. Select `Add a new tag` and then name your tag "WonderPush GTM"
+. choose `Custom HTML Tag`
 . Copy from https://dashboard.wonderpush.com[WonderPush] (section +Settings / Keys+), the javascript snippet and paste it into the textbox
-. Decide to ’fire’ ’on All Pages’
-. Click ’Create Tag’
-. ’Publish’
+. Decide to `Fire` `on All Pages`
+. Click `Create Tag`
+. `Publish`
 
 That's done, you can start sending Web push to your users. 
 
