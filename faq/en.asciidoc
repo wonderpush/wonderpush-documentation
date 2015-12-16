@@ -132,7 +132,7 @@ You can also use only one iOS project, provided that you change the credentials 
 
 
 
-[[faq-fr-ios-q3]]
+[[faq-en-ios-q3]]
 ==== Q: How to renew expiring iOS push notification certificates?
 
 **A:**
