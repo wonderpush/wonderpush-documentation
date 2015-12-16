@@ -9,31 +9,31 @@
 [[faq-en-general]]
 === General
 
-[[faq-en-general-q1]]
+[[faq-en-general-import-users]]
 ==== Q: Can I transfer my current user tokens from another service to WonderPush?
 
 **A:**
 Yes you can! You just need to send us the push tokens list in the following Json format and we will import them into WonderPush.
 
-[[faq-en-general-q2]]
+[[faq-en-general-optin-active-users]]
 ==== Q: What are opt in active users?
 
 **A:**
 Opt in active users is a key indicator calculated by taking the number of unique users for a 90 day period who are still registered to your push notifications.
 
-[[faq-en-general-q3]]
+[[faq-en-general-free-service]]
 ==== Q: Is WonderPush a free service?
 
 **A:**
 WonderPush is a free service with the unlimited push notifications on the Basic account. Premium account unlocks additional features like Remote API, multi-account support and more.
 
-[[faq-en-general-q4]]
+[[faq-en-general-pricing]]
 ==== Q: What is your pricing model?
 
 **A:**
 You can find our regular account pricing at: https://www.wonderpush.com/pricing[https://www.wonderpush.com/pricing]
 
-[[faq-en-general-q5]]
+[[faq-en-general-unlimited-notifications]]
 ==== Q: Is there a limit to the number of pushes I can send?
 
 **A:**
@@ -43,7 +43,7 @@ There are no limits on the number of push notifications.
 [[faq-en-web]]
 === Website integration
 
-[[faq-en-web-q1]]
+[[faq-en-web-mobile-support]]
 ==== Q: Do web push notifications appear on mobile screens?
 
 **A:**
@@ -58,7 +58,7 @@ There are no limits on the number of push notifications.
 |iOS Safari |Not yet
 |=========================================================
 
-[[faq-en-web-q2]]
+[[faq-en-web-web-vs-native]]
 ==== Q: What’s the difference between “Web Push Notifications” and the Push Notifications I get on my mobile phone?
 
 **A:**
@@ -70,25 +70,25 @@ While mobile notifications are delivered by a mobile application, Web Push are a
 
 When a user visits your site, it must register through a small prompt window displayed by the browser. Therefore, he subscribes to the push notifications that you can easily send from the WonderPush dashboard. These are instantly displayed on the screen of the user even if it 's not on your website.
 
-[[faq-en-web-q3]]
+[[faq-en-web-performance-impact]]
 ==== Q: Will Wonderpush affect my website’s performance?
 
 **A:**
 WonderPush should have no negative impact on your website’s performance. WonderPush script makes the loading of the SDK asynchronous. Thus, it won’t slow down the loading of your pages. The snippet loads a very short script that detects the minimum features required for push notification support. If browser support is present, it then injects the whole SDK. Our SDK is hosted on a worldwide CDN. It automatically loads the latest version available without risking incompatible code changes.
 
-[[faq-en-web-q4]]
+[[faq-en-web-http-support]]
 ==== Q: Does WonderPush work on HTTP-only websites?
 
 **A:**
 Sure! WonderPush works on websites that are not using HTTPS protocol, without any additional work on your part.
 
-[[faq-en-web-q5]]
+[[faq-en-web-subdomains-support]]
 ==== Q: My site uses multiple subdomains like foobar.domain.com. Will WonderPush work on it?
 
 **A:**
 Yes. WonderPush supports multiple subdomains websites, without extra work.
 
-[[faq-en-web-q6]]
+[[faq-en-web-subscription-switch]]
 ==== Q: How do I implement a push notification subscription switch like on wonderpush.com?
 
 **A:**
@@ -104,7 +104,7 @@ Warning: Take care to not change the div id, otherwise the switch will no longer
 
 Note: Don't forget to also display the switch on your mobile site.
 
-[[faq-en-web-q7]]
+[[faq-en-web-cannot-see-switch]]
 ==== Q: I don't see the switch on my page [TROUBLESHOUTING]
 
 **A:**
@@ -116,14 +116,14 @@ Note: Don't forget to also display the switch on your mobile site.
 [[faq-en-ios]]
 === iOS
 
-[[faq-en-ios-q1]]
+[[faq-en-ios-testing]]
 ==== Q: How can I test my application before submitting it to the iTunes App Store?
 
 **A:**
 You can use TestFlight for testing your iOS application before submitting to Apple validation process. Applications tested through TestFlight will use the production APNS certificate.
 If you are still in active development, you can consider creating another application in the WonderPush dashboard, and change the credentials (clientId and clientSecret) given in the SDK initialization step accordingly.
 
-[[faq-en-ios-q2]]
+[[faq-en-ios-multiple-environments-support]]
 ==== Q: How do I setup both the development (Sandbox) and production notifications for iOS?
 
 **A:**
@@ -132,7 +132,7 @@ You can also use only one iOS project, provided that you change the credentials 
 
 
 
-[[faq-en-ios-q3]]
+[[faq-en-ios-renew-certificate]]
 ==== Q: How to renew expiring iOS push notification certificates?
 
 **A:**
