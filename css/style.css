@@ -489,7 +489,7 @@ H4 > A.anchor {
   margin-bottom: 2.0em;
   margin-right: 2.0em;
   color: #606060;
-  position: relative;
+  /* position: relative; - apparently not necessary for the >.icon=position:absolute, and conflicts with side ToC */
 }
 .article > .content div.admonitionblock > .icon {
   position: absolute;
