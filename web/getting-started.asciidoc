@@ -217,9 +217,9 @@ WonderPush.ready(function(WonderPushSDK){
 
 
 
-[[web-getting-started-test-web-push]]
+[[web-getting-started-test-opt-in-process]]
 [role="numbered-lvlfirst"]
-=== Test web push
+=== Test opt-in process 
 
 Switch on the push button image:web/getting-started/switch-off.png[Image of switch off]
 
@@ -243,7 +243,7 @@ image:web/getting-started/modal-box.png[Image of modal box]
 We cannot bypass this modal box because push subscription must happen on an HTTPS page, and we need to open a new page for that. This message prevents
 popup blocker from blocking us.
 
-[[web-getting-started-test-web-push-customize-optin]]
+[[web-getting-started-test-customize-optin]]
 ==== Customize opt-in
 
 If your site supports HTTP only, you will certainly want to customize the additional window.
