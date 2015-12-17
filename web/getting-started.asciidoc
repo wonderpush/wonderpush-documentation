@@ -57,8 +57,7 @@ under the _Platforms_ section.
 [role="skip-toc"]
 ==== 3. Fill your website’s infos
 
-Pay attention to properly fill
-the Platforms configuration form. Those informations are required for
+Pay attention to properly follow the steps of the Website configuration process. Those informations are required for
 the initialization of the SDK:
 
 image:web/getting-started/configuration.png[Image of website-infos]
@@ -126,47 +125,17 @@ directly, you have the ability to override them by adding options to the
 javascript snippet (see STEP 2).
 ====
 
-[role="skip-toc"]
-==== 4. Copy your Web key
-
-The Web key is mandatory. It is a web-based security system that provides authentification between your website and our servers. Without this, WonderPush server will return an HTTP 403 (forbidden) error. Copy [YOUR_WEBKEY], you will have to paste it in next step.
-
-
 
 [[web-getting-started-integrate-sdk-into-your-web-pages]]
 [role="numbered-lvlfirst"]
 === Integrate SDK into your web pages
 
-Copy/Paste the following snippet into your website’s pages with your
-personal Web key and before before the closing tag. It must be integrated on any page where you want to prompt users to
-sign up for Web Push, or where you want to make WonderPush API calls.:
-
-[source,js]
-----
-<script>
-(function(w, d, s, id, n){
-    w[n] = w[n] || {q: [],
-        init: function(o) {w[n].initOpts = o;},
-        ready: function(c) {w[n].q.push(c);}};
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "https://cdn.by.wonderpush.com/sdk/1.1/wonderpush-loader.min.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(window, document, 'script', 'wonderpush-jssdk-loader', 'WonderPush'));
-
-WonderPush.init({
-    webKey: 'YOUR_WEBKEY' // <1> from the previous step
-});
-</script>
-----
-<1> Replace *YOUR_WEBKEY* with the web key copied from the previous step. +
-  Eg.: `5266c84d841600af7808e13432b148de6cbaf9078baefdcb92f68147d34059fa`
+Copy the small javascript snippet from your Dashboard and paste it into your website’s pages before the closing tag `</body>`, wherever you want excepted between the <head> and </head> tags. Note that it contains your personal Web key. The javascript snippet must be integrated on any page where you want to prompt users to sign up for Web Push, or where you want to make WonderPush API calls.
 
 .Explanations
 [NOTE]
 ====
-This script makes the loading of the SDK asynchronous. Thus, it won’t slow down the loading of your pages. The snippet loads a very short script that detects the minimum features required for push notification support. If browser support is present, it then injects the whole SDK. Our SDK is hosted on a worldwide CDN. It automatically loads the latest version available without risking incompatible code changes.
+The script makes the loading of the SDK asynchronous. Thus, it won’t slow down the loading of your pages. The snippet loads a very short script that detects the minimum features required for push notification support. If browser support is present, it then injects the whole SDK. Our SDK is hosted on a worldwide CDN. It automatically loads the latest version available without risking incompatible code changes.
 ====
 
 
@@ -248,9 +217,9 @@ WonderPush.ready(function(WonderPushSDK){
 
 
 
-[[web-getting-started-test-web-push]]
+[[web-getting-started-test-opt-in-process]]
 [role="numbered-lvlfirst"]
-=== Test web push
+=== Test opt-in process 
 
 Switch on the push button image:web/getting-started/switch-off.png[Image of switch off]
 
@@ -274,7 +243,7 @@ image:web/getting-started/modal-box.png[Image of modal box]
 We cannot bypass this modal box because push subscription must happen on an HTTPS page, and we need to open a new page for that. This message prevents
 popup blocker from blocking us.
 
-[[web-getting-started-test-web-push-customize-optin]]
+[[web-getting-started-test-customize-optin]]
 ==== Customize opt-in
 
 If your site supports HTTP only, you will certainly want to customize the additional window.
