@@ -39,6 +39,25 @@ Vous pouvez retrouver nos taris sur la page : https://www.wonderpush.com/fr/pric
 **R :**
 Non, il n'y a aucune limite. Vous pouvez envoyer autant de notifications que vous souhaitez.
 
+**A:**
+There are no limits on the number of push notifications.
+
+[[faq-fr-general-staff-limited-views]]
+==== Q: Comme puis-je restreindre une personne de mon équipe à envoyer des notifications aux utilisateurs d'un pays uniquement (ou parlant une langue, ou abonnés à une catégorie en particulier) ?
+
+**A:**
+Cette fonctionnalité n'est disponible qu'avec un compte Premium. Prenons un exemple concret. Par exemple, votre application a une audience mondiale et vous disposez d'éditeur pour chaque langue. Vous souhaitez que votre éditeur Anglais (nommons-le John) ne puisse créer des segments et envoyer des notifications à une audience anglophone uniquement.
+
+Voici comment il faut procéder :
+
+. Sélectionnez l'onglet `Réglages/Vues` et clqiez sur `Créer une vue`
+. Choisissez les règles permettant de limiter le champ d'audience dans lequel John a le droit d'agir : `Langue` est parmi  `English`. Nommez cette vue "Audience Anglophone"
+. Cliquez sur `Sauvegarder`
+. Puis, sélectionnez `Réglages/Staff`
+. Associez la vue "Audience Anglophone" au profil de John 
+
+Quand vous naviguez sur votre tableau de bord WonderPush, vous devriez maintenant voir dans le chemin de navigation, un nouveau menu proposant les choix "Vue complète" et "Vue audience anglophone" alors que John verra uniquement la "Vue audience anglophone". Vous seul pouvez créer des segments au niveau "Vue complète". Les segments et notifications créés au sein d'une vue spécifique ne sont visibles qu'en son sein. Les segments créés au niveau "Vue complète" sont visibles dans toutes les vues et ainsi réutilisables dans chacune des vues en prenant en compte les règles spécifiques à celle-ci.
+
 
 [[faq-fr-web]]
 === Sites Web
