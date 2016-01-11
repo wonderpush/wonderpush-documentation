@@ -40,6 +40,23 @@ You can find our regular account pricing at: https://www.wonderpush.com/pricing[
 There are no limits on the number of push notifications.
 
 
+[[faq-en-general-staff-limited-views]]
+==== Q: How can I limit a staff member to the pushing of notifications to a country's audience only (or language or category...)?
+
+**A:**
+This feature is only available to premium plans. Let's take a concrete example. For example, your application's audience is world wide and you have editors in each language. You want your French editor (let's name him François) to create segments and push notifications only to French audience.     
+
+Then, here are the steps you need to follow: 
+
+. Select `Settings/Views` and click `Create view`
+. Choose rules to limit the scope of audience that François can reach: `Language` is one of `Français`. Name this view "French Audience"
+. Click on `Save` to create the view
+. Then, select `Settings/Staff`
+. Tie François to the "French audience" view 
+
+When browsing WonderPush dashboard, you should see in the breadcrumb a new dropdown menu with the choices "Full view" and "French audience view" while François will see "French audience view". Only you will be able to create segments at "Full view" level. Segments and notifications created inside a view stay visible inside this view only. Segments created at "Full view" level are visible whatever the view your are browsing and reusable inside each view, taking into account the view rules.
+
+
 [[faq-en-web]]
 === Website integration
 
