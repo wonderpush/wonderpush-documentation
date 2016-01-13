@@ -99,40 +99,43 @@ Add this code to the corresponding method of you Application delegate:
 ==== Handle remote notifications
 
 First of all you have to set up your application as described in the https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6["Configuring Push Notifications guide", window="_blank"]. +
-Once you created your provisioning profile associated to a certificate on your computer you will have to export your push notifications certificate in order to let WonderPush to send notification to your device:
+Once you created your provisioning profile and an associated push notifications certificate on your computer you will have to export your push notifications certificate in order to let WonderPush send notifications to your device:
 
-. Launch `KeyChain Access`
-. Select the newly created certificate associated to your appId.
-Its name should be +Apple Development/Production iOS Push Services: [your.app.id]+
+. Launch `KeyChain Access`.
+. Choose `My Certificates` under the `Category` navigation menu on the left.
+. Select the newly created certificate associated to your App ID.
+  Its name should be `Apple Push Services: [your.app.id]` (older certificates are named `Apple Development/Production iOS Push Services: [your.app.id]`.)
 +
 [WARNING]
 ====
 If you don’t see it, make sure you have downloaded the iOS Push Service certificate Apple generated for your application:
 
 * Log into the https://developer.apple.com/account/ios/certificate/certificateList.action["member center", window="_blank"] and choose `Certificates, Identifiers & Profiles` section.
-* Under `Certificates`, click the certificate corresponding to your appId, of type either `APNs Development iOS` or `APNs Production iOS`. +
-  The development certificate is used for sending to the devices you develop with. The production certificate is used for applications distributed through the App Store or TestFlight.
+* Under `Certificates`, click the certificate corresponding to your App ID, of type `Apple Push Services`.
+  (Older certificates have a type of either `APNs Development iOS` or `APNs Production iOS`.)
 * Click `Download`, and open the certificate with `Keychain Access`.
 ====
 +
 . Make sure you see a matching private key when you expand the certificate item, but select only the certificate.
-. Click on `File / Export items`. +
+. Click on `File / Export items`. Leave `File Format` to `Personal Information Exchange (.p12)`. +
 +
 [TIP]
 ====
 You can leave the password field blank.
 ====
 +
-. Then go to your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"] and upload the certificate in the `Settings / Keys` page of your application management.
+. Then go to your https://dashboard.wonderpush.com/["WonderPush dashboard", window="\_blank"] and upload the certificate in the `Settings / Keys` page of your application management. +
+  Choose either the development or production environment.
+  The _development_ environment is used for sending to the devices you develop with, for applications installed directly using XCode.
+  The _production_ environment is used for applications distributed through the App Store or TestFlight.
 +
 [TIP]
 ====
 There can only be one APNs iOS certificate per application.
 
-If you want to use your APNs Development certificate along with your APNs Production certificate,
-please consider creating an application for development and an application for production, there will be no additional charges.
+Please consider creating an application for development and an application for production, there will be no additional charges.
 
-Switching from APNs Development to APNs Production, or vice-versa, will render every push token invalid and they will be cleaned up as soon as you'll send a notification.
+Switching from the development to production environment, or vice-versa, will render every push token invalid and they will be cleaned up as soon as you'll send a notification to it.
 ====
 
 In order to handle push notifications, you will have to modify your Application delegate so that all notifications will be forwarded to the WonderPush SDK. Add the following methods:
