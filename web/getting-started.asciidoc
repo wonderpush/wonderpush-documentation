@@ -10,8 +10,7 @@ site's visitors - using the WonderPush solution. The following overview
 of WonderPush shows you how to get push messaging up and running on your
 website within 5 minutes.
 
-It currently works with Chrome 42+ and will soon support Safari, and
-Firefox.
+It currently works with Chrome 42+ and Firefox 44+ and it will soon support Safari.
 
 [NOTE]
 ====
