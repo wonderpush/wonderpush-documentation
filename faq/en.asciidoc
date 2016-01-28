@@ -70,6 +70,8 @@ When browsing WonderPush dashboard, you should see in the breadcrumb a new dropd
 
 |Android Chrome |YES
 
+|Android Firefox |YES
+
 |iOS Chrome |Not yet
 
 |iOS Safari |Not yet
@@ -81,7 +83,7 @@ When browsing WonderPush dashboard, you should see in the breadcrumb a new dropd
 **A:**
 Web push notifications and mobile push notifications are very similar. Web Push Notifications work just like push notifications for apps. They display your website icon and notification text, which users can click to go right to your website.
 
-While mobile notifications are delivered by a mobile application, Web Push are addressed by websites through web browsers. Currently Apple Safari and Google Chrome Web support push notifications. Mozilla Firefox should support soon.
+While mobile notifications are delivered by a mobile application, Web Push are addressed by websites through web browsers. Currently Apple Safari, Google Chrome Web and Mozilla Firefox support push notifications. Internet Explorer should support soon.
 
 *How do web push notifications work on the user side?*
 
