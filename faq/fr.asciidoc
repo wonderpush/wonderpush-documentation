@@ -72,6 +72,8 @@ Quand vous naviguez sur votre tableau de bord WonderPush, vous devriez maintenan
 
 |Android Chrome |OUI
 
+|Android Firefox |OUI
+
 |iOS Chrome |Pas encore
 
 |iOS Safari |Pas encore
@@ -83,7 +85,7 @@ Quand vous naviguez sur votre tableau de bord WonderPush, vous devriez maintenan
 **R :**
 Les notifications web et les notifications push mobiles sont très similaires . Elles contiennent quelques lignes de texte et une URL qui pointent vers un contenu .
 
-Alors que les notifications mobiles sont fournies par une application mobile, les Push Web sont adressées par les sites Web via les navigateurs Web. Actuellement Apple Safari et Google Chrome Web Support notifications Push. Mozilla Firefox devrait les soutenir bientôt.
+Alors que les notifications mobiles sont fournies par une application mobile, les Push Web sont adressées par les sites Web via les navigateurs Web. Actuellement Apple Safari, Google Chrome et Mozilla Firefox supportent les notifications Push. Internet Explorer devrait les soutenir bientôt.
 
 *Comment les notifications web fonctionnent-elles du point de vue de l'utilisateur ?*
 
