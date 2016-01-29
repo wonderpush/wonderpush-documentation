@@ -69,7 +69,7 @@ Quand vous naviguez sur votre tableau de bord WonderPush, vous devriez maintenan
 
 |Android Chrome |OUI
 
-|Android Firefox |OUI
+|Android Firefox |Pas encore
 
 |iOS Chrome |Pas encore
 

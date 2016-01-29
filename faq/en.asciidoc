@@ -70,7 +70,7 @@ When browsing WonderPush dashboard, you should see in the breadcrumb a new dropd
 
 |Android Chrome |YES
 
-|Android Firefox |YES
+|Android Firefox |Not yet
 
 |iOS Chrome |Not yet
 
