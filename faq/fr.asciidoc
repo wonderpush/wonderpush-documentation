@@ -39,9 +39,6 @@ Vous pouvez retrouver nos taris sur la page : https://www.wonderpush.com/fr/pric
 **R :**
 Non, il n'y a aucune limite. Vous pouvez envoyer autant de notifications que vous souhaitez.
 
-**A:**
-There are no limits on the number of push notifications.
-
 [[faq-fr-general-staff-limited-views]]
 ==== Q: Comme puis-je restreindre une personne de mon équipe à envoyer des notifications aux utilisateurs d'un pays uniquement (ou parlant une langue, ou abonnés à une catégorie en particulier) ?
 
