@@ -127,7 +127,7 @@ Note : N'oubliez pas d'afficher le bouton sur votre site mobile également.
 ==== Q: Comment installer WonderPush en utilisant Google Tag Manager ?
 
 **R:**
-Vous utilisez déjà Google Tag Manager sur votre site et vous souhaiteriez utiliser ce moyen pour insérer le javascripot WonderPush dans vos pages.
+Vous utilisez déjà Google Tag Manager sur votre site et vous souhaiteriez utiliser ce moyen pour insérer le javascript WonderPush dans vos pages.
 
 Voilà les étapes à suivre :
 
