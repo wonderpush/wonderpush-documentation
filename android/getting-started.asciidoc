@@ -35,6 +35,7 @@ Under the `Settings / Keys` menu.
 === Integrate the SDK
 
 [role="skip-toc"]
+[[android-getting-started-set-up-workspace-using-android-studio]]
 ==== Using Android Studio
 
 . Declare the WonderPush Android SDK as a dependency of your application
@@ -99,7 +100,70 @@ allprojects {
 }
 ----
 
-You're done, you can skip to the next section to <<android-getting-started-initialize-sdk,initialize the SDK>>.
+Perform a clean build of your project. If you experience a problem, look at the next points.
+
+*You're done*, you can skip to the next section to <<android-getting-started-initialize-sdk,initialize the SDK>>.
+
+[[android-getting-started-set-up-workspace-conflicting-google-play-services]]
+===== Conflicting versions of Google Play Services
+
+If this happens, you should see something like the following errors during the gradle build:
+
+[source,java]
+----
+:app:prepareComGoogleAndroidGmsPlayServicesAnalytics840Library
+:app:prepareComGoogleAndroidGmsPlayServicesBase810Library
+:app:prepareComGoogleAndroidGmsPlayServicesBasement840Library
+:app:prepareComGoogleAndroidGmsPlayServicesGcm810Library
+[...]
+:app:compileDebugSources
+:app:transformClassesWithDexForDebug
+
+UNEXPECTED TOP-LEVEL EXCEPTION:
+com.android.dex.DexException: Multiple dex files define Lcom/google/android/gms/internal/zzlv$zza;
+        at com.android.dx.merge.DexMerger.readSortableTypes(DexMerger.java:579)
+        at com.android.dx.merge.DexMerger.getSortedTypes(DexMerger.java:535)
+        at com.android.dx.merge.DexMerger.mergeClassDefs(DexMerger.java:517)
+        at com.android.dx.merge.DexMerger.mergeDexes(DexMerger.java:164)
+        at com.android.dx.merge.DexMerger.merge(DexMerger.java:188)
+        at com.android.dx.command.dexer.Main.mergeLibraryDexBuffers(Main.java:504)
+        at com.android.dx.command.dexer.Main.runMonoDex(Main.java:334)
+        at com.android.dx.command.dexer.Main.run(Main.java:277)
+        at com.android.dx.command.dexer.Main.main(Main.java:245)
+        at com.android.dx.command.Main.main(Main.java:106)
+
+
+:app:transformClassesWithDexForDebug FAILED
+
+FAILURE: Build failed with an exception.
+[...]
+BUILD FAILED
+----
+
+This is because you use one of the Google Play Services library in a newer version than the WonderPush SDK does,
+for instance if you declared the something like following in your `app/build.gradle`:
+
+[source,java]
+----
+dependencies {
+    // [...]
+    compile 'com.google.android.gms:play-services-analytics:8.4.0'
+}
+----
+
+The resolution is hopefully simple. Simply declare a dependency on `play-services-gcm` with the _same version_ as you are already using:
+
+[source,java]
+----
+dependencies {
+    // [...]
+    compile 'com.google.android.gms:play-services-analytics:8.4.0'
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+}
+----
+
+This will override the older version demanded by the WonderPush SDK.
+We update our SDKs regularly to ensure that this issue does not arise often.
 
 [role="skip-toc"]
 ==== Migrating from Eclipse ADT to Android Studio
