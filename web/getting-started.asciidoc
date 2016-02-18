@@ -210,7 +210,7 @@ WonderPush.ready(function(WonderPushSDK){
         //   https://gist.github.com/ofavre/33b989284fc75997d65f
         WonderPushSDK.askNativePushNotificationPermission();
     }
-});`
+});
 ----
 ====
 
