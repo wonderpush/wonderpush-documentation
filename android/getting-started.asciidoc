@@ -27,7 +27,7 @@ Make sure to check `Android` under the `Platforms` section.
 [role="skip-toc"]
 ==== 3. Copy your client id and client secret
 
-Under the `Settings / Keys` menu.
+Under the `Settings / Configuration` menu.
 
 
 [[android-getting-started-set-up-workspace]]
@@ -408,7 +408,7 @@ public class WonderPushInitializerImpl implements WonderPushInitializer {
 ----
 <1> Replace *[YOUR_APPLICATION_PACKAGE]* with your application package name. +
   Eg.: `com.your.package`.
-<2> Replace *[YOUR_CLIENT_ID]* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], under the `Settings / Keys` menu. +
+<2> Replace *[YOUR_CLIENT_ID]* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], under the `Settings / Configuration` menu. +
   Eg.: `0123456789abcdef0123456789abcdef01234567`.
 <3> Replace *[YOUR_CLIENT_SECRET]* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id described above. +
   Eg.: `0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef`.
@@ -694,7 +694,7 @@ You can get your own sender ID this way:
 . In the overview, locate your project id and project number.
 . Copy down your project number. This is your GCM sender ID.
 
-If you do not include WonderPush's sender ID in the application, don't forget to give us your browser or server API key, also known as Sender Auth Token, via https://dashboard.wonderpush.com/["your WonderPush dashboard"], under `Settings / Keys`, so we can push notifications on your behalf. Otherwise, if you include our sender ID as recommended, you don't have to take any action. Your application to be able to receive WonderPush notifications as well as notifications from other providers.
+If you do not include WonderPush's sender ID in the application, don't forget to give us your browser or server API key, also known as Sender Auth Token, via https://dashboard.wonderpush.com/["your WonderPush dashboard"], under `Settings / Configuration`, so we can push notifications on your behalf. Otherwise, if you include our sender ID as recommended, you don't have to take any action. Your application to be able to receive WonderPush notifications as well as notifications from other providers.
 
 [NOTE]
 ====

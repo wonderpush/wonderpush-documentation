@@ -134,7 +134,7 @@ Here are the steps to follow:
 . Sign in to https://tagmanager.google.com[Google Tag Manager]
 . Select `Add a new tag` and then name your tag "WonderPush GTM"
 . choose `Custom HTML Tag`
-. Copy from https://dashboard.wonderpush.com[WonderPush] (section +Settings / Keys+), the javascript snippet and paste it into the textbox
+. Copy from https://dashboard.wonderpush.com[WonderPush] (section +Settings / Configuration+), the javascript snippet and paste it into the textbox
 . Decide to `Fire` `on All Pages`
 . Click `Create Tag`
 . `Publish`
@@ -173,7 +173,7 @@ You can also use only one iOS project, provided that you change the credentials 
 ==== Q: How to renew expiring iOS push notification certificates?
 
 **A:**
-For your applications to be able to receive push notifications, the certificate (.p12 file) indicated on https://dashboard.wonderpush.com[WonderPush] (section +Settings / Keys+) must be up to date (fichier p12). If this is not the case , you must generate a new certificate and replace the old one on WonderPush. Nothing will need to be updated in your app and you won’t have to submit a new version of the app.
+For your applications to be able to receive push notifications, the certificate (.p12 file) indicated on https://dashboard.wonderpush.com[WonderPush] (section +Settings / Configuration+) must be up to date (fichier p12). If this is not the case , you must generate a new certificate and replace the old one on WonderPush. Nothing will need to be updated in your app and you won’t have to submit a new version of the app.
 
 Here are the steps to follow:
 
@@ -189,4 +189,4 @@ Here are the steps to follow:
 . You then need to upload the file you just created
 . Click +Generate+, then +Download+ and open the certificate with +Keychain Access+
 . Click +File / Export Items...+ (you can leave the password blank)
-. Go then to https://dashboard.wonderpush.com[WonderPush] in the +Settings / Keys+ section and upload the +.p12+ file
+. Go then to https://dashboard.wonderpush.com[WonderPush] in the +Settings / Configuration+ section and upload the +.p12+ file

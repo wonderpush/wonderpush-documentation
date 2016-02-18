@@ -27,7 +27,7 @@ Make sure to check `iOS` under the `Platforms` section.
 [role="skip-toc"]
 ==== 3. Copy your client id and client secret
 
-Under the `Settings / Keys` menu.
+Under the `Settings / Configuration` menu.
 
 
 [[ios-getting-started-download-sdk-for-ios]]
@@ -86,7 +86,7 @@ Add this code to the corresponding method of you Application delegate:
     [WonderPush applicationDidBecomeActive:application];
 }
 ----
-<1> Replace *[YOUR_CLIENT_ID]* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"], under the `Settings / Keys` menu. +
+<1> Replace *[YOUR_CLIENT_ID]* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"], under the `Settings / Configuration` menu. +
   Eg.: +0123456789abcdef0123456789abcdef01234567+.
 <2> Replace *[YOUR_CLIENT_ID]* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id as described above. +
   Eg.: +0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef+.
@@ -124,7 +124,7 @@ If you don’t see it, make sure you have downloaded the iOS Push Service certif
 You can leave the password field blank.
 ====
 +
-. Then go to your https://dashboard.wonderpush.com/["WonderPush dashboard", window="\_blank"] and upload the certificate in the `Settings / Keys` page of your application management. +
+. Then go to your https://dashboard.wonderpush.com/["WonderPush dashboard", window="\_blank"] and upload the certificate in the `Settings / Configuration` page of your application management. +
   Choose either the development or production environment.
   The _development_ environment is used for sending to the devices you develop with, for applications installed directly using XCode.
   The _production_ environment is used for applications distributed through the App Store or TestFlight.

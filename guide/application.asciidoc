@@ -39,7 +39,7 @@ Registering your application in WonderPush is simple:
 First, make sure that you selected your application in the selector
 of the very first item of the left menu.
 
-Then go to _Settings / Keys_ from the menu.
+Then go to _Settings / Configuration_ from the menu.
 
 You will find the _client id_ and _client secret_,
 together forming your _application credentials_ in the page.
