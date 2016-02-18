@@ -30,32 +30,80 @@ Make sure to check `iOS` under the `Platforms` section.
 Under the `Settings / Configuration` menu.
 
 
-[[ios-getting-started-download-sdk-for-ios]]
+[[ios-getting-started-integrate-sdk]]
 [role="numbered-lvlfirst"]
-=== Download WonderPush SDK for ios
+=== Integrate the SDK
 
-Download the project https://github.com/wonderpush/wonderpush-ios-sdk/releases/latest["on Github", window="_blank"].
+For easy integration, we distribute our SDK as a pod.
 
-Extract `WonderPush.framework` from the downloaded archive.
+If you're using CocoaPods, you can skip the next section to directly <<ios-getting-started-integrate-sdk-add-pod-dependency,add the dependency>>.
 
+[[ios-getting-started-integrate-sdk-install-cocoapods]]
+==== Not already using CocoaPods?
 
-[[ios-getting-started-set-up-project]]
-[role="numbered-lvlfirst"]
-=== Setup your project
+Don't worry, it's easy. Install it using the following command:
 
-. Drag and drop the `WonderPush.framework` file to your project.
-. Select your project file in the project navigator.
-. On the top right side select `General`.
-. Scroll down to `Linked Frameworks and libraries` and click on the plus to add the following frameworks:
-** SystemConfiguration
-** MobileCoreServices
-** CoreGraphics
-** UIKit
-** CoreTelephony
-** CoreLocation
-** CoreBluetooth
-** AVFoundation
-** CoreMotion
+[source,bash]
+----
+sudo gem install cocoapods
+# wait 1-2 minutes, it takes some time before printing anything on the screen…
+----
+
+You can read the https://guides.cocoapods.org/using/getting-started.html#getting-started["complete installation guide here", window="_blank"], but you normally won't need it.
+
+Once CocoaPods is installed, you'll have to create a `Podfile` for your project.
+You can give a try to the specially purposed command:
+
+[source,bash]
+----
+pod init
+----
+
+Or you can edit the `Podfile` file yourself so that it reads the following:
+
+[source,bash]
+----
+platform :ios, "7.0"
+----
+
+Then simply run:
+
+[source,bash]
+----
+pod install
+----
+
+This will edit your project to create a multi-project workspace so that each dependency builds as their respective developer planned them to build.
+
+Finally, you will need to close your project in XCode, and open instead the newly created `YourProject.xcworkspace` file, as indicated in the command output.
+
+You can continue now with the next section.
+
+[[ios-getting-started-integrate-sdk-add-pod-dependency]]
+==== Add the WonderPush SDK as a dependency
+
+Edit your `Podfile` to add the following line:
+
+[source,bash]
+----
+pod 'WonderPush', '~> 2.0'
+----
+
+Next run the following command to effectively download and incorporate WonderPush to your project:
+
+[source,bash]
+----
+pod install
+----
+
+You are now set to use the latest `1.2.x.x` version. (You'll note that we dropped the `v1` prefix, that denotes the API version, in order to conform to semantic versioning.)
+
+To perform a version update when a new one becomes available, you would simply run:
+
+[source,bash]
+----
+pod update
+----
 
 
 [[ios-getting-started-initialize-sdk]]
@@ -64,39 +112,165 @@ Extract `WonderPush.framework` from the downloaded archive.
 
 Add this code to the corresponding method of you Application delegate:
 
-
 [source,objc]
 ----
 #import <WonderPush/WonderPush.h>
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // [WonderPush setLogging:YES]; // only activate logs for development
-    [WonderPush setClientId:@"[YOUR_CLIENT_ID]" secret:@"[YOUR_CLIENT_SECRET]"]; // <1> <2>
-    [WonderPush setNotificationEnabled:YES];
-    [WonderPush handleApplicationLaunchWithOption:launchOptions];
+    [WonderPush setClientId:@"YOUR_CLIENT_ID" secret:@"YOUR_CLIENT_SECRET"]; // <1> <2>
+    [WonderPush setupDelegateForApplication:application]; // <3>
     return YES;
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    [WonderPush applicationDidEnterBackground:application];
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    [WonderPush applicationDidBecomeActive:application];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Ask the user to opt in to push notification
+    // Because you only have ONE chance for prompting the user, you should find a good time for that.
+    // But you can still opt to ask right from the first time he starts your app, as shown here.
+    [WonderPush setNotificationEnabled:YES];
+    return YES;
 }
 ----
-<1> Replace *[YOUR_CLIENT_ID]* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"], under the `Settings / Configuration` menu. +
+<1> Replace *YOUR_CLIENT_ID* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"], under the `Settings / Configuration` menu. +
   Eg.: +0123456789abcdef0123456789abcdef01234567+.
-<2> Replace *[YOUR_CLIENT_ID]* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id as described above. +
+<2> Replace *YOUR_CLIENT_ID* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id as described above. +
   Eg.: +0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef+.
+<3> We place this call in `-application:willFinishLaunchingWithOptions:` so that it properly intercepts the following call to `-application:didFinishLaunchingWithOptions:`. +
+  If you prefer to only use `-application:didFinishLaunchingWithOptions:`, then you should manually forward it to the SDK by simply calling `[WonderPush application:application didFinishLaunchingWithOptions:launchOptions];`.
+
+That's all for the code, you've initialized the SDK with your credentials, setup your `AppDelegate` automatically, and found some appropriate time to ask the user to opt-in.
+
+[NOTE]
+====
+As our delegate implements the `application:didReceiveRemoteNotification:fetchCompletionHandler:` method, this means that the `application:didReceiveRemoteNotification:` method of your delegate will no longer be called.
+You are required to use the former instead.
+
+Here is the https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html#//apple_ref/occ/intfm/UIApplicationDelegate/application:didReceiveRemoteNotification:fetchCompletionHandler:["official documentation", window="_blank"].
+====
+
+.ADVANCED
+[TIP]
+====
+We propose an easy `AppDelegate` setup functionnality that should suit most needs: the WonderPush SDK overrides your `Application.delegate`, hooks on some methods, and always calls back your `AppDelegate`.
+
+If for some reason this does not suit your specific needs, you can resort back to manual `AppDelegate` forwarding using the code below:
+
+[source,objc]
+----
+// Checkout the list of functions to forward at:
+//     http://wonderpush.github.io/wonderpush-ios-sdk/latest/html/Classes/WonderPush.html#task_Manual%20AppDelegate%20forwarding
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [WonderPush setClientId:@"YOUR_CLIENT_ID" secret:@"YOUR_CLIENT_SECRET"]; // you can keep this method call in application:willFinishLaunchingWithOptions: if you wish
+    [WonderPush application:application didFinishLaunchingWithOptions:launchOptions];
+    return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [WonderPush application:application didReceiveRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [WonderPush application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    [WonderPush application:application didFailToRegisterForRemoteNotificationsWithError:error];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    [WonderPush application:application didReceiveLocalNotification:notification];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [WonderPush application:application didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [WonderPush applicationDidBecomeActive:application];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    [WonderPush applicationDidEnterBackground:application];
+}
+----
+
+Please contact us if you are doing down this road, we would like to hear about your use case.
+====
+
+
+[[ios-getting-started-background-execution]]
+[role="numbered-lvlfirst"]
+=== Recommended background execution modes
+
+The `remote-notification` background execution mode permits your app to receive silent or data-only notifications,
+as well as better report influenced application opens, by measuring the time between the reception of the notification and the following application open. +
+Although not strictly mandatory, you are highly encouraged to add it to your app.
+
+To add the `remote-notification` background execution mode:
+
+. Select your project in the _Project navigator_ on the left pane
+. Go to the _Capabilities_ tab
+. Switch _Background Modes_ ON
+. And check _Remote notifications_
+
+Here is https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW17["the official guide to enabling background modes", window="_blank"],
+and https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW57["official documentation to the `remote-notification` background mode", window="_blank"].
+
+
+[[ios-getting-started-geolocation]]
+[role="numbered-lvlfirst"]
+=== Geolocation
+
+The WonderPush SDK tracks the user geolocation if your application already monitors it, and does not actively monitors geolocation.
+This permits having zero impact on user granted rights and battery life.
+
+If your application does not already monitors geolocation but wish to do so, you can create a `CLLocationManager` and call `startUpdatingLocation` as shown below:
+
+[source,objc]
+----
+// AppDelegate.h
+#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
+@end
+----
+
+[source,objc]
+----
+// AppDelegate.m
+#import "AppDelegate.h"
+
+@implementation AppDelegate
+
+- (BOOL)application(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.locationManager = [CLLocationManager new];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // you can also choose any other more precise accuracy
+    [self.locationManager startUpdatingLocation];
+}
+
+@end
+----
+
+This creates and keeps a reference to an actively monitoring `CLLocationManager` as long as your application is running, and hence permits the WonderPush SDK to read location whenever needed, using its own instance of `CLLocationManager`.
 
 
 [[ios-getting-started-configure-notifications]]
 [role="numbered-lvlfirst"]
 === Configure remote notifications
-
-==== Handle remote notifications
 
 First of all you have to set up your application as described in the https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6["Configuring Push Notifications guide", window="_blank"]. +
 Once you created your provisioning profile and an associated push notifications certificate on your computer you will have to export your push notifications certificate in order to let WonderPush send notifications to your device:
@@ -138,50 +312,6 @@ Please consider creating an application for development and an application for p
 Switching from the development to production environment, or vice-versa, will render every push token invalid and they will be cleaned up as soon as you'll send a notification to it.
 ====
 
-In order to handle push notifications, you will have to modify your Application delegate so that all notifications will be forwarded to the WonderPush SDK. Add the following methods:
-
-[source,objc]
-----
--(void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    [WonderPush didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-}
-
--(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    [WonderPush handleDidReceiveRemoteNotification:userInfo];
-}
-
-- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-{
-    [WonderPush didFailToRegisterForRemoteNotificationsWithError:error];
-    // You may appreciate the following log during development :-)
-    NSLog(@"Error: %@", error);
-}
-----
-
-That’s it you should now be able to receive push notifications from WonderPush.
-
-
-
-==== Handling background mode
-
-
-[NOTE]
-====
-If your application does not use the Remote notifications Background mode, you can safely skip this step.
-If in doubt, click your project in the project navigator, select a target, go to the `Capabilities` tab, and under `Background modes`, see whether `Remote notifications` is checked.
-====
-
-If your applications uses the Remote notification Background mode, the behaviour of the notification is not exactly the same. In order to make WonderPush work in this case, overload the following method in your application delegate as follows:
-[source,objc]
-----
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
-    [WonderPush handleNotification:notification.userInfo];
-}
-----
-Your application now correctly receives push notifications.
 
 [[ios-getting-started-send-your-first-notification]]
 [role="numbered-lvlfirst"]
@@ -197,6 +327,7 @@ Your application now correctly receives push notifications.
 
 To fire your notification again, simply click `FIRE` again.
 Allow 1 minute between each send, and feel free to refresh the page if necessary.
+
 
 [[ios-getting-started-using-sdk]]
 [role="numbered-lvlfirst"]
@@ -270,7 +401,7 @@ Inactive users with non-empty carts could then easily be notified. Combined with
 [[ios-getting-started-using-sdk-opt-out]]
 ==== Opt-out
 
-On iOS, users are opt-out by default, and you need to call the `[WonderPush setNotificationEnabled:(BOOL)]` function to register the device, at an appropriate time. A user always has the option of opening the system settings and blocking notifications. The application has no mean to know it.
+On iOS, users are opt-out by default, and you need to call the `[WonderPush setNotificationEnabled:YES]` method to register the device, at an appropriate time. A user always has the option of opening the system settings and blocking notifications. The application has no mean to know it.
 
 If a user no longer wants to receive notifications, you will rather want them to opt out of push notifications. This is done very simply using the following function call, and WonderPush will no longer send push notifications to this installation:
 
