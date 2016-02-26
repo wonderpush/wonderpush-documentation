@@ -825,11 +825,17 @@ Note that this is the same intent filter as used for the <<android-getting-start
 [[android-getting-started-advanced-usage-own-notifications]]
 ==== Handling your own notifications
 
-If you want to handle some notifications yourself, you will have to first create your own http://developer.android.com/reference/android/content/BroadcastReceiver.html["BroadcastReceiver"] as follows:
+.UPGRADING
+[NOTE]
+====
+Prior to the WonderPush Android SDK v1.2.1.0, we recommended using a `BroadcastReceiver`. While still technically valid, you should no longer call `WonderPush.onBroadcastReceived()`, or notifications may be displayed twice.
+====
+
+If you want to handle some notifications yourself, you will have to first create your own https://developers.google.com/android/reference/com/google/android/gms/gcm/GcmListenerService["GcmListenerService"] as follows:
 
 [NOTE]
 ====
-The broadcast receiver is called whenever a push notification is received.
+The GcmListenerService is called whenever a push notification is received.
 
 You may instead be interested in <<android-getting-started-advanced-usage-notification-opened,knowing when a push notification is opened>>, <<android-getting-started-advanced-usage-own-deep-links,handling your own deep links>>, or <<android-getting-started-advanced-usage-data-notifications,handling data notifications>>.
 ====
@@ -838,28 +844,26 @@ You may instead be interested in <<android-getting-started-advanced-usage-notifi
 ----
 package com.your.package;
 
-import com.wonderpush.sdk.WonderPush;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 
-public class CustomBroadcastReceiver extends BroadcastReceiver {
+import com.google.android.gms.gcm.GcmListenerService;
+import com.wonderpush.sdk.WonderPushGcmListenerService;
 
-    // This function is called whenever a push notification is *received*.
+public class CustomGcmListenerService extends GcmListenerService {
+
     @Override
-    public void onReceive(Context context, Intent intent) {
-        // Call this function if you removed WonderPush's receiver in your AndroidManifest.xml
-        if (WonderPush.onBroadcastReceived(context, intent, R.drawable.icon, YourMainActivity.class)) {
+    public void onMessageReceived(String from, Bundle data) {
+        if (WonderPushGcmListenerService.onMessageReceived(getApplicationContext(), from, data)) {
             // The notification was handled by WonderPush
         } else {
-            // Hand the notification to others notification providers here
+            // Handle the notification yourself
         }
     }
 
 }
 ----
 
-Then setup your own `BroadcastReceiver` in your manifest:
+Then declare your own `GcmListenerService` in your manifest:
 
 [source,xml]
 ----
@@ -869,35 +873,24 @@ Then setup your own `BroadcastReceiver` in your manifest:
     <application>
 
         <!-- This removes the receiver provided by the WonderPush SDK. -->
-        <receiver
-            android:name="com.wonderpush.sdk.WonderPushBroadcastReceiver"
+        <service
+            android:name="com.wonderpush.sdk.WonderPushGcmListenerService"
             tools:node="remove"/> <!-- <2> -->
         <!-- This registers your own receiver to receive push notifications. -->
-        <receiver
-            android:name="[YOUR_CUSTOM_BROADCAST_RECEIVER_CLASS]"
-            android:permission="com.google.android.c2dm.permission.SEND"> <!-- <3> -->
-
+        <service
+            android:exported="false"
+            android:name="[YOUR_CUSTOM_GCMLISTENERSERVICE_CLASS]" > <!-- <3> -->
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="${applicationId}" /> <!-- <4> -->
             </intent-filter>
-
-        </receiver>
+        </service>
 
     </application>
 
 </manifest>
 ----
-<1> Make sure the `xmlns:tools` namespace is declared in the root `<manifest>` tag. +
-  Ignore this if you still use Eclipse.
+<1> Make sure the `xmlns:tools` namespace is declared in the root `<manifest>` tag.
 <2> `tools:node="remove"` indicates the manifest merger that you want to remove an entry that would otherwise be merged from the WonderPush SDK. +
-  Ignore this if you still use Eclipse.
-<3> Replace: *[YOUR_CUSTOM_BROADCAST_RECEIVER_CLASS]* with the actual fully qualified class name of the class you've just created.
-  Eg.: `com.your.package.CustomBroadcastReceiver`.
-<4> If still using Eclipse, replace: *${applicationId}* with your application package name.
-  On Android Studio, if you have an error, make sure to add `applicationId "com.your.package"` inside `android.defaultConfig` in your application. +
-  Eg.: `com.your.package`.
-
-Note that it is not istrictly mandatory to remove the WonderPush SDK `BroadcastReceiver`, but in such case,
-you would have to be sure not to display a notification if the notification was meant for the WonderPush SDK
-without resorting to the `WonderPush.onBroadcastReceived()` function.
+  While not strictly necessary, this ensures your GcmListenerService will be called instead of the WonderPush one.
+<3> Replace: *[YOUR_CUSTOM_GCMLISENERSERVICE_CLASS]* with the actual fully qualified class name of the class you've just created.
+  Eg.: `com.your.package.CustomGcmListenerService`.
