@@ -69,11 +69,32 @@ android {
 <2> Replace *YOUR_MAIN_ACTIVITY_CLASS* with the class name of your main activity. +
   Eg.: +.MainActivity+ or +com.your.package.MainActivity+.
 <3> Replace *YOUR_NOTIFICATION_ICON* with a *drawable* icon to be displayed in the notification. +
-  This icon should follow the https://www.google.com/design/spec/style/icons.html#icons-product-icons[Android Notification Icon Guidelines]
+  This icon should follow the https://www.google.com/design/spec/style/icons.html#icons-product-icons["Android Notification Icon Guidelines", window="_blank"]
   and provide with a square, multi-resolution, 24dp, white on transparent icon with a 2dp wide margin. +
   You can also use you launcher icon directly if its shape is easily recognizable.
   Mipmaps are not supported however. +
   Eg.: Your application launcher icon: +@drawable/ic_launcher+.
++
+. For easier assistance, we strongly recommend preserving all WonderPush class names from being obfuscated by ProGuard.
+Add the following to your `proguard-rules.pro` file:
++
+[source,java]
+----
+# For easier debugging, we strongly recommend keeping WonderPush class names unobfuscated
+-keepattributes SourceFile,LineNumberTable
+-keepnames class com.wonderpush.sdk.** {
+    *;
+}
+-keepnames interface com.wonderpush.sdk.** {
+    *;
+}
+-keepnames class org.OpenUDID.** {
+    *;
+}
+----
++
+This is not strictly necessary http://developer.android.com/tools/help/proguard.html#considerations["if you keep and archive your `app/build/outputs/mapping/release/mapping.txt` file for each released version of your application", window="_blank"].
+Without such mapping, we wouldn't be able to tell where an error comes from.
 +
 . Click on the `Sync Project with Gradle Files` button and rebuild your project.
 +
