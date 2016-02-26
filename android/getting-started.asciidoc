@@ -173,177 +173,11 @@ then you will get a few errors from the Manifest Merger, this is because the Won
 now injects the required manifest modifications automatically thanks to Gradle.
 
 You can simply remove everything you added to your manifest.
-Look at the instructions for Eclipse ADT below for a precise list of those additions.
-
 Then follow the instructions for Android Studio.
 
 If you performed some changes or if you removed some entries however (like changing the `BroadcastReceiver` for <<android-getting-started-advanced-usage-own-notifications,handling your own notifications>>),
 you will need to http://tools.android.com/tech-docs/new-build-system/user-guide/manifest-merger#TOC-Attributes-markers-examples["instruct the manifest merger to merge them properly", window="_blank"].
 Just refer to the corresponding section in this documentation.
-
-[role="skip-toc"]
-==== Using Eclipse ADT
-
-[NOTE]
-====
-This integration mode is now deprecated.
-
-Eclipse is no longer supported officially since http://android-developers.blogspot.fr/2015/06/an-update-on-eclipse-android-developer.html["June, 26th 2015"],
-and Android Studio has now been around for a while and is mature and more flexible thanks to Gradle-based builds.
-
-If you want to stick with Eclipse, please read the rest of this section.
-====
-
-===== Download the WonderPush SDK for Android
-
-Download the project https://github.com/wonderpush/wonderpush-android-sdk/releases/latest["on Github", window="_blank"]. +
-Extract the sources in your workspace.
-
-You can also directly checkout the sources from git:
-
-[source,bash]
-----
-cd /path/to/your/workspace
-git clone https://github.com/wonderpush/wonderpush-android-sdk.git --branch latest
-----
-
-===== Setup the workspace
-
-. The WonderPush SDK shipping resources, it must be added as a project reference rather than a mere library dependency.
-Import the WonderPush SDK project in your Eclipse workspace by doing:
-+
---
-** Click on `File > New > Other`
-** Select `Android / Android Project from Existing Code`.
-** Click `Browse` and select the checked out folder `/path/to/your/workspace/wonderpush-android-sdk`.
-** Click `Finish`.
---
-+
-The `wonderpush-android-sdk` project should now be listed in the `Package Explorer`. +
-The project has compilation errors because of a missing dependency that we add right in the next steps.
-
-. You will now have to link the WonderPush SDK (not your own application) with the Google Play Service library.
-Follow the first step of the following guide: http://developer.android.com/google/play-services/setup.html["Setting Up Google Play Services", window="_blank"].
-
-. Update the Android support library in the wonderpush-android-sdk project:
-+
---
-** Right click on the `wonderpush-android-sdk` project in the `Package Explorer`, and under `Android Tools` choose `Add Support Library...`.
-** Click `Accept License` then `Install`.
---
-+
-The WonderPush SDK project should now compile without errors.
-
-. Add the WonderPush SDK to your project:
-+
-** Right click on your project in the `Package Explorer`, and select `Properties`.
-** Choose `Android` in the left list, then under `Library` click `Add`, select `wonderpush-android-sdk`, click `OK` and `Apply`.
-** Choose `Project References` in the left list, then check `wonderpush-android-sdk`.
-
-. If you experience the following build error:
-+
-----
-Found 2 versions of android-support-v4.jar in the dependency list,
-    but not all the versions are identical (check is based on SHA-1 only at this time).
-    All versions of the libraries must be the same at this time.
-----
-+
-Repeat the third step in your application, to make sure that your application and the WonderPush SDK both have the exact same Android Support JAR dependency.
-
-===== Configuring the SDK
-
-Add the following to your AndroidManifest.xml to receive push notifications:
-
-[source,xml]
-----
-<manifest>
-
-    <!-- Required permissions for push notifications -->
-    <uses-permission
-        android:name="android.permission.INTERNET" />
-    <uses-permission
-        android:name="android.permission.GET_ACCOUNTS"
-        android:maxSdkVersion="15" />
-    <uses-permission
-        android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <permission
-        android:name="[YOUR_APPLICATION_PACKAGE].permission.C2D_MESSAGE"
-        android:protectionLevel="signature" /> <!-- <1> -->
-    <uses-permission
-        android:name="[YOUR_APPLICATION_PACKAGE].permission.C2D_MESSAGE" /> <!-- <1> -->
-
-    <application>
-
-        <!-- Permits the SDK to initialize itself whenever needed, without need for your application to launch -->
-        <meta-data
-            android:name="wonderpushInitializerClass"
-            android:value="[YOUR_APPLICATION_PACKAGE].WonderPushInitializerImpl" /> <!-- <1> -->
-
-        <!-- Required for configuring Google Play Services for push notifications -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:name="GCMSenderId"
-            android:value="@string/push_sender_ids" />
-
-        <!-- Required configuration for WonderPush to properly receive and handle push notification -->
-        <receiver
-            android:name="com.wonderpush.sdk.WonderPushBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
-
-            <!-- Put here the icon to be displayed in the notification -->
-            <meta-data
-                android:name="notificationIcon"
-                android:resource="[NOTIFICATION_ICON]" /> <!-- <3> -->
-
-            <!-- Put here the activity to start when the user clicks the notification -->
-            <meta-data
-                android:name="activityName"
-                android:value="[YOUR_MAIN_ACTIVITY_CLASS]" /> <!-- <2> -->
-
-            <intent-filter>
-                <action
-                    android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category
-                    android:name="[YOUR_APPLICATION_PACKAGE]" /> <!-- <1> -->
-            </intent-filter>
-
-        </receiver>
-
-        <!-- Required to properly handle deep links and notifications in foreground -->
-        <service
-            android:name="com.wonderpush.sdk.WonderPushService"
-            android:enabled="true"
-            android:exported="false"
-            android:label="Push Notification service">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <data android:scheme="wonderpush" />
-            </intent-filter>
-        </service>
-
-        <!-- Required configuration for WonderPush to refresh push tokens,
-             as they are not guaranteed to work after an update -->
-        <receiver android:name="com.wonderpush.sdk.WonderPushOnUpgradeReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <data android:scheme="package" android:path="[YOUR_APPLICATION_PACKAGE]" />
-            </intent-filter>
-        </receiver>
-
-    </application>
-
-</manifest>
-----
-<1> Replace *[YOUR_APPLICATION_PACKAGE]* with your application package name. +
-  Eg.: +com.your.package+.
-<2> Replace *[YOUR_MAIN_ACTIVITY_CLASS]* with the fully qualified class name of your main activity. +
-  Eg.: +com.your.package.activities.MainActivity+.
-<3> Replace *[NOTIFICATION_ICON]* with a drawable icon to be displayed in the notification. +
-  Eg.: Your application launcher icon: +@drawable/ic_launcher+.
-
-The WonderPush SDK defines the `@string/push_sender_ids` resource to `1023997258979`, which is the sender ID that WonderPush uses.
 
 
 [[android-getting-started-initialize-sdk]]
@@ -550,17 +384,10 @@ When your device receives a push notification, you can see a log like the follow
 ----
 I/GCM     ( 1532): GCM message com.your.package 0:1423658642093464%2ced406ff9fd7ecd
 ----
-In cases where the push notification is properly received but something prevented its proper handling, you will notice an additional line:
 
-----
-W/GCM-DMM ( 1532): broadcast intent callback: result=CANCELLED forIntent { act=com.google.android.c2dm.intent.RECEIVE pkg=com.wonderpush.demo (has extras) }
-----
+If you force-quit the application, the system won't deliver notifications to the SDK until you manually restart the app.
 
-If you see the above warning and are using SDK v1.1.1.0 or ulterior, then you either:
-
-* have a setup issue, you should check the logs for the indications given by the SDK;
-* or have force-quit the application, the system won't deliver notifications to the SDK until you manually restart the app;
-* or something went wrong in the handling of the notification, the logs should contain a stacktrace that you should kindly send back to us.
+Look for the logs, in the event something went wrong in the handling of the notification, they should contain an helpful message for you, or a stacktrace that you should kindly send back to us.
 
 [role="skip-toc"]
 ==== Need support?
