@@ -56,19 +56,19 @@ Simply add the following into your `app/build.gradle` file:
 ----
 android {
     defaultConfig {
-        applicationId '[YOUR_PACKAGE]' // <1>
+        applicationId 'YOUR_PACKAGE' // <1>
         manifestPlaceholders = [
-                wonderpushDefaultActivity:  '[YOUR_MAIN_ACTIVITY_CLASS]', // <2>
-                wonderpushNotificationIcon: '[YOUR_NOTIFICATION_ICON]'    // <3>
+                wonderpushDefaultActivity:  'YOUR_MAIN_ACTIVITY_CLASS', // <2>
+                wonderpushNotificationIcon: 'YOUR_NOTIFICATION_ICON'    // <3>
         ]
     }
 }
 ----
-<1> Replace *[YOUR_PACKAGE]* with your application package. This is likely already present, make sure it's there if you encounter any error. +
+<1> Replace *YOUR_PACKAGE* with your application package. This is likely already present, make sure it's there if you encounter any error. +
   Eg.: `com.your.package`.
-<2> Replace *[YOUR_MAIN_ACTIVITY_CLASS]* with the class name of your main activity. +
+<2> Replace *YOUR_MAIN_ACTIVITY_CLASS* with the class name of your main activity. +
   Eg.: +.MainActivity+ or +com.your.package.MainActivity+.
-<3> Replace *[YOUR_NOTIFICATION_ICON]* with a *drawable* icon to be displayed in the notification. +
+<3> Replace *YOUR_NOTIFICATION_ICON* with a *drawable* icon to be displayed in the notification. +
   This icon should follow the https://www.google.com/design/spec/style/icons.html#icons-product-icons[Android Notification Icon Guidelines]
   and provide with a square, multi-resolution, 24dp, white on transparent icon with a 2dp wide margin. +
   You can also use you launcher icon directly if its shape is easily recognizable.
@@ -225,7 +225,7 @@ Place it in your main application package directly.
 
 [source,java]
 ----
-package [YOUR_APPLICATION_PACKAGE]; // <1>
+package YOUR_APPLICATION_PACKAGE; // <1>
 
 import android.content.Context;
 
@@ -235,16 +235,16 @@ import com.wonderpush.sdk.WonderPushInitializer;
 public class WonderPushInitializerImpl implements WonderPushInitializer {
 
     public void initialize(Context context) {
-        WonderPush.initialize(context, "[YOUR_CLIENT_ID]", "[YOUR_CLIENT_SECRET]"); // <2> <3>
+        WonderPush.initialize(context, "YOUR_CLIENT_ID", "YOUR_CLIENT_SECRET"); // <2> <3>
     }
 
 }
 ----
-<1> Replace *[YOUR_APPLICATION_PACKAGE]* with your application package name. +
+<1> Replace *YOUR_APPLICATION_PACKAGE* with your application package name. +
   Eg.: `com.your.package`.
-<2> Replace *[YOUR_CLIENT_ID]* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], under the `Settings / Configuration` menu. +
+<2> Replace *YOUR_CLIENT_ID* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], under the `Settings / Configuration` menu. +
   Eg.: `0123456789abcdef0123456789abcdef01234567`.
-<3> Replace *[YOUR_CLIENT_SECRET]* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id described above. +
+<3> Replace *YOUR_CLIENT_SECRET* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id described above. +
   Eg.: `0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef`.
 
 [TIP]
@@ -263,7 +263,7 @@ just update the corresponding metadata in your application's `AndroidManifest.xm
         <!-- Permits the SDK to initialize itself whenever needed, without need for your application to launch -->
         <meta-data
             android:name="wonderpushInitializerClass"
-            android:value="[YOUR_INITIALIZER_CLASS]"
+            android:value="YOUR_INITIALIZER_CLASS"
             tools:replace="android:value" /> <!-- <2> <3> -->
 
     </application>
@@ -271,7 +271,7 @@ just update the corresponding metadata in your application's `AndroidManifest.xm
 </manifest>
 ----
 <1> Make sure the `xmlns:tools` namespace is declared in the root `<manifest>` tag.
-<2> Replace *[YOUR_INITIALIZER_CLASS]* by the fully qualified name of your initialized class. +
+<2> Replace *YOUR_INITIALIZER_CLASS* by the fully qualified name of your initialized class. +
   Eg.: `com.alternate.package.WonderPushInitializerImplementationAlternateName`.
 <3> `tools:replace="android:value"` indicates the manifest merger that you are willingly overriding an entry coming from the WonderPush SDK.
 ====
@@ -509,9 +509,9 @@ If you want to use another sender ID, you can change it by adding the following 
 
 [source,xml]
 ----
-<string name="push_sender_ids">1023997258979,[YOUR_OWN_SENDER_ID]</string> <!-- <1> -->
+<string name="push_sender_ids">1023997258979,YOUR_OWN_SENDER_ID</string> <!-- <1> -->
 ----
-<1> Replace: *[YOUR_OWN_SENDER_ID]* with your own sender id (see next paragraph). +
+<1> Replace: *YOUR_OWN_SENDER_ID* with your own sender id (see next paragraph). +
   Eg.: `1186135716819`.
 
 You can get your own sender ID this way:
@@ -706,7 +706,7 @@ Then declare your own `GcmListenerService` in your manifest:
         <!-- This registers your own receiver to receive push notifications. -->
         <service
             android:exported="false"
-            android:name="[YOUR_CUSTOM_GCMLISTENERSERVICE_CLASS]" > <!-- <3> -->
+            android:name="YOUR_CUSTOM_GCMLISTENERSERVICE_CLASS" > <!-- <3> -->
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
@@ -719,5 +719,5 @@ Then declare your own `GcmListenerService` in your manifest:
 <1> Make sure the `xmlns:tools` namespace is declared in the root `<manifest>` tag.
 <2> `tools:node="remove"` indicates the manifest merger that you want to remove an entry that would otherwise be merged from the WonderPush SDK. +
   While not strictly necessary, this ensures your GcmListenerService will be called instead of the WonderPush one.
-<3> Replace: *[YOUR_CUSTOM_GCMLISENERSERVICE_CLASS]* with the actual fully qualified class name of the class you've just created.
+<3> Replace: *YOUR_CUSTOM_GCMLISENERSERVICE_CLASS* with the actual fully qualified class name of the class you've just created.
   Eg.: `com.your.package.CustomGcmListenerService`.
