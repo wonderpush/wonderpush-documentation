@@ -25,6 +25,9 @@ Each field of a `custom` object has a name in the following format:
 `{PREFIX}_{NAME}`, where `{PREFIX}` is one of the below and `{NAME}`
 is a valid field name of your choice.
 
+A field name *must not* contain a dot `.`.
+It is generally advised to stick to alphanumeric characters: `a` to `z`, `A` to `Z`, `0` to `9`, plus the underscore `_`.
+
 Here is a list of available field prefixes and their corresponding types.
 Use these values for `{PREFIX}`.
 
