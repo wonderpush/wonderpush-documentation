@@ -120,15 +120,22 @@ Add this code to the corresponding method of you Application delegate:
     // [WonderPush setLogging:YES]; // only activate logs for development
     [WonderPush setClientId:@"YOUR_CLIENT_ID" secret:@"YOUR_CLIENT_SECRET"]; // <1> <2>
     [WonderPush setupDelegateForApplication:application]; // <3>
+
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Ask the user to opt in to push notification
-    // Because you only have ONE chance for prompting the user, you should find a good time for that.
-    // But you can still opt to ask right from the first time he starts your app, as shown here.
+    // You MUST call the following method at least once to make the user pushable.
+    // - You can call this method multiple times. The user is only prompted for permission by iOS once.
+    // - Calling with YES opts the user in, whether he was not opt-in or soft opt-out (by calling with NO).
+    // - There is no need to call this method if the permission has already been granted, but it does not harm either.
+    //   Prior to WonderPush iOS SDK v1.2.1.0, you should call it if the user was already opt-in in a non WonderPush-enabled version of your application.
+    // - If the permission has been denied, calling this method cannot opt the user back in as iOS leaves the user in control, through the system settings.
+    // Because you only have ONE chance for prompting the user, you should find a good timing for that.
+    // Here we propose to systematically call it when the application starts, so the user will be prompted directly at the first launch.
     [WonderPush setNotificationEnabled:YES];
+
     return YES;
 }
 ----
