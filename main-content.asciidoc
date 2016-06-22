@@ -2,8 +2,6 @@ include::index.asciidoc[]
 
 include::getting-started.asciidoc[]
 
-include::guide.asciidoc[]
-
 include::web.asciidoc[]
 
 include::android.asciidoc[]
@@ -11,6 +9,8 @@ include::android.asciidoc[]
 include::ios.asciidoc[]
 
 include::management-api.asciidoc[]
+
+include::concepts.asciidoc[]
 
 include::third-party-clients.asciidoc[]
 

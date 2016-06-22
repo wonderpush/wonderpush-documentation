@@ -1,11 +1,11 @@
-[[guide-notifications]]
+[[concepts-notifications]]
 [role="chunk-page chunk-toc"]
 == Notifications
 
 --
 --
 
-[[guide-notifications-concepts]]
+[[concepts-notifications-concepts]]
 === Concepts
 
 Notifications are at the heart of WonderPush. A notification is composed
@@ -30,23 +30,23 @@ WonderPush proposes several types of rich notifications, among them:
 
 A notification can be comprised of _multiple variants_ to automatically
 setup an A/B test. WonderPush will choose a variant per user, on a small
-portion of the target <<guide-audience,audience>>, before selecting
+portion of the target <<concepts-audience,audience>>, before selecting
 which message works best and send it to the rest of the target.
 
-A notification is targetted to a particular <<guide-audience,audience
+A notification is targetted to a particular <<concepts-audience,audience
 segment>>, but you can may also choose to broadcast it to all users.
 For convinience, you can reuse a
-<<guide-audience-interact-create,previously created segment>>
+<<concepts-audience-interact-create,previously created segment>>
 segment, modify one, or create a brand new segment.
 
 Lastly, notifications are scheduled for automatic delivery. WonderPush
 handles multiple modes such as recurrent deliveries, or event based
 triggers.
 
-[[guide-notifications-interact]]
+[[concepts-notifications-interact]]
 === Interact
 
-[[guide-notifications-create-templated]]
+[[concepts-notifications-create-templated]]
 ==== Create a templated notification
 
 TIP: This is the simplest way to start discovering the amazing potential
@@ -63,14 +63,14 @@ naturally.
 * You can also click _Customize_ to open the full-featured editor.
 ** Make any adjustment you wish and hit _Save and continue_ to advance
    through the three steps. +
-   For more help, read the following <<guide-notifications-create,Create
+   For more help, read the following <<concepts-notifications-create,Create
    a custom notification>> section.
 ** Hit _Save_ on the third step.
 * Your notification is created! +
   You get redirected to the list of notifications.
 * When ready, click the _ON/OFF_ switch to activate delivery.
 
-[[guide-notifications-create]]
+[[concepts-notifications-create]]
 ==== Create a custom notification
 
 TIP: We present here a detailed walkthrough the notification editor.
@@ -113,13 +113,13 @@ any question that as not already been answered by the interface itself.
 * Second step: _Target audience_
 ** Select whether you wish to broadcast the notification to all users
    of your audience, or whether to user an existing
-   <<guide-audience-interact-create,segment>> or to create a new one.
+   <<concepts-audience-interact-create,segment>> or to create a new one.
 *** If selecting an existing segment, you can still edit it, but doing
     so will create a new one, in order to make sure that you do not
     inadvertently affect other notifications. You will hence need to
     give it a new name.
 *** If creating a new segment, you can refer to the section describing
-    <<guide-audience-interact-create,how to create a segment>>.
+    <<concepts-audience-interact-create,how to create a segment>>.
 ** Click _Save and continue_.
 * Second step: _Schedule delivery_
 ** Select the desired schedule mode:
@@ -142,7 +142,7 @@ any question that as not already been answered by the interface itself.
   You get redirected to the list of notifications.
 * When ready, click the _ON/OFF_ switch to activate delivery.
 
-[[guide-notifications-edit]]
+[[concepts-notifications-edit]]
 ==== Edit a notification
 
 * Select _Notifications_ in the left menu of your
@@ -154,7 +154,7 @@ any question that as not already been answered by the interface itself.
   the top. Note that changes made in the page are only saved if you
   click the _Save_ button at the bottom.
 
-[[guide-notifications-preview]]
+[[concepts-notifications-preview]]
 ==== Preview a notification
 
 * Select _Notifications_ in the left menu of your
@@ -162,10 +162,10 @@ any question that as not already been answered by the interface itself.
 * Click the _Preview_ button on the line of the desired notification.
 * A summary of the main information is presented, as well as a preview
   of each message variant.
-* This page proposes two buttons to quickly <<guide-notifications-edit,edit>>
-  the notification or <<guide-notifications-reports,view reports>>.
+* This page proposes two buttons to quickly <<concepts-notifications-edit,edit>>
+  the notification or <<concepts-notifications-reports,view reports>>.
 
-[[guide-notifications-reports]]
+[[concepts-notifications-reports]]
 ==== See notification reports
 
 * Select _Notifications_ in the left menu of your
@@ -179,7 +179,7 @@ any question that as not already been answered by the interface itself.
 ** Click the _conversion_ tab.
 ** Select the _desired event_ to calculate conversion against.
 
-[[guide-notifications-suspend-resume]]
+[[concepts-notifications-suspend-resume]]
 ==== Suspend or resume a notification
 
 * Select _Notifications_ in the left menu of your
@@ -188,10 +188,10 @@ any question that as not already been answered by the interface itself.
   _ON_ will enable the sending of notifications, while _OFF_ will
   suspend it.
 
-[[guide-notifications-reference]]
+[[concepts-notifications-reference]]
 === Reference
 
-[[guide-notifications-reference-object-format]]
+[[concepts-notifications-reference-object-format]]
 ==== Object format
 
 We describe here the object format describing a notification.
@@ -237,7 +237,7 @@ All rich notifications accept the following set of fields inside `data`:
 }
 ----
 
-[[guide-notifications-reference-object-format-notification-types]]
+[[concepts-notifications-reference-object-format-notification-types]]
 ===== Notification types
 
 Here is the list of currently available notification types.
@@ -309,7 +309,7 @@ Works in conjunction with the `"mapOpen"` button action to direct the user to th
 }
 ----
 
-[[guide-notifications-reference-object-format-button-actions]]
+[[concepts-notifications-reference-object-format-button-actions]]
 ===== Button actions
 
 Here is the list of currently available button actions.

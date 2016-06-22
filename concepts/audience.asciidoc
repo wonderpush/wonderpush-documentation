@@ -1,11 +1,11 @@
-[[guide-audience]]
+[[concepts-audience]]
 [role="chunk-page chunk-toc"]
 == Audience
 
 --
 --
 
-[[guide-audience-concepts]]
+[[concepts-audience-concepts]]
 === Concepts
 
 The audience represents the entire population of users who installed
@@ -20,12 +20,12 @@ by the user directly from your application. This enables you to perform
 powerful segmentation of your audience. Such parts of the audience are
 called _segments_. WonderPush permits you to define numerous segments.
 
-Segments are used as the target for your <<guide-notifications,notifications>>.
+Segments are used as the target for your <<concepts-notifications,notifications>>.
 
-[[guide-audience-interact]]
+[[concepts-audience-interact]]
 === Interact
 
-[[guide-audience-interact-create]]
+[[concepts-audience-interact-create]]
 ==== Create a segment
 
 Creating a segment in WonderPush is easy:
@@ -52,10 +52,10 @@ Creating a segment in WonderPush is easy:
 * As you edit the rules defining the segment, you can see a preview
   of the matching users in the list below the editor. +
   The number of matching users is especially important when using the
-  segment as a target for a <<guide-notifications,notification>>.
+  segment as a target for a <<concepts-notifications,notification>>.
 * Once happy with the result, hit _Save_.
 
-[[guide-audience-interact-preview]]
+[[concepts-audience-interact-preview]]
 ==== Preview a segment
 
 * Select _Audience_ in the left menu of your

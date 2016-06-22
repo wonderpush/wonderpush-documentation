@@ -1,26 +1,26 @@
-[[guide-event]]
+[[concepts-event]]
 [role="chunk-page chunk-toc"]
 == Event
 
 --
 --
 
-[[guide-event-concepts]]
+[[concepts-event-concepts]]
 === Concepts
 
 WonderPush enables you to track business events that make sense for your
-application, and use them to further <<guide-audience,segment your
+application, and use them to further <<concepts-audience,segment your
 audience>> using behavioral patterns.
 
-An event is attached to an <<guide-installation,installation>>, itself
-attached to a <<guide-user,user>>. This way, you can notify a user on
+An event is attached to an <<concepts-installation,installation>>, itself
+attached to a <<concepts-user,user>>. This way, you can notify a user on
 the right device at the right moment.
 
 The event object can host custom data for your private use. It can be
 structured or mere key-value pairs, and they can be indexed and reused
-to build <<guide-audience,audience segments>>.
+to build <<concepts-audience,audience segments>>.
 
-[[guide-event-interact]]
+[[concepts-event-interact]]
 === Interact
 
 Look at the API reference of the SDK for the platform of your choice

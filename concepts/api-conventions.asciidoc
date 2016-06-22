@@ -1,11 +1,11 @@
-[[guide-api-conventions]]
+[[concepts-api-conventions]]
 [role="chunk-page chunk-toc"]
 == API conventions
 
 This section describes general API conventions that can be applied
 throughout the REST API, unless otherwise specified.
 
-[[guide-api-conventions-http-verbs]]
+[[concepts-api-conventions-http-verbs]]
 === HTTP verbs
 
 Where possible, API strives to use appropriate HTTP verbs.
@@ -31,13 +31,13 @@ Where possible, API strives to use appropriate HTTP verbs.
 |Used for deleting resources.
 |===
 
-[[guide-api-conventions-errors]]
+[[concepts-api-conventions-errors]]
 === Errors
 
 --
 --
 
-[[guide-api-conventions-errors-http-statuses]]
+[[concepts-api-conventions-errors-http-statuses]]
 ==== HTTP statuses
 
 If everything is ok, the response is returned with an HTTP status 200.
@@ -68,7 +68,7 @@ In case of errors, the following HTTP statuses can be used:
 |Service Unavailable. There is a temporary service migration. The call can be retried after a short delay.
 |===
 
-[[guide-api-conventions-errors-structure]]
+[[concepts-api-conventions-errors-structure]]
 ==== Structure
 
 The following represents a common error response resulting from a failed
@@ -88,7 +88,7 @@ API request:
 <2> WonderPush error code.
 <3> human friendly error description.
 
-[[guide-api-conventions-errors-reference]]
+[[concepts-api-conventions-errors-reference]]
 ==== Reference
 
 Here are the various errors that can be returned by WonderPush,
@@ -201,14 +201,14 @@ presented here ordered by code:
 |When an expected user body is invalid
 |===
 
-[[guide-api-conventions-pretty-printing]]
+[[concepts-api-conventions-pretty-printing]]
 === Pretty printing
 
 For all endpoints returning JSON response you can append +?pretty=true+ to
 your requests to pretty print the result (use it for debugging purpose
 only).
 
-[[guide-api-conventions-pagination]]
+[[concepts-api-conventions-pagination]]
 === Pagination
 
 Some endpoints return multiple items at once. In that case, when
@@ -217,27 +217,27 @@ these cursors to navigate in both directions throughout the result
 items. A +count+ parameter is also exposed to define how much items to
 return.
 
-[[guide-api-conventions-partial-response]]
+[[concepts-api-conventions-partial-response]]
 === Partial response
 
 If you don't need the whole content of the response, some endpoints
 allow specifying a set of fields to return by setting the +fields+ parameter.
 The +fields+ parameter is given as a comma separated list of field names.
 
-[[guide-api-conventions-booleans]]
+[[concepts-api-conventions-booleans]]
 === Booleans
 
 All REST APIs parameters support providing boolean
 _false_ as the values: +0+, +false+, +f+, +n+, +no+, +false+
 and _true_ as the values: +1+, +true+, +t+, +y+, +yes+.
 
-[[guide-api-conventions-timestamps]]
+[[concepts-api-conventions-timestamps]]
 === Timestamps
 
 Unix timestamp in milliseconds.
 The name of fields containing such values end with +date+.
 
-[[guide-api-conventions-durations]]
+[[concepts-api-conventions-durations]]
 === Durations
 
 The name of fields containing durations end with +time+.
@@ -263,7 +263,7 @@ Here is a list of the units you can use:
 
 Examples: +5s+, +120 sec+, +15 minutes+, +36 hours+, +3 day+, +4 weeks+.
 
-[[guide-api-conventions-internationalization]]
+[[concepts-api-conventions-internationalization]]
 === Internationalization
 
 WonderPush supports multi-lingual and locale-sensitive texts and number formatting.
@@ -456,7 +456,7 @@ The following language codes are supported:
 |zh_TW
 |===
 
-[[guide-api-conventions-versioning]]
+[[concepts-api-conventions-versioning]]
 === Versioning
 
 WonderPush API endpoints are versioned and the version has to be
@@ -485,13 +485,13 @@ with the latter, and 1.0.0.1 only contains bugfixes compared to 1.0.0.0.
 Should you decide to implement and distribute your own clients for
 WonderPush, we encourage you to follow the same versioning scheme.
 
-[[guide-api-conventions-platforms-and-models]]
+[[concepts-api-conventions-platforms-and-models]]
 === Platforms & Models
 
 --
 --
 
-[[guide-api-conventions-platforms-and-models-platforms]]
+[[concepts-api-conventions-platforms-and-models-platforms]]
 ==== Platforms
 
 As of now WonderPush allows the following platforms for your applications:
@@ -521,14 +521,14 @@ If you think that your platform of choice is missing feel free to
 https://github.com/wonderpush/wonderpush/issues/new?labels=enhancement&title=Add%20support%20for%20platform%20X["open an issue", window="_blank"]
 and we will add it.
 
-[[guide-api-conventions-platforms-and-models-models]]
+[[concepts-api-conventions-platforms-and-models-models]]
 ==== Models
 
 There are no restriction for the models you can use except that when
 using iOS as a platform you have to provide a model compatible with it
 (iPhone*, iPod*, iPad*...).
 
-[[guide-api-conventions-cross-origin-resource-sharing]]
+[[concepts-api-conventions-cross-origin-resource-sharing]]
 === Cross-Origin Resource Sharing
 
 The API supports Cross Origin Resource Sharing (CORS) for AJAX requests.
@@ -536,7 +536,7 @@ You can read the http://www.w3.org/TR/cors/["CORS W3C working draft", window="_b
 http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity["this
 intro", window="_blank"] from the HTML 5 Security Guide.
 
-[[guide-api-conventions-limits]]
+[[concepts-api-conventions-limits]]
 === Limits
 
 As security measure, the maximum length of a request path and query

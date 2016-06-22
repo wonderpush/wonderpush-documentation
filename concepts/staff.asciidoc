@@ -1,11 +1,11 @@
-[[guide-staff]]
+[[concepts-staff]]
 [role="chunk-page chunk-toc"]
 == Staff
 
 --
 --
 
-[[guide-staff-concepts]]
+[[concepts-staff-concepts]]
 === Concepts
 
 When first using WonderPush, you will need to create your staff member
@@ -16,10 +16,10 @@ it with others. WonderPush handles roles and permissions appropriately,
 this way you can grant access to your application to multiple other
 staff members.
 
-[[guide-staff-interact]]
+[[concepts-staff-interact]]
 === Interact
 
-[[guide-staff-interact-create-account]]
+[[concepts-staff-interact-create-account]]
 ==== Create your account
 
 Creating your account in WonderPush is simple:
@@ -33,4 +33,4 @@ Creating your account in WonderPush is simple:
 
 You are now directly redirected to your dashboard, where you can
 either directly try the service using the demo application, or
-<<guide-application-interact-register,register your own application>>.
+<<concepts-application-interact-register,register your own application>>.

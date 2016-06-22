@@ -1,26 +1,26 @@
-[[guide-application]]
+[[concepts-application]]
 [role="chunk-page chunk-toc"]
 == Application
 
 --
 --
 
-[[guide-application-concepts]]
+[[concepts-application-concepts]]
 === Concepts
 
 In order to start integrating WonderPush in your own application,
 you must first register it in your dashboard.
 
 An application comes with its own isolated database, storing
-<<guide-user,users>>, <<guide-installation,installations>> and
-<<guide-event,events>>, but also the
-<<guide-audience,audience segments>>
-and <<guide-notifications,notifications>> you create.
+<<concepts-user,users>>, <<concepts-installation,installations>> and
+<<concepts-event,events>>, but also the
+<<concepts-audience,audience segments>>
+and <<concepts-notifications,notifications>> you create.
 
-[[guide-application-interact]]
+[[concepts-application-interact]]
 === Interact
 
-[[guide-application-interact-register]]
+[[concepts-application-interact-register]]
 ==== Register your application
 
 Registering your application in WonderPush is simple:
@@ -33,7 +33,7 @@ Registering your application in WonderPush is simple:
 * Check the appropriate platform(s).
 * Submit.
 
-[[guide-application-interact-credentials]]
+[[concepts-application-interact-credentials]]
 ==== Get your credentials
 
 First, make sure that you selected your application in the selector
@@ -44,7 +44,7 @@ Then go to _Settings / Configuration_ from the menu.
 You will find the _client id_ and _client secret_,
 together forming your _application credentials_ in the page.
 
-[[guide-application-interact-integrate-sdk]]
+[[concepts-application-interact-integrate-sdk]]
 ==== Integrate the SDK
 
 The dashboard gives you links to the SDKs that you should integrate.

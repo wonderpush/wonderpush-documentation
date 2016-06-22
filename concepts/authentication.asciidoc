@@ -1,4 +1,4 @@
-[[guide-authentication]]
+[[concepts-authentication]]
 [role="chunk-page chunk-toc"]
 == Authentication
 
@@ -7,10 +7,10 @@ an access token.
 
 The SDK does it for you, but we describe the process here for reference.
 
-[[guide-authentication-user-authentication]]
+[[concepts-authentication-user-authentication]]
 === User authentication
 
-[[guide-authentication-user-authentication-concepts]]
+[[concepts-authentication-user-authentication-concepts]]
 ==== Concepts
 
 An installation is uniquely identified by the application credentials, the user id,
@@ -18,10 +18,10 @@ and the device id and platform it is attached to.
 You have to provide these three pieces of information to create or retrieve
 the associated access token.
 
-[[guide-authentication-user-authentication-interact]]
+[[concepts-authentication-user-authentication-interact]]
 ==== Interact
 
-[[guide-authentication-user-authentication-interact-authenticating-user]]
+[[concepts-authentication-user-authentication-interact-authenticating-user]]
 ===== Authenticating a user
 
 [source,sh]
@@ -56,10 +56,10 @@ $> curl -XPOST -H 'X-WonderPush-Lenient: true'\
 You can now use the string in the +token+ field as the access token to interact with the WonderPush API.
 
 
-[[guide-authentication-guest-authentication-reference]]
+[[concepts-authentication-guest-authentication-reference]]
 ==== Reference
 
-[[guide-authentication-guest-authentication-reference-apis]]
+[[concepts-authentication-guest-authentication-reference-apis]]
 ===== APIs
 
 * https://www.wonderpush.com/docs/reference/api/v1#post_{empty}_v1_authentication_accessToken[authentication/accessToken reference].

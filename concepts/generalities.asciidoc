@@ -1,11 +1,11 @@
-[[guide-concepts]]
+[[concepts-generalities]]
 [role="chunk-page chunk-toc"]
-== Concepts
+== Generalities
 
 --
 --
 
-[[guide-concepts-overview]]
+[[concepts-generalities-overview]]
 === Overview
 
 WonderPush is a mobile CRM platform, designed for marketers.
@@ -26,7 +26,7 @@ We offer a rich set of features including:
 * Analytics
 * And a whole lot more!
 
-[[guide-concepts-philosophy]]
+[[concepts-generalities-philosophy]]
 === Philosophy
 
 When developing WonderPush we always try to respect these few core
@@ -52,7 +52,7 @@ principles:
 * Availability. We'll do everything we can to achieve 100% uptime. When
   we fall short, we'll explain why and how we'll do better next time.
 
-[[guide-concepts-api-organization]]
+[[concepts-generalities-api-organization]]
 === API organization
 
 WonderPush exposes
@@ -75,7 +75,7 @@ The REST API is two-part:
   preferences or reading in-app messages.
   Those endpoints return data in JSON.
 
-[[guide-concepts-api-clients]]
+[[concepts-generalities-api-clients]]
 === API clients
 
 Any HTTPS-enabled client can interact directly with WonderPush through
@@ -87,23 +87,23 @@ languages and platforms (Android, iOS, Windows Phone, Web).
 In addition we provide a command-line client to help you try API calls:
 https://github.com/wonderpush/wonderpush-python-lib["Python command-line tool", window="_blank"].
 
-[[guide-concepts-security]]
+[[concepts-generalities-security]]
 === Security
 
 --
 --
 
-[[guide-concepts-security-http-https-calls]]
+[[concepts-generalities-security-http-https-calls]]
 ==== HTTP/HTTPS calls
 
 All API access is over http://en.wikipedia.org/wiki/HTTP_Secure["HTTPS", window="_blank"].
 
-Take a look at the <<guide-api-conventions-limits,limits imposed on the requests>>.
+Take a look at the <<concepts-api-conventions-limits,limits imposed on the requests>>.
 
-[[guide-concepts-security-api-access]]
+[[concepts-generalities-security-api-access]]
 ==== API access
 
-[[guide-concepts-security-api-access-access-token-and-sid]]
+[[concepts-generalities-security-api-access-access-token-and-sid]]
 ===== Access token and sid
 
 Most API calls are made for a given user on a specific application
@@ -119,7 +119,7 @@ Access tokens are associated on the server side to:
 * A user
 * An application
 
-[[guide-concepts-security-api-access-authentication]]
+[[concepts-generalities-security-api-access-authentication]]
 ===== Authentication
 
 In order to interact with the WonderPush API you have first to
@@ -129,9 +129,9 @@ If you are using one of our SDKs, you do not need to take care of this,
 the SDKs do it for you.
 
 You can learn more about user authentication in the more detailed
-<<guide-authentication,authentication>> section.
+<<concepts-authentication,authentication>> section.
 
-[[guide-concepts-security-api-access-signature]]
+[[concepts-generalities-security-api-access-signature]]
 ===== Signature
 
 All API calls leading to side-effects i.e. with POST, PUT, PATCH or
@@ -141,7 +141,7 @@ private and protecting any undisclosed installation access token.
 
 If you are using one of our SDKs, you do not need to take care of this,
 the SDKs do it for you. +
-You can also try our <<guide-concepts-api-clients,command-line client>>,
+You can also try our <<concepts-generalities-api-clients,command-line client>>,
 which also performs signature computation.
 
 The signature algorithm is inspired by OAuth 1.0, described
@@ -248,7 +248,7 @@ body (for application/x-www-form-urlencoded requests).
 * enctype="multipart/form-data".
 * Array key/values, like: ?list[]=first&list[]=second.
 
-[[guide-concepts-security-management-api-access]]
+[[concepts-generalities-security-management-api-access]]
 ==== Management API access
 
 To interact with the Management API you have to use the application

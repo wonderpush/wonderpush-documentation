@@ -1,16 +1,16 @@
-[[guide-custom-fields]]
+[[concepts-custom-fields]]
 [role="chunk-page chunk-toc"]
 == Custom fields
 
 --
 --
 
-[[guide-custom-fields-concepts]]
+[[concepts-custom-fields-concepts]]
 === Concepts
 
-WonderPush enables you to attach custom data to <<guide-user,users>>,
-<<guide-installation,installations>> and <<guide-event,events>>.
-This data can help you to further <<guide-audience,segment your
+WonderPush enables you to attach custom data to <<concepts-user,users>>,
+<<concepts-installation,installations>> and <<concepts-event,events>>.
+This data can help you to further <<concepts-audience,segment your
 audience>>.
 
 The custom fields have a strict naming policy, enabling us to properly
@@ -18,7 +18,7 @@ index them for segmentation. But you can also fit free-form data using
 a specially chosen field name. This naming policy is based on
 predefined prefixes.
 
-[[guide-event-reference]]
+[[concepts-event-reference]]
 === Reference
 
 Each field of a `custom` object has a name in the following format:

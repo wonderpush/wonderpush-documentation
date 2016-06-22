@@ -1,11 +1,11 @@
-[[guide-user]]
+[[concepts-user]]
 [role="chunk-page chunk-toc"]
 == User
 
 --
 --
 
-[[guide-user-concepts]]
+[[concepts-user-concepts]]
 === Concepts
 
 Each user of your application has its own object representation in
@@ -19,9 +19,9 @@ device if another user has logged in in-between.
 
 The user object can host custom data for your private use. It can be
 structured or mere key-value pairs, and they can be indexed and reused
-to build <<guide-audience,audience segments>>.
+to build <<concepts-audience,audience segments>>.
 
-[[guide-user-interact]]
+[[concepts-user-interact]]
 === Interact
 
 Look at the API reference of the SDK for the platform of your choice

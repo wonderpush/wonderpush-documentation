@@ -1,11 +1,11 @@
-[[guide-installation]]
+[[concepts-installation]]
 [role="chunk-page chunk-toc"]
 == Installation
 
 --
 --
 
-[[guide-installation-concepts]]
+[[concepts-installation-concepts]]
 === Concepts
 
 WonderPush identifies each device - user couple by an installation.
@@ -15,25 +15,25 @@ of a customer.
 When two users log on a single device, they will be provided with two
 separate installations, to further enforce a clean separation of data.
 
-Installations can use the +null+ <<guide-user,user>> id to indicate
+Installations can use the +null+ <<concepts-user,user>> id to indicate
 that it is an anonymous installation. Such installations will not be
 considered as belonging to the same undefined user but rather as each
 belonging to a different anonymous user.
 
 The installation object can host custom data for your private use. It
 can be structured or mere key-value pairs, and they can be indexed and
-reused to build <<guide-audience,audience segments>>.
+reused to build <<concepts-audience,audience segments>>.
 
-[[guide-installation-interact]]
+[[concepts-installation-interact]]
 === Interact
 
 Look at the API reference of the SDK for the platform of your choice
 for more information.
 
-[[guide-installation-reference]]
+[[concepts-installation-reference]]
 === Reference
 
-[[guide-installation-reference-object-format]]
+[[concepts-installation-reference-object-format]]
 ==== Object format
 
 We describe here the object format describing an installation.
@@ -164,7 +164,7 @@ Setting to `"optOut"` marks the installation as soft opt-out in the dashboard,
 and it will not be sent any notifications.
 
 `"custom"` field::
-See <<guide-custom-fields,custom fields>> for more information.
+See <<concepts-custom-fields,custom fields>> for more information.
 
 `"pushToken"` field::
 You can only set the `"data"` subfield, to either `null` or a string value.
