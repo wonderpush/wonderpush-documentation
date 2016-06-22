@@ -7,6 +7,6 @@
 
 include::android/getting-started.asciidoc[]
 
-include::android/sdk.asciidoc[]
+include::android/github.asciidoc[]
 
-include::android/api-reference.asciidoc[]
+include::android/reference.asciidoc[]

@@ -7,6 +7,6 @@
 
 include::web/getting-started.asciidoc[]
 
-include::web/sdk.asciidoc[]
+include::web/github.asciidoc[]
 
-include::web/api-reference.asciidoc[]
+include::web/reference.asciidoc[]

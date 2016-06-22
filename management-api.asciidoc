@@ -1,0 +1,10 @@
+[[management-api]]
+= Management API
+
+[partintro]
+--
+--
+
+include::management-api/getting-started.asciidoc[]
+
+include::management-api/reference.asciidoc[]

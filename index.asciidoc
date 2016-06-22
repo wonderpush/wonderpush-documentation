@@ -13,8 +13,8 @@ Dive into our Getting Started guides and integrate with your app and website in 
 [icon icon-web]#{empty}#
 
 * <<web-getting-started,Getting started>>
-* <<web-sdk,SDK>>
-* <<web-api-reference,API reference>>
+* <<web-github,GitHub>>
+* <<web-reference,Reference>>
 --
 
 [role="section"]
@@ -23,8 +23,8 @@ Dive into our Getting Started guides and integrate with your app and website in 
 [icon icon-android]#{empty}#
 
 * <<android-getting-started,Getting started>>
-* <<android-sdk,SDK>>
-* <<android-api-reference,API reference>>
+* <<android-github,GitHub>>
+* <<android-reference,Reference>>
 --
 
 [role="section"]
@@ -33,16 +33,8 @@ Dive into our Getting Started guides and integrate with your app and website in 
 [icon icon-ios]#{empty}#
 
 * <<ios-getting-started,Getting started>>
-* <<ios-sdk,SDK>>
-* <<ios-api-reference,API reference>>
---
-
-[role="section"]
-.REST API
---
-[icon icon-rest-api]#{empty}#
-
-* https://www.wonderpush.com/docs/reference/api/v1[Read the reference]
+* <<ios-github,GitHub>>
+* <<ios-reference,Reference>>
 --
 
 [role="section"]
@@ -50,7 +42,8 @@ Dive into our Getting Started guides and integrate with your app and website in 
 --
 [icon icon-management-api]#{empty}#
 
-* https://www.wonderpush.com/docs/reference/management-api/v1[Read the reference]
+* https://wonderpush-management-api.readme.io/v1/docs[Getting started]
+* https://www.wonderpush.com/docs/reference/management-api/v1[Reference]
 * <<guide-concepts-api-clients,Client libraries>>
 --
 

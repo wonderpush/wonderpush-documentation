@@ -1,0 +1,6 @@
+[[ios-reference]]
+[role="chunk-page section-link"]
+== https://wonderpush.github.io/wonderpush-ios-sdk/api.html[Reference]
+
+The WonderPush iOS SDK reference is available on GitHub at
+https://wonderpush.github.io/wonderpush-ios-sdk/api.html.

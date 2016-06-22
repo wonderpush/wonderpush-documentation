@@ -7,6 +7,6 @@
 
 include::ios/getting-started.asciidoc[]
 
-include::ios/sdk.asciidoc[]
+include::ios/github.asciidoc[]
 
-include::ios/api-reference.asciidoc[]
+include::ios/reference.asciidoc[]

@@ -10,7 +10,7 @@ include::android.asciidoc[]
 
 include::ios.asciidoc[]
 
-include::api-reference.asciidoc[]
+include::management-api.asciidoc[]
 
 include::third-party-clients.asciidoc[]
 

@@ -1,0 +1,6 @@
+[[management-api-reference]]
+[role="chunk-page section-link"]
+== https://wonderpush-management-api.readme.io/docs/reference[Reference]
+
+The WonderPush Management API reference is available at
+https://wonderpush-management-api.readme.io/docs/reference.

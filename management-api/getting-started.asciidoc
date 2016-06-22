@@ -1,0 +1,6 @@
+[[management-api-getting-started]]
+[role="chunk-page section-link"]
+== https://wonderpush-management-api.readme.io/v1/docs[Getting started]
+
+The WonderPush Management API getting started guide is available at
+https://wonderpush-management-api.readme.io/v1/docs.
