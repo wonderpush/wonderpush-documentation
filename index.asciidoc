@@ -43,7 +43,7 @@ Dive into our Getting Started guides and integrate with your app and website in 
 [icon icon-management-api]#{empty}#
 
 * https://wonderpush-management-api.readme.io/v1/docs[Getting started]
-* https://www.wonderpush.com/docs/reference/management-api/v1[Reference]
+* https://wonderpush-management-api.readme.io/docs/reference[Reference]
 * <<guide-concepts-api-clients,Client libraries>>
 --
 
