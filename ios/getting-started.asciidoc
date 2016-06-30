@@ -443,7 +443,6 @@ A notification can be added custom key-value pairs to it. In order to retrieve t
 ----
 (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    [WonderPush handleDidReceiveRemoteNotification:userInfo];
     // Get the custom payload
     NSDictionary * custom = [userInfo objectForKey:@"custom"];
 }
@@ -451,7 +450,6 @@ A notification can be added custom key-value pairs to it. In order to retrieve t
 // If you use the remote-notification background mode
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    [WonderPush handleNotification:notification.userInfo];
     // Get the custom payload
     NSDictionary * custom = [notification.userInfo objectForKey:@"custom"];
 }
