@@ -19,7 +19,7 @@ WonderPush and its community.
 
 Want to know what's going on, get the latest news about WonderPush and
 take a look at what cool new features we are preparing for you? Follow us
-on image:twitter_20.png["WonderPush on Twitter"] https://www.twitter.com/Wonder_Push[Twitter@Wonder_Push].
+on image:twitter_20.png["WonderPush on Twitter"] https://www.twitter.com/WonderPush[Twitter@WonderPush].
 
 
 [[community-and-support-source-code]]
