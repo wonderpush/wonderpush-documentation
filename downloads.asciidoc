@@ -12,7 +12,7 @@ Dive into our Getting Started guides and integrate with your app and website in 
 --
 [icon icon-web]#{empty}#
 
-* <<web-sdk,SDK>>
+* <<web-github,GitHub>>
 --
 
 [role="section"]
@@ -20,7 +20,7 @@ Dive into our Getting Started guides and integrate with your app and website in 
 --
 [icon icon-android]#{empty}#
 
-* <<android-sdk,SDK>>
+* <<android-github,GitHub>>
 --
 
 [role="section"]
@@ -28,11 +28,9 @@ Dive into our Getting Started guides and integrate with your app and website in 
 --
 [icon icon-ios]#{empty}#
 
-* <<ios-sdk,SDK>>
+* <<ios-github,GitHub>>
 --
 
 [role="clear"]
 --
 --
-
-// TODO: Add a changelog per platform
