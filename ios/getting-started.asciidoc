@@ -63,7 +63,7 @@ Or you can edit the `Podfile` file yourself so that it reads the following:
 
 [source,bash]
 ----
-platform :ios, "7.0"
+platform :ios, '7.0'
 ----
 
 Then simply run:
@@ -86,6 +86,7 @@ Edit your `Podfile` to add the following line:
 
 [source,bash]
 ----
+# If using CocoaPods 1+, put this inside your project target block
 pod 'WonderPush', '~> 2.0'
 ----
 
@@ -104,6 +105,39 @@ To perform a version update when a new one becomes available, you would simply r
 ----
 pod update
 ----
+
+[[ios-getting-started-integrate-sdk-swift]]
+==== Swift projects
+
+If your project uses Swift, you will need to change the platform to iOS 8.0 and use frameworks.
+Edit your `Podfile` as follows:
+
+[source,bash]
+----
+platform :ios, '8.0'
+
+# If using CocoaPods 1+, put this inside your project target block
+use_frameworks!
+----
+
+Next thing, add the following import to your bridging header:
+
+[source,objc]
+----
+#import <WonderPush/WonderPush.h>
+----
+
+.No bridging header?
+[TIP]
+====
+The bridging header is names after your application `MyApplication-Bridging-Header.h`.
+If you don't have one, simply add an Objective C `.m` file to your project, and accept the prompt that proposes to create a bridging header for you.
+You can then remove the `.m` file you've just created.
+====
+
+You can now use the WonderPush iOS SDK in your Swift project.
+You can use the Swift equivalent of the Objective C code from this guide and it will work.
+Just make sure to use `import WonderPush` in your Swift files where you would use `#import <WonderPush/WonderPush.h>` in Objective C.
 
 
 [[ios-getting-started-initialize-sdk]]
