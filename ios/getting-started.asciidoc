@@ -267,6 +267,39 @@ Here is https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/Ap
 and https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW57["official documentation to the `remote-notification` background mode", window="_blank"].
 
 
+[[ios-getting-started-app-transport-security]]
+[role="numbered-lvlfirst"]
+=== App Transport Security setting
+
+If you plan to load external HTTP resources in your application, like an HTML in-app displaying a given URL, you must make sure they will load well.
+Starting from iOS 9, Apple will block your application network calls to insecure resources, like any HTTP website, or weak HTTPS SSL protocols.
+This is a move forward a more secure web, imposed by Apple that you may find too restrictive.
+
+This becomes a problem when you want to display an HTML in-app displaying a dedicated web page hosting on your HTTP-only website for instance.
+In such scenario, you will likely want to disable this security feature altogether.
+
+. Select your project in the _Project navigator_ on the left pane
+. Click your target
+. Go to the _Info tab_
+. Add the `App Transport Security Settings` key
+. Click the _+_ to add an entry inside it
+. Set `Allow Arbitrary Loads` to `YES`.
+
+Alternatively, open your `Info.plist` file and add the following entry:
+
+[source,xml]
+----
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+----
+
+For more information about this topic, please read https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW33["the documentation of the `NSAppTransportSecurity` info key", window="_blank"].
+You can find where to define more fine grained exceptions.
+
+
 [[ios-getting-started-geolocation]]
 [role="numbered-lvlfirst"]
 === Geolocation
