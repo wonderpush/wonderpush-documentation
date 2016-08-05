@@ -147,11 +147,11 @@ appear before in the page. You can override the initialization options filled in
 [source,js]
 ----
 WonderPush.init({
-    webKey: 'YOUR_WEBKEY', // from the previous step
-    customDomain:'googlenews.by.wonderpush.com',
-    applicationName:'Google News',
-    notificationDefaultUrl:'https://news.google.com/',
-    notificationIcon:'https://news.google.com/logo/50x50.png'
+    webKey:   'YOUR_WEBKEY', // from the previous step
+    //userId: 'foobar',      // optional user id, null (the default) for unlogged users
+    applicationName:        'Google News',
+    notificationDefaultUrl: 'https://news.google.com/',
+    notificationIcon:       'https://news.google.com/logo/50x50.png'
 });
 ----
 ====
