@@ -170,9 +170,9 @@ If this happens, you should see something like the following errors during the g
 [source,java]
 ----
 :app:prepareComGoogleAndroidGmsPlayServicesAnalytics840Library
-:app:prepareComGoogleAndroidGmsPlayServicesBase810Library
+:app:prepareComGoogleAndroidGmsPlayServicesBase940Library
 :app:prepareComGoogleAndroidGmsPlayServicesBasement840Library
-:app:prepareComGoogleAndroidGmsPlayServicesGcm810Library
+:app:prepareComGoogleAndroidGmsPlayServicesGcm940Library
 [...]
 :app:compileDebugSources
 :app:transformClassesWithDexForDebug
@@ -198,30 +198,36 @@ FAILURE: Build failed with an exception.
 BUILD FAILED
 ----
 
-This is because you use one of the Google Play Services library in a newer version than the WonderPush SDK does,
+This is because you use one of the Google Play Services library in a different version than the WonderPush SDK does,
 for instance if you declared the something like following in your `app/build.gradle`:
 
 [source,java]
 ----
 dependencies {
-    // [...]
     compile 'com.google.android.gms:play-services-analytics:8.4.0'
 }
 ----
 
-The resolution is hopefully simple. Simply declare a dependency on `play-services-gcm` with the _same version_ as you are already using:
+The resolution is hopefully simple.
+You can either upgrade your dependencies to match the version of `play-services-gcm` that the SDK uses,
+or you can redeclare a dependency on `play-services-gcm` with the _same version_ as you are already using, to upgrade the version the SDK will deal with:
 
 [source,java]
 ----
 dependencies {
-    // [...]
-    compile 'com.google.android.gms:play-services-analytics:8.4.0'
-    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+    // If you use an older version than the WonderPush SDK uses, upgrade yours:
+    compile 'com.google.android.gms:play-services-analytics:9.4.0'
+    // If you use a newer version than the WonderPush SDK uses, upgrade the one the SDK uses:
+    compile 'com.google.android.gms:play-services-gcm:9.4.0'
 }
 ----
 
-This will override the older version demanded by the WonderPush SDK.
-We update our SDKs regularly to ensure that this issue does not arise often.
+This will ensure every module of the Google Play Services library ultimately has the same version.
+
+[NOTE]
+--
+You may encounter a similar issue with the support library, as it is now modular too.
+--
 
 [role="skip-toc"]
 ==== Migrating from Eclipse ADT to Android Studio
