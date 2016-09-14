@@ -125,6 +125,43 @@ Perform a clean build of your project. If you experience a problem, look at the 
 
 *You're done*, you can skip to the next section to <<android-getting-started-initialize-sdk,initialize the SDK>>.
 
+[[android-getting-started-set-up-workspace-outdated-android-libraries]]
+===== Outdated Android libraries
+
+We know we don't necessarily use the same versions of the plethora of libraries involved in building an Android application.
+For instance, you may encounter the following error when building your project:
+
+[source,text]
+----
+:app:transformClassesAndResourcesWithProguardForBaseRelease
+ProGuard, version 5.2.1
+[...]
+Warning:com.wonderpush.sdk.WonderPushCompatibilityHelper: can't find referenced method 'android.text.Spanned fromHtml(java.lang.String,int)' in library class android.text.Html
+[...]
+Warning:there were 1 unresolved references to library class members.
+         You probably need to update the library versions.
+         (http://proguard.sourceforge.net/manual/troubleshooting.html#unresolvedlibraryclassmember)
+Warning:Exception while processing task java.io.IOException: Please correct the above warnings first.
+:app:transformClassesAndResourcesWithProguardForBaseRelease FAILED
+Error:Execution failed for task ':app:transformClassesAndResourcesWithProguardForBaseRelease'.
+> java.io.IOException: Please correct the above warnings first.
+Information:BUILD FAILED
+----
+
+The build fails here because proguard does not know one method the WonderPush SDK uses.
+That method was introduced in API 24 as a result of the deprecation of a similar method.
+The solution consists in downloading the new Android N SDK, if not done already, and updating your application `build.gradle` to read:
+
+[source,java]
+----
+android {
+    compileSdkVersion 24
+}
+----
+
+Note that this also implies to update the any android support library you may use to the matching major version,
+and probably the +buildToolsVersion+ too. Android Studio should guide you with hints in the gradle file source.
+
 [[android-getting-started-set-up-workspace-conflicting-google-play-services]]
 ===== Conflicting versions of Google Play Services
 
