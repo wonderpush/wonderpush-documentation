@@ -8,10 +8,10 @@
 [[concepts-user-concepts]]
 === Concepts
 
-Each user of your application has its own object representation in
+Each user of your project has its own object representation in
 WonderPush. A user is identified by an id that you provide. You are
 encouraged to use the same id that you use in your service. This id
-should be unique by application.
+should be unique by project.
 
 A user may use multiple devices and a device may be used by multiple
 users, all without interference. A notification won't be shown on a
@@ -24,5 +24,42 @@ to build <<concepts-audience,audience segments>>.
 [[concepts-user-interact]]
 === Interact
 
-Look at the API reference of the SDK for the platform of your choice
-for more information.
+Users are meant to be modified only from your servers using the
+Management API, you cannot modify users from your application using
+the SDK.
+On the other hand, <<concepts-installation,installations>> are meant
+to be modified from your application using the SDK only, providing a
+clear separation of responsibility.
+
+Look at the <<management-api-reference,Management API reference>> for more information.
+
+[[concepts-user-reference]]
+=== Reference
+
+[[concepts-user-reference-object-format]]
+==== Object format
+
+We describe here the object format describing a user.
+As an example is worth a thousand words, here's one:
+
+[source,js]
+----
+{
+  "id": "foobar",
+  "applicationId": "01906i1feoq2cu1p",
+  "creationDate": 1457553607634,
+  "updateDate": 1458745957197,
+  "custom": {
+    "int_age": 27,
+    "string_foo": "bar",
+    "string_likes": ["pizza", "beer"]
+  }
+}
+----
+
+All the above fields, except `custom`, are filled by WonderPush.
+User objects are automatically created when first referenced from
+an application.
+
+The object is very simple. It's only raison d'être, besides being
+shared by multiple installations, is to hold <<concepts-custom-fields,custom fields>>.

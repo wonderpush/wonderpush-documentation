@@ -30,6 +30,13 @@ reused to build <<concepts-audience,audience segments>>.
 Look at the API reference of the SDK for the platform of your choice
 for more information.
 
+You should not modify installations from your backend using the
+Management API, installations are meant to be modified only from your
+application using the SDK.
+On the other hand, <<concepts-user,users>> are meant to be modified
+from your backend only, providing a clear separation of
+responsibility.
+
 [[concepts-installation-reference]]
 === Reference
 
