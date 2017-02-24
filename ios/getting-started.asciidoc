@@ -63,7 +63,9 @@ Or you can edit the `Podfile` file yourself so that it reads the following:
 
 [source,bash]
 ----
-platform :ios, '7.0'
+target 'YourApplicationTarget' do
+    platform :ios, '7.0'
+end
 ----
 
 Then simply run:
@@ -86,8 +88,13 @@ Edit your `Podfile` to add the following line:
 
 [source,bash]
 ----
-# If using CocoaPods 1+, put this inside your project target block
-pod 'WonderPush', '~> 2.0'
+# Locate your application target
+target 'YourApplicationTarget' do
+    platform :ios, '7.0'
+
+    # Add this single line:
+    pod 'WonderPush', '~> 2.0'
+end
 ----
 
 Next run the following command to effectively download and incorporate WonderPush to your project:
@@ -114,10 +121,13 @@ Edit your `Podfile` as follows:
 
 [source,bash]
 ----
-platform :ios, '8.0'
+# Locate your application target
+target 'YourApplicationTarget' do
+    platform :ios, '8.0'
 
-# If using CocoaPods 1+, put this inside your project target block
-use_frameworks!
+    # Make sure this line is present:
+    use_frameworks!
+end
 ----
 
 Next thing, add the following import to your bridging header:
