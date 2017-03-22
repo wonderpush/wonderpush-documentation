@@ -291,7 +291,7 @@ end
 
 Then run the following command to incorporate the WonderPush SDK pod to your extension:
 
-[source.bash]
+[source,bash]
 ----
 pod install
 ----
