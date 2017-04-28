@@ -273,7 +273,7 @@ First, let's add the new application extension to your project:
   Choose the same team as your application target. +
   Make sure that it is linked to your project and embedded in your application, in the bottom. +
   Click _Finish_.
-. XCode will ask you whether you want to activate the new scheme. Click _Activate_.
+. XCode will ask you whether you want to activate the new scheme. Click _Cancel_.
 
 Then, we need to link the extension to another pod of the WonderPush SDK. +
 Open your `Podfile` and add the following:
