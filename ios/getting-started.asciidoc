@@ -93,7 +93,7 @@ target 'YourApplicationTarget' do
     platform :ios, '7.0'
 
     # Add this single line:
-    pod 'WonderPush', '~> 2.0'
+    pod 'WonderPush', '~> 2.2'
 end
 ----
 
@@ -285,7 +285,7 @@ target 'NotificationServiceExtension' do
     # Use the same platform as your application target
     platform :ios, '7.0'
 
-    pod 'WonderPush/NotificationServiceExtension', '~> 2.0'
+    pod 'WonderPush/NotificationServiceExtension', '~> 2.2'
 end
 ----
 
