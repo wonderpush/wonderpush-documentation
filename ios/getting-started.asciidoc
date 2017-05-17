@@ -285,7 +285,7 @@ target 'NotificationServiceExtension' do
     # Use the same platform as your application target
     platform :ios, '7.0'
 
-    pod 'WonderPush/NotificationServiceExtension', '~> 2.2'
+    pod 'WonderPushExtension', '~> 2.2'
 end
 ----
 
@@ -310,7 +310,7 @@ Open `NotificationService.h` and modify it so that it reads:
 
 [source,objc]
 ----
-#import <WonderPush/NotificationServiceExtension.h>
+#import <WonderPushExtension/NotificationServiceExtension.h>
 
 // We delegate everything to WPNotificationService
 @interface NotificationService : WPNotificationService
@@ -341,7 +341,7 @@ You can hence keep the generated code and simply add the following import to you
 
 [source,objc]
 ----
-#import <WonderPush/NotificationServiceExtension.h>
+#import <WonderPushExtension/NotificationServiceExtension.h>
 ----
 
 And add the following at the beginning of the two methods of your implementation:
