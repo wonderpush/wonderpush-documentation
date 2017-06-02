@@ -79,8 +79,6 @@ This will edit your project to create a multi-project workspace so that each dep
 
 Finally, you will need to close your project in XCode, and open instead the newly created `YourProject.xcworkspace` file, as indicated in the command output.
 
-You can continue now with the next section.
-
 [[ios-getting-started-integrate-sdk-add-pod-dependency]]
 ==== Add the WonderPush SDK as a dependency
 
