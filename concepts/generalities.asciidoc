@@ -70,7 +70,7 @@ The REST API is two-part:
   dashboard website. It can be quite useful for batch operations, for
   example if you want to create many notifications.
   It must not be called directly from your application.
-. The API, called from your applications, to perform all user-related
+. The SDK API, called from your applications, to perform all user-related
   tasks, like tracking events, adding a tag, editting notification
   preferences or reading in-app messages.
   Those endpoints return data in JSON.
@@ -79,10 +79,14 @@ The REST API is two-part:
 === API clients
 
 Any HTTPS-enabled client can interact directly with WonderPush through
-the REST API. +
+the REST APIs. +
 For more convenience, we provide
 http://en.wikipedia.org/wiki/Software_development_kit["SDKs", window="_blank"] for the main
 languages and platforms (Android, iOS, Windows Phone, Web).
+
+In order to place calls against the Management API from your servers,
+for instance to trigger push notification deliveries, you can use our library:
+https://github.com/wonderpush/wonderpush-php-lib["WonderPush PHP library", window="_blank"].
 
 In addition we provide a command-line client to help you try API calls:
 https://github.com/wonderpush/wonderpush-python-lib["Python command-line tool", window="_blank"].
