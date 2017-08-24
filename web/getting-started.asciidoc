@@ -156,6 +156,37 @@ WonderPush.init({
 ----
 ====
 
+[[web-getting-started-integrate-sdk-into-your-web-pages-wordpress]]
+==== Integrating on WordPress
+
+1. Log into your WordPress Admin dashboard.
+2. Click _Plugins / Add New_ in the left menu. +
+   image:web/getting-started/wordpress-1-dashboard-to-plugin-installation-page.png[The Plugins / Add New link in the left menu]
+3. Search for "Insert Headers and Footers" using the search box. +
+   Alternatively, here is a link to the plugin for manual installation: https://wordpress.org/plugins/insert-headers-and-footers/
+4. Click _Install Now_. +
+   image:web/getting-started/wordpress-2-search-the-plugin.png[Install the plugin]
+5. Click _Activate_. +
+   image:web/getting-started/wordpress-3-activate-the-plugin.png[Activate the plugin]
+6. In the plugin list, locate the message in the top and click the link to configure the plugin. +
+   You can also click on _Settings / Insert Headers and Footers_ in the left menu. +
+   image:web/getting-started/wordpress-4-plugin-activated.png[Plugin activation notification]
+7. Paste the script you can find in your WonderPush dashboard into the _Scripts in Footer_ section. +
+   image:web/getting-started/wordpress-5-paste-code.png[Paste the code]
+8. Hit _Save_.
+
+[[web-getting-started-integrate-sdk-into-your-web-pages-gtm]]
+==== Integrating via Google Tag Manager
+
+1. Sign in to https://tagmanager.google.com[Google Tag Manager].
+2. Select _Add a new tag_ and then name your tag "WonderPush GTM".
+3. Choose _Custom HTML Tag_.
+4. Paste the script you can find in your WonderPush dashboard into the textbox.
+5. Decide to _Fire_ _on All Pages_.
+6. Click _Create Tag_.
+7. Hit _Publish_.
+
+
 [[web-getting-started-include-on-off-switch]]
 [role="numbered-lvlfirst"]
 === Include “ON/OFF” switch
