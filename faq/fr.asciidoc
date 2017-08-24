@@ -69,11 +69,15 @@ Quand vous naviguez sur votre tableau de bord WonderPush, vous devriez maintenan
 
 |Android Chrome |OUI
 
-|Android Firefox |Pas encore
+|Android Firefox |OUI
+
+|Android Opera |OUI
+
+|iOS Safari |Pas encore
 
 |iOS Chrome |Pas encore
 
-|iOS Safari |Pas encore
+|iOS Firefox |Pas encore
 |=========================================================
 
 [[faq-fr-web-web-vs-native]]

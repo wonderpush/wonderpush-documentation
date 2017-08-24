@@ -70,11 +70,15 @@ When browsing WonderPush dashboard, you should see in the breadcrumb a new dropd
 
 |Android Chrome |YES
 
-|Android Firefox |Not yet
+|Android Firefox |YES
+
+|Android Opera |YES
+
+|iOS Safari |Not yet
 
 |iOS Chrome |Not yet
 
-|iOS Safari |Not yet
+|iOS Firefox |Not yet
 |=========================================================
 
 [[faq-en-web-web-vs-native]]
