@@ -129,6 +129,9 @@ javascript snippet (see STEP 2).
 [role="numbered-lvlfirst"]
 === Integrate SDK into your web pages
 
+[[web-getting-started-integrate-sdk-into-your-web-pages-manually]]
+==== Integrating from code
+
 Copy the small javascript snippet from your Dashboard and paste it into your website’s pages before the closing tag `</body>`, wherever you want excepted between the <head> and </head> tags. Note that it contains your personal Web key. The javascript snippet must be integrated on any page where you want to prompt users to sign up for Web Push, or where you want to make WonderPush API calls.
 
 .Explanations
