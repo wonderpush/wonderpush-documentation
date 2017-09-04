@@ -125,6 +125,54 @@ Perform a clean build of your project. If you experience a problem, look at the 
 
 *You're done*, you can skip to the next section to <<android-getting-started-initialize-sdk,initialize the SDK>>.
 
+The rest of this section discusses potential problems you might encounter, depending on your setup.
+Just skip over them unless you see some errors.
+
+[[android-getting-started-set-up-workspace-mixed-support-libraries-versions]]
+===== Mixed versions of support libraries
+
+If your application uses Support libraries, you may see the following message when you hover the dependency declared in your `app/build.gradle` file:
+
+[source,text]
+----
+All com.android.support libraries must use the exact same version specification (mixing versions can lead to runtime crashes). Found versions 26.0.2, 25.3.1. Examples include com.android.support:support-compat:26.0.2 and com.android.support:animated-vector-drawable:25.3.1.
+There are some combinations of libraries, or tools and libraries, that are incompatible, or can lead to bugs. One such incompatibility is compiling with a version of the Android support libraries that is not the latest version (or in particular, a version lower than your targetSdkVersion.)
+----
+
+This is because you use one of the Support libraries in a different version than the WonderPush SDK does,
+for instance if you declared the something like following in your `app/build.gradle`:
+
+[source,java]
+----
+dependencies {
+    compile 'com.android.support:support-v13:25.3.1'
+}
+----
+
+The resolution is hopefully simple.
+You can either upgrade your dependencies to match the version of `appcompat-v7` that the SDK uses,
+or you can redeclare a dependency on `appcompat-v7` with the _same version_ as you are already using, to upgrade the version the SDK will deal with:
+
+[source,java]
+----
+dependencies {
+    // If you use an older version for one of the support libraries (here support-v13 for the example)
+    // than the one the WonderPush SDK uses, upgrade yours:
+    compile 'com.android.support:support-v13:26.0.2'
+    // If you use a newer version than the WonderPush SDK uses, upgrade the one the SDK uses:
+    compile 'com.android.support:appcompat-v7:26.0.2'
+}
+----
+
+This will ensure every module of the Support libraries ultimately has the same version.
+
+[NOTE]
+--
+You may encounter a similar issue with the Google Play Services library, as it is modular too.
+See below.
+--
+
+
 [[android-getting-started-set-up-workspace-outdated-android-libraries]]
 ===== Outdated Android libraries
 
@@ -216,9 +264,9 @@ or you can redeclare a dependency on `play-services-gcm` with the _same version_
 ----
 dependencies {
     // If you use an older version than the WonderPush SDK uses, upgrade yours:
-    compile 'com.google.android.gms:play-services-analytics:9.4.0'
+    compile 'com.google.android.gms:play-services-analytics:11.0.4'
     // If you use a newer version than the WonderPush SDK uses, upgrade the one the SDK uses:
-    compile 'com.google.android.gms:play-services-gcm:9.4.0'
+    compile 'com.google.android.gms:play-services-gcm:11.04'
 }
 ----
 
@@ -226,7 +274,8 @@ This will ensure every module of the Google Play Services library ultimately has
 
 [NOTE]
 --
-You may encounter a similar issue with the support library, as it is now modular too.
+You may encounter a similar issue with the Support libraries, as they are modular too.
+See above.
 --
 
 [role="skip-toc"]
