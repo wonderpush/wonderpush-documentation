@@ -44,9 +44,15 @@ by adding the following into your `app/build.gradle` file:
 [source,java]
 ----
 dependencies {
-    compile 'com.wonderpush:wonderpush-android-sdk:1.2.4.0'
+    compile 'com.wonderpush:wonderpush-android-sdk:1.2.4.1'
 }
 ----
++
+Starting with version 1.2.4.1, where Android O Notification Channels are created,
+the WonderPush SDK requires you to use at least `compileSdkVersion 26`
+and support libraries must use version `26.0.2` minimum.
+This in turn requires you to use at least `minSdkVersion 14`. +
+Note that this does *not* force you target Android O, you can keep a lower `targetSdkVersion` if you need to.
 +
 . You will need to point the SDK to the notification icon
 and default activity to launch when clicking a notification.
@@ -127,6 +133,26 @@ Perform a clean build of your project. If you experience a problem, look at the 
 
 The rest of this section discusses potential problems you might encounter, depending on your setup.
 Just skip over them unless you see some errors.
+
+[[android-getting-started-set-up-workspace-minsdkversion]]
+===== Minimum SDK version 14
+
+In order to be able to register Notification Channels in Android O, the WonderPush SDK has to compile against the Android SDK version 26.
+This requires using Support libraries version 26, which, along with updating `com.google.android.gms:play-service-gcm` above version 10.2 for the latest push notification-related fixes,
+bumps the `minSdkVersion` to 14, as far as WonderPush is concerned (your application may already target a higher minimum version).
+
+Compared to the previously imposed `minSdkVersion 9`, jumping to `minSdkVersion 14` only affects 0.7% of all Android users.
+Note that Android SDK 14 (aka Android 4.0, Ice Cream Sandwich) was released on October 2011, more than 6 years ago.
+In addition, in their blog post, Google says that ``We believe that many of these old devices are not actively being used.''
+
+You can avoid to left those users behind if this is a strong requirement for your application, by building multiple APKs using build variants as shown in the blog post.
+Doing so you can either drop support for push notifications or use the version 1.2.3.3 of the WonderPush SDK.
+
+Read more:
+
+- https://android-developers.googleblog.com/2016/11/google-play-services-and-firebase-for-android-will-support-api-level-14-at-minimum.html["Google Play services and Firebase for Android will support API level 14 at minimum", window="_blank"]
+- https://developer.android.com/topic/libraries/support-library/index.html#api-versions["Support libraries and minimum supported API level", window="_blank"]
+- https://developer.android.com/about/dashboards/index.html#Platform["Platform versions pie chart", window="_blank"]
 
 [[android-getting-started-set-up-workspace-mixed-support-libraries-versions]]
 ===== Mixed versions of support libraries
