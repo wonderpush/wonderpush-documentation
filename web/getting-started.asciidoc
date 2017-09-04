@@ -468,7 +468,7 @@ As opposed to an installation properties (tags), an event is set in time and exp
 ----
 WonderPush.ready(function(WonderPushSDK){
     var type = "newsRead";
-    var properties = {
+    var parameters = {
         // For example:
         //     string_categories: ["technologies", "economics"],
         // Note that the prefix is mandatory for indexation.
