@@ -224,12 +224,12 @@ Information:BUILD FAILED
 
 The build fails here because proguard does not know one method the WonderPush SDK uses.
 That method was introduced in API 24 as a result of the deprecation of a similar method.
-The solution consists in downloading the new Android N SDK, if not done already, and updating your application `build.gradle` to read:
+The solution consists in downloading the new Android N SDK or ulterior, if not done already, and updating your application `build.gradle` to read:
 
 [source,java]
 ----
 android {
-    compileSdkVersion 24
+    compileSdkVersion 24 # or ulterior
 }
 ----
 
