@@ -60,10 +60,12 @@ Values above 128 characters will be ignored.
 
 `date`::
 A UTC timestamp in milliseconds, or a string in the following format:
-`YYYY[-MM[-DD]][THH[:MM[:SS[.SSS]]]][Z|+HH[:MM[:SS[.SSS]]]]`
+`YYYY[-MM[-DD]][T[HH[:MM[:SS[.SSS]]]][Z|+HH[:MM[:SS[.SSS]]]]]`
 +
 Here are valid examples: `2015`, `2015-12`, `2015-12-31`, `2015-12-31T23`, `2015-12-31T23:59`, `2015-12-31T23:59:59`, `2015-12-31T23:59:59.999`. +
 Here are valid offsets you can also append: `Z` for UTC, `-06`, `+02:00`. In the absence of an offset, the date is taken as UTC.
+Don't forget to write `T` before the offset if you gave no time-part. +
+Unless explicitly mentioned, any missing part is taken as January 1st for date-part and midnight for the time-part.
 
 `geoloc`::
 A geographic localisation given as latitude and longitude, or geohash.
@@ -116,7 +118,7 @@ The below object is an example of all the available features:
   "double_bigNumber": 2.18e+84,
   "bool_truth": true,
   "string_sex": "male",
-  "date_birth": "1961-08-04Z-10:00",
+  "date_birth": "1961-08-04T-10:00",
   "date_lastPurchase": 1436527624000,
   "geoloc_home": {
     "lat": 38.897660,
