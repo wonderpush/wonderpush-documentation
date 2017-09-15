@@ -292,7 +292,7 @@ dependencies {
     // If you use an older version than the WonderPush SDK uses, upgrade yours:
     compile 'com.google.android.gms:play-services-analytics:11.0.4'
     // If you use a newer version than the WonderPush SDK uses, upgrade the one the SDK uses:
-    compile 'com.google.android.gms:play-services-gcm:11.04'
+    compile 'com.google.android.gms:play-services-gcm:11.0.4'
 }
 ----
 
