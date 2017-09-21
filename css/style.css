@@ -736,6 +736,7 @@ H4 > A.anchor {
 #main.developerDocsPage.index- .article > .content .section .icon-downloads             { background-image: url('/docs/img/index_download.png'); }
 #main.developerDocsPage.index- .article > .content .section .icon-community-and-support { background-image: url('/docs/img/index_community.png'); }
 #main.developerDocsPage.index- .article > .content .section .icon-faq                   { background-image: url('/docs/img/index_faq.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-video-guides          { background-image: url('/docs/img/index_video_guides.png'); }
 #main.developerDocsPage.index- .article > .content .section .icon-third-party-clients   { background-image: url('/docs/img/index_tools.png'); }
 #main.developerDocsPage.downloads- .article > .content .section .icon-windowsphone { background-image: url('/docs/img/index_windowsphone.png'); }
 #main.developerDocsPage.downloads- .article > .content .section .icon-android      { background-image: url('/docs/img/index_android.png'); }

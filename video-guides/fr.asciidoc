@@ -1,0 +1,6 @@
+[[video-guides-fr]]
+[role="chunk-page section-link"]
+== https://www.youtube.com/playlist?list=PL6n_2yo2Kqwg4xI8D2MiSrvXx2mCDTKUI[Guides d'utilisation]
+
+Les guides d'utilisation sont disponibles sur YouTube :
+https://www.youtube.com/playlist?list=PL6n_2yo2Kqwg4xI8D2MiSrvXx2mCDTKUI.

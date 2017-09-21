@@ -1,0 +1,10 @@
+[[video-guides]]
+= Video guides
+
+[partintro]
+--
+--
+
+include::video-guides/fr.asciidoc[]
+
+include::video-guides/en.asciidoc[]

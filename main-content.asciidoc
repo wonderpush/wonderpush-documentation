@@ -16,6 +16,8 @@ include::third-party-clients.asciidoc[]
 
 include::community-and-support.asciidoc[]
 
+include::video-guides.asciidoc[]
+
 include::faq.asciidoc[]
 
 include::downloads.asciidoc[]

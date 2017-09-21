@@ -1,0 +1,7 @@
+[[video-guides-en]]
+[role="chunk-page"]
+== User guide
+
+The user guides will soon be available in English.
+
+If you speak it, you can check out the <<video-guides-fr,French version>>.
