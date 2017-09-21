@@ -1,6 +1,6 @@
 [[video-guides-en]]
 [role="chunk-page"]
-== User guide
+== User guide (soon)
 
 The user guides will soon be available in English.
 
