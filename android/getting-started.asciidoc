@@ -622,6 +622,7 @@ LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver()
 
 [[android-getting-started-advanced-usage-reading-custom-key-value-payload]]
 ==== Reading custom key-value payload
+
 A notification can be added custom key-value pairs to it. To read them you will need to get the received push notification intent. You can either get it as <<android-getting-started-advanced-usage-own-notifications,soon as the the device receives it>>, or <<android-getting-started-advanced-usage-notification-opened,as the notification is opened>>. You would them simply use the following line of code:
 
 [source,java]
@@ -635,6 +636,43 @@ if (intent.hasExtra("custom")) {
     }
 }
 ----
+
+[[android-getting-started-advanced-usage-registered-callbacks]]
+==== Handling registered callbacks on button click
+
+Notification and in-app buttons can also trigger app-specific methods once clicked.
+
+The SDK will broadcast a local intent that your application can listen to and handle, this keeps all parts decoupled and won't cause bugs if a user has an older version of your application where the callback does not exist.
+
+Here is how to register your callback in your application:
+
+[source,java]
+----
+// Put the following call before you initialize the SDK, in your Application class
+// Here is how to register the callback named "example"
+IntentFilter exampleMethodIntentFilter = new IntentFilter();
+exampleMethodIntentFilter.addAction(WonderPush.INTENT_NOTIFICATION_BUTTON_ACTION_METHOD_ACTION);
+exampleMethodIntentFilter.addDataScheme(WonderPush.INTENT_NOTIFICATION_BUTTON_ACTION_METHOD_SCHEME);
+exampleMethodIntentFilter.addDataAuthority(WonderPush.INTENT_NOTIFICATION_BUTTON_ACTION_METHOD_AUTHORITY, null);
+exampleMethodIntentFilter.addDataPath("/example", PatternMatcher.PATTERN_LITERAL); // Note: prepend a / to the actual method name
+LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String arg = intent.getStringExtra(WonderPush.INTENT_NOTIFICATION_BUTTON_ACTION_METHOD_EXTRA_ARG);
+        // Do something useful here
+    }
+}, exampleMethodIntentFilter);
+----
+
+And here is how to proceed in the dashboard:
+
+* When configuring a button, click _Add action_, and choose _Trigger registered callback_.
+* Enter the name of the callback you created in the application.
+* Enter an optional argument, as a single string.
+
+From the Management API, you would use the `method` button action type.
+
+That's it, your registered callback will be called whenever the user clicks that button.
 
 [[android-getting-started-advanced-usage-data-notifications]]
 ==== Handling data notifications

@@ -723,3 +723,32 @@ NSDictionary *pushNotification = note.userInfo;
 // For a more nested navigation tree, call pushViewController for each intermediate view
 }];
 ----
+
+[[ios-getting-started-advanced-usage-registered-callbacks]]
+==== Handling registered callbacks on button click
+
+Notification and in-app buttons can also trigger app-specific methods once clicked.
+
+The SDK will send an `NSNotification` that your application can listen to and handle, this keeps all parts decoupled and won't cause bugs if a user has an older version of your application where the callback does not exist.
+
+Here is how to register your callback in your application:
+
+[source,java]
+----
+// Put the following call in the [application:didFinishLaunchingWithOptions:] method of your AppDelegate
+// Here is how to register the callback named "example"
+[[NSNotificationCenter defaultCenter] addObserverForName:@"example" object:nil queue:nil usingBlock:^(NSNotification *note) {
+    NSString *arg = [note.userInfo objectForKey:WP_REGISTERED_CALLBACK_PARAMETER_KEY];
+    // Do something useful here
+}];
+----
+
+And here is how to proceed in the dashboard:
+
+* When configuring a button, click _Add action_, and choose _Trigger registered callback_.
+* Enter the name of the callback you created in the application.
+* Enter an optional argument, as a single string.
+
+From the Management API, you would use the `method` button action type.
+
+That's it, your registered callback will be called whenever the user clicks that button.
