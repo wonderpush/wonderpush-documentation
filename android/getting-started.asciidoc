@@ -44,11 +44,11 @@ by adding the following into your `app/build.gradle` file:
 [source,java]
 ----
 dependencies {
-    compile 'com.wonderpush:wonderpush-android-sdk:1.2.4.1'
+    compile 'com.wonderpush:wonderpush-android-sdk:1.2.5.0'
 }
 ----
 +
-Starting with version 1.2.4.1, where Android O Notification Channels are created,
+Starting with version 1.2.5.0, where Android O Notification Channels are created,
 the WonderPush SDK requires you to use at least `compileSdkVersion 26`
 and support libraries must use version `26.0.2` minimum.
 This in turn requires you to use at least `minSdkVersion 14`. +
