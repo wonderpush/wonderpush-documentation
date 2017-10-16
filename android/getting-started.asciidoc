@@ -44,9 +44,15 @@ by adding the following into your `app/build.gradle` file:
 [source,java]
 ----
 dependencies {
-    compile 'com.wonderpush:wonderpush-android-sdk:1.2.4.0'
+    compile 'com.wonderpush:wonderpush-android-sdk:1.2.4.1'
 }
 ----
++
+Starting with version 1.2.4.1, where Android O Notification Channels are created,
+the WonderPush SDK requires you to use at least `compileSdkVersion 26`
+and support libraries must use version `26.0.2` minimum.
+This in turn requires you to use at least `minSdkVersion 14`. +
+Note that this does *not* force you target Android O, you can keep a lower `targetSdkVersion` if you need to.
 +
 . You will need to point the SDK to the notification icon
 and default activity to launch when clicking a notification.
@@ -125,6 +131,74 @@ Perform a clean build of your project. If you experience a problem, look at the 
 
 *You're done*, you can skip to the next section to <<android-getting-started-initialize-sdk,initialize the SDK>>.
 
+The rest of this section discusses potential problems you might encounter, depending on your setup.
+Just skip over them unless you see some errors.
+
+[[android-getting-started-set-up-workspace-minsdkversion]]
+===== Minimum SDK version 14
+
+In order to be able to register Notification Channels in Android O, the WonderPush SDK has to compile against the Android SDK version 26.
+This requires using Support libraries version 26, which, along with updating `com.google.android.gms:play-service-gcm` above version 10.2 for the latest push notification-related fixes,
+bumps the `minSdkVersion` to 14, as far as WonderPush is concerned (your application may already target a higher minimum version).
+
+Compared to the previously imposed `minSdkVersion 9`, jumping to `minSdkVersion 14` only affects 0.7% of all Android users.
+Note that Android SDK 14 (aka Android 4.0, Ice Cream Sandwich) was released on October 2011, more than 6 years ago.
+In addition, in their blog post, Google says that ``We believe that many of these old devices are not actively being used.''
+
+You can avoid to left those users behind if this is a strong requirement for your application, by building multiple APKs using build variants as shown in the blog post.
+Doing so you can either drop support for push notifications or use the version 1.2.3.3 of the WonderPush SDK.
+
+Read more:
+
+- https://android-developers.googleblog.com/2016/11/google-play-services-and-firebase-for-android-will-support-api-level-14-at-minimum.html["Google Play services and Firebase for Android will support API level 14 at minimum", window="_blank"]
+- https://developer.android.com/topic/libraries/support-library/index.html#api-versions["Support libraries and minimum supported API level", window="_blank"]
+- https://developer.android.com/about/dashboards/index.html#Platform["Platform versions pie chart", window="_blank"]
+
+[[android-getting-started-set-up-workspace-mixed-support-libraries-versions]]
+===== Mixed versions of support libraries
+
+If your application uses Support libraries, you may see the following message when you hover the dependency declared in your `app/build.gradle` file:
+
+[source,text]
+----
+All com.android.support libraries must use the exact same version specification (mixing versions can lead to runtime crashes). Found versions 26.0.2, 25.3.1. Examples include com.android.support:support-compat:26.0.2 and com.android.support:animated-vector-drawable:25.3.1.
+There are some combinations of libraries, or tools and libraries, that are incompatible, or can lead to bugs. One such incompatibility is compiling with a version of the Android support libraries that is not the latest version (or in particular, a version lower than your targetSdkVersion.)
+----
+
+This is because you use one of the Support libraries in a different version than the WonderPush SDK does,
+for instance if you declared the something like following in your `app/build.gradle`:
+
+[source,java]
+----
+dependencies {
+    compile 'com.android.support:support-v13:25.3.1'
+}
+----
+
+The resolution is hopefully simple.
+You can either upgrade your dependencies to match the version of `appcompat-v7` that the SDK uses,
+or you can redeclare a dependency on `appcompat-v7` with the _same version_ as you are already using, to upgrade the version the SDK will deal with:
+
+[source,java]
+----
+dependencies {
+    // If you use an older version for one of the support libraries (here support-v13 for the example)
+    // than the one the WonderPush SDK uses, upgrade yours:
+    compile 'com.android.support:support-v13:26.0.2'
+    // If you use a newer version than the WonderPush SDK uses, upgrade the one the SDK uses:
+    compile 'com.android.support:appcompat-v7:26.0.2'
+}
+----
+
+This will ensure every module of the Support libraries ultimately has the same version.
+
+[NOTE]
+--
+You may encounter a similar issue with the Google Play Services library, as it is modular too.
+See below.
+--
+
+
 [[android-getting-started-set-up-workspace-outdated-android-libraries]]
 ===== Outdated Android libraries
 
@@ -150,12 +224,12 @@ Information:BUILD FAILED
 
 The build fails here because proguard does not know one method the WonderPush SDK uses.
 That method was introduced in API 24 as a result of the deprecation of a similar method.
-The solution consists in downloading the new Android N SDK, if not done already, and updating your application `build.gradle` to read:
+The solution consists in downloading the new Android N SDK or ulterior, if not done already, and updating your application `build.gradle` to read:
 
 [source,java]
 ----
 android {
-    compileSdkVersion 24
+    compileSdkVersion 24 # or ulterior
 }
 ----
 
@@ -216,9 +290,9 @@ or you can redeclare a dependency on `play-services-gcm` with the _same version_
 ----
 dependencies {
     // If you use an older version than the WonderPush SDK uses, upgrade yours:
-    compile 'com.google.android.gms:play-services-analytics:9.4.0'
+    compile 'com.google.android.gms:play-services-analytics:11.0.4'
     // If you use a newer version than the WonderPush SDK uses, upgrade the one the SDK uses:
-    compile 'com.google.android.gms:play-services-gcm:9.4.0'
+    compile 'com.google.android.gms:play-services-gcm:11.0.4'
 }
 ----
 
@@ -226,7 +300,8 @@ This will ensure every module of the Google Play Services library ultimately has
 
 [NOTE]
 --
-You may encounter a similar issue with the support library, as it is now modular too.
+You may encounter a similar issue with the Support libraries, as they are modular too.
+See above.
 --
 
 [role="skip-toc"]
