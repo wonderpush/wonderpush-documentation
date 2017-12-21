@@ -269,6 +269,7 @@ H4 > A.anchor {
 #main.developerDocsPage.android                  .header .page-badge {background-image:url('/docs/img/badge_android.png');}
 #main.developerDocsPage.ios                      .header .page-badge {background-image:url('/docs/img/badge_ios.png');}
 #main.developerDocsPage.web                      .header .page-badge {background-image:url('/docs/img/badge_web.png');}
+#main.developerDocsPage.cordova                  .header .page-badge {background-image:url('/docs/img/badge_cordova.png');}
 
 
 .article {
@@ -730,6 +731,7 @@ H4 > A.anchor {
 #main.developerDocsPage.index- .article > .content .section .icon-android      { background-image: url('/docs/img/index_android.png'); }
 #main.developerDocsPage.index- .article > .content .section .icon-ios          { background-image: url('/docs/img/index_ios.png'); }
 #main.developerDocsPage.index- .article > .content .section .icon-web          { background-image: url('/docs/img/index_web.png'); }
+#main.developerDocsPage.index- .article > .content .section .icon-cordova      { background-image: url('/docs/img/index_cordova.png'); }
 #main.developerDocsPage.index- .article > .content .section .icon-rest-api              { background-image: url('/docs/img/index_rest_api.png'); }
 #main.developerDocsPage.index- .article > .content .section .icon-management-api        { background-image: url('/docs/img/index_management_api.png'); }
 #main.developerDocsPage.index- .article > .content .section .icon-features              { background-image: url('/docs/img/index_design.png'); }

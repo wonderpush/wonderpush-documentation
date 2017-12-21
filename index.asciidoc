@@ -38,6 +38,16 @@ Dive into our Getting Started guides and integrate with your app and website in 
 --
 
 [role="section"]
+.Cordova
+--
+[icon icon-cordova]#{empty}#
+
+* <<cordova-getting-started,Getting started>>
+* <<cordova-github,GitHub>>
+* <<cordova-reference,Reference>>
+--
+
+[role="section"]
 .Management API
 --
 [icon icon-management-api]#{empty}#
@@ -76,15 +86,15 @@ Dive into our Getting Started guides and integrate with your app and website in 
 // --
 
 
-[role="section"]
-.Downloads
---
-[icon icon-downloads]#{empty}#
-
-* <<downloads,SDKs>>
-* <<downloads,Samples>>
-* <<downloads,Graphics>>
---
+// [role="section"]
+// .Downloads
+// --
+// [icon icon-downloads]#{empty}#
+// 
+// * <<downloads,SDKs>>
+// * <<downloads,Samples>>
+// * <<downloads,Graphics>>
+// --
 
 
 // [role="section"]

@@ -42,4 +42,7 @@ https://github.com/wonderpush[GitHub]:
 
 * https://github.com/wonderpush/wonderpush[WonderPush service]
 * https://github.com/wonderpush/wonderpush-documentation[WonderPush documentation]
+* https://github.com/wonderpush/wonderpush-web-sdk[WonderPush JavaScript SDK]
 * https://github.com/wonderpush/wonderpush-android-sdk[WonderPush Android SDK]
+* https://github.com/wonderpush/wonderpush-ios-sdk[WonderPush iOS SDK]
+* https://github.com/wonderpush/wonderpush-cordova-sdk[WonderPush Cordova SDK]

@@ -1,0 +1,6 @@
+[[cordova-github]]
+[role="chunk-page section-link"]
+== https://github.com/wonderpush/wonderpush-cordova-sdk[GitHub]
+
+The WonderPush Cordova SDK is available on GitHub at
+https://github.com/wonderpush/wonderpush-cordova-sdk.

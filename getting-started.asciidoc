@@ -23,3 +23,9 @@ Choose your platform:
 
 --
 --
+
+[role="section-link"]
+== <<cordova-getting-started,Cordova>>
+
+--
+--

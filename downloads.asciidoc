@@ -31,6 +31,14 @@ Dive into our Getting Started guides and integrate with your app and website in 
 * <<ios-github,GitHub>>
 --
 
+[role="section"]
+.Cordova
+--
+[icon icon-cordova]#{empty}#
+
+* <<cordova-github,GitHub>>
+--
+
 [role="clear"]
 --
 --

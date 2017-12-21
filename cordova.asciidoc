@@ -1,0 +1,12 @@
+[[cordova]]
+= Cordova
+
+[partintro]
+--
+--
+
+include::cordova/getting-started.asciidoc[]
+
+include::cordova/github.asciidoc[]
+
+include::cordova/reference.asciidoc[]

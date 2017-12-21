@@ -1,0 +1,424 @@
+[[cordova-getting-started]]
+[role="chunk-page chunk-toc"]
+== Getting started
+
+
+[[cordova-getting-started-get-your-personal-web-key]]
+[role="numbered-lvlfirst"]
+=== Get your personal web key
+
+[role="skip-toc"]
+==== 1. Log in or sign up
+
+Log in or sign up for a free account on WonderPush at: https://dashboard.wonderpush.com/account/login
+
+image:web/getting-started/login.png[Image of login]
+
+You will be able to invite new members to join your project with
+different levels of permission (owner, editor…).
+
+[role="skip-toc"]
+==== 2. Register your application
+
+Give a name to your project. e.g. MyGame
+Make sure to check `Cordova` under the `Platforms` section.
+
+
+[role="skip-toc"]
+==== 3. Copy your client id and client secret
+
+Under the `Settings / Configuration` menu.
+
+
+[[cordova-getting-started-integrate]]
+[role="numbered-lvlfirst"]
+=== Integrate the SDK
+
+[role="skip-toc"]
+[[cordova-getting-started-integrate-create-application]]
+==== Create your application if needed
+
+Use cordova tool to create an application, see the https://cordova.apache.org/docs/en/latest/guide/cli/["Cordova guide", window="_blank"] for more details.
+
+[source,bash]
+----
+cordova create cordova-demo com.wonderpush.demo WonderPushCordovaDemo
+cd cordova-demo
+----
+
+Add the Android and iOS platforms:
+
+[source,bash]
+----
+cordova platform add android --save
+cordova platform add ios --save
+----
+
+[role="skip-toc"]
+[[cordova-getting-started-integrate-add-sdk]]
+==== Add the WonderPush SDK
+
+[source,bash]
+----
+cordova plugin add --save wonderpush-cordova-sdk --variable CLIENT_ID='YOUR_CLIENT_ID' --variable CLIENT_SECRET='YOUR_CLIENT_SECRET'
+----
+<1> Replace *YOUR_CLIENT_ID* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"], under the `Settings / Configuration` menu. +
+  Eg.: +0123456789abcdef0123456789abcdef01234567+.
+<2> Replace *YOUR_CLIENT_ID* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id as described above. +
+  Eg.: +0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef+.
+ 
+[role="skip-toc"]
+[[cordova-getting-started-integrate-ios-add-push-notification-capability]]
+==== For iOS: Add the Push Notifications capability
+
+If you've just created your project, before we open XCode, make sure to build the project once so that things like Signing identities are properly set:
+
+[source,bash]
+----
+cordova build
+----
+
+First, let's add the new application extension to your project:
+
+. Open `platforms/ios/YourApplication.xcworkspace` in XCode.
+. In the Project navigator, select your project.
+. Select your application target.
+. In the _Capabilities_ tab, flip the _Push Notifications_ switch on. 
+
+This step could nout be done automatically without causing problems building the Notification Service Extension with Cordova of the next step.
+
+[[cordova-getting-started-ios-rich-notifications]]
+[role="numbered-lvlfirst"]
+=== Support iOS 10 rich notifications
+
+In order to use rich notifications on iOS, you must add a Notification Service Extension to your project and let the WonderPush SDK do the hard work for you.
+
+First, let's add the new application extension to your project:
+
+. Open `platforms/ios/YourApplication.xcworkspace` in XCode.
+. Open the XCode _File_ menu, under _New_ select _Target…_.
+. In the _iOS_ tab, in the _Application Extension_ group, select _Notification Service Extension_ and click _Next_.
+. Give it a name you like, here we soberly chose _NotificationServiceExtension_.
+  Choose the same team as your application target.
+  Make sure that it is linked to your project instead of `CordovaLib`, and next that it's embedded in your application.
+  Click _Finish_.
+. XCode will ask you whether you want to activate the new scheme. Click _Cancel_.
+  If you inadvertently clicked _Activate_, simply select your application in the scheme selector next to the run/stop buttons.
+
+Let's fix a signing issue:
+
+. In the Project navigator, select your project.
+. Select your new target.
+. In the _General_ tab, under _Signing_ select your _Team_ if necessary.
+
+Make sure the extension runs on any iOS 10.0 or ulterior devices:
+
+. In the Project navigator, select your project.
+. Select your new target.
+. In the _General_ tab, under _Deployment Info_ set _Deployment Target_ to `10.0`.
+
+Add the necessary WonderPushExtension framework to the target:
+
+. In the Project navigator, select your project.
+. Select your new target.
+. In the _General_ tab, under _Linked Frameworks and Libraries_ click the _+_ button.
+. Click _Add Other…_.
+. Navigate to your project root directory then under _platforms/ios/MyApp/Plugins/wonderpush-cordova-sdk/_ and select _WonderPushExtension.framework_.
+. Click _Open_.
+
+Let's fix a path issue:
+
+. In the Project navigator, select your project.
+. Select your new target.
+. In the _Build settings_ tab, under _Search Paths_ on the _Framework Search Paths_ line, double click on the cell with bold text (potentially on a green background).
+. In the values list, find `$(PROJECT_DIR)/YourApp/Plugins/wonderpush-cordova-sdk` and drop `$(PROJECT_DIR)/` at the beginning so it becomes `Yourapp/Plugins/wonderpush-cordova-sdk`.
+. Click outside the popup to validate your input. (Pressing Enter then Escape to close the popup dismisses your changes.)
+
+Now we'll need to remove a Cordova configuration that leaks from the application's target to the extension target:
+
+. In the Project navigator, select your project.
+. Select your new target.
+. In the _Build settings_ tab, under _Signing_ on the _Code Signing Entitlements_ group, double click the cell corresponding to your extension target and remove values for both the _Debug_ and _Release_ entries so that they are empty.
+
+We're done with the configuration, now on with a bit of code.
+
+You should see the following files in your Project navigator:
+
+* `YourApp`
+** `NotificationServiceExtension` (this is the name of the service extension you chose earlier)
+*** `NotificationService.h`
+*** `NotificationService.m`
+*** `Info.plist`
+
+We are going to remove almost all generated code to rely on a utility class the implements it all for you.
+
+Open `NotificationService.h` and modify it so that it reads:
+
+[source,objc]
+----
+#import <WonderPushExtension/NotificationServiceExtension.h>
+
+// We delegate everything to WPNotificationService
+@interface NotificationService : WPNotificationService
+
+@end
+----
+
+Then open `NotificationService.m` and modify it so that it reads:
+
+[source,objc]
+----
+#import "NotificationService.h"
+
+@implementation NotificationService
+
+// The WPNotificationService superclass already implements everything
+
+@end
+----
+
+Test that cordova can still build your project from command-line:
+
+[source,bash]
+----
+cordova build
+----
+
+If you see an error in the step `Check dependencies` for the Notification Service Extension target, then open `platforms/ios/cordova/build.xcconfig` and add `//` at the begining of the following line so that it reads:
+
+----
+// (CB-11854)
+//CODE_SIGN_ENTITLEMENTS = $(PROJECT_DIR)/$(PROJECT_NAME)/Entitlements-$(CONFIGURATION).plist
+----
+
+Now your project builds fine with either Cordova CLI or XCode.
+
+[role="skip-toc"]
+[[cordova-getting-started-ios-rich-notifications-missing-media-attachments]]
+==== Troubleshooting missing media attachments
+
+We have noticed that, after running an application using XCode, when running with Cordova after that can lead to media attachments not being shown in the notifications.
+
+The error that you can see in your device logs is as follows: (NB: not your application logs, open XCode, menu _Window_, click _Devices and Simulators_, choose your device and in the bottom of the main part, click the upward triangle in a square whose tooltip reads _Show the device console_)
+
+----
+kernel(Sandbox)[0] <Notice>: SandboxViolation: NotificationServ(4385) deny(1) file-write-create /private/var/mobile/Containers/Data/PluginKitPlugin/73E48A8F-696D-460C-AEB8-BD83674DD158
+NotificationServiceExtension(Foundation)[4385] <Info>: Write options: 0 -- URL: <private> -- purposeID: DCB02E0E-CA64-41B9-B99D-D37BC87C6A2E
+filecoordinationd(Foundation)[179] <Notice>: Received claim <private>
+filecoordinationd(Foundation)[179] <Info>: Starting to observe state of client with pid 4385 on behalf of claim DEA8C7A2-5479-4822-8586-A49E26FB214F
+filecoordinationd(Foundation)[179] <Notice>: Claim DEA8C7A2-5479-4822-8586-A49E26FB214F granted in server
+filecoordinationd(Foundation)[179] <Notice>: Claim DEA8C7A2-5479-4822-8586-A49E26FB214F invoked in server
+NotificationServiceExtension(Foundation)[4385] <Notice>: Claim DEA8C7A2-5479-4822-8586-A49E26FB214F granted in client
+NotificationServiceExtension(Foundation)[4385] <Notice>: Claim DEA8C7A2-5479-4822-8586-A49E26FB214F invoked in client
+filecoordinationd(Foundation)[179] <Notice>: Claim DEA8C7A2-5479-4822-8586-A49E26FB214F was revoked
+NotificationServiceExtension(WonderPushExtension)[4385] <Notice>: [WonderPush] Failed to write attachment to disk: Error Domain=NSCocoaErrorDomain Code=4 "The folder \M-b\M^@\M^\0.jpg\M-b\M^@\M^] doesn\M-b\M^@\M^Yt exist." UserInfo={NSURL=file:///private/var/mobile/Containers/Data/PluginKitPlugin/73E48A8F-696D-460C-AEB8-BD83674DD158/0.jpg, NSUnderlyingError=0x1762e4b0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}, NSUserStringVariant=Folder}
+----
+
+While the actual cause is mysterious, the solution is simple: uninstall your application, and run it again using Cordova.
+
+
+[[cordova-getting-started-initialize-sdk]]
+[role="numbered-lvlfirst"]
+=== Initialize the SDK
+
+The SDK initializes itself on the start of the application. You don't need to do anything about that.
+
+However on iOS, you must call the `cordova.plugins.WonderPush.setNotificationEnabled(true)` function at some time, preferably after presenting the user what benefit will push notifications bring to him.
+
+[source,js]
+----
+var app = {
+  // […]
+
+  onDeviceReady: function() {
+    // […]
+
+    //cordova.plugins.WonderPush.setLogging(true); // only activate logs for development
+
+    // On iOS, you MUST call the following method at least once to make the user pushable.
+    // - You can call this method multiple times. The user is only prompted for permission by iOS once.
+    // - Calling with `true` opts the user in, whether he was not opt-in or soft opt-out (by calling with `false`).
+    // - There is no need to call this method if the permission has already been granted, but it does not harm either.
+    // - If the permission has been denied, calling this method cannot opt the user back in as iOS leaves the user in control, through the system settings.
+    // Because you only have ONE chance for prompting the user, you should find a good timing for that.
+    // Here we propose to systematically call it when the application starts, so the user will be prompted directly at the first launch.
+    cordova.plugins.WonderPush.setNotificationEnabled(true);
+  },
+
+  // […]
+};
+----
+
+[[cordova-getting-started-send-your-first-push-notifications]]
+[role="numbered-lvlfirst"]
+=== Send your first push notifications
+
+[role="skip-toc"]
+==== Watch for error logs
+
+You can now test your WonderPush-enabled application, but as nobody's perfect, not even us, we know you may run into a few setup problems.
+We advise you to look at the native application logs for any entry tagged `WonderPush` as the SDK will report setup issues this way.
+
+If you have any problem or wonder what the SDK is doing, you may temporarily make it verbose.
+Simply do the following, preferably just before initializing the SDK, so as to get the most information:
+
+[source,java]
+----
+cordova.plugins.WonderPush.setLogging(true); // ← only use true in development!
+----
+
+You should not do this for a production build. Once done with the additional logs, turn verbosity off.
+
+[role="skip-toc"]
+==== Registered installation
+
+You should now see one installation in https://dashboard.wonderpush.com/["your WonderPush dashboard"].
+Click `Audience`, choose `All users`, your installation should now be listed in the preview list.
+
+[TIP]
+====
+A few statistics may be cached, click `Refresh now` if necessary.
+====
+
+Make sure your installation is displayed as pushable. If not, you probably forgot one step of the above, look for the logs for pointers.
+
+[role="skip-toc"]
+==== Send your first push notifications
+
+. Log into https://dashboard.wonderpush.com/["your WonderPush dashboard"], click `Notifications`, then under the `Create notification` menu choose `Custom notification`.
+. Give it a name, enter a short push message, then click `Save and continue`.
+. Keep `Send to all users` selected, then click `Save and continue`.
+. Keep `Once, when activated` selected, then click `Save`.
+. Now close your application in your device.
+. Click `FIRE` in the dashboard.
+. A notification should have appeared in the notification center.
+
+
+To fire your notification again, simply click `FIRE` again.
+Allow 1 minute between each send, and feel free to refresh the page if necessary.
+
+
+[role="skip-toc"]
+==== Need support?
+
+Don't hesitate to contact us by chat, using the “Chat with us” button in the lower right corner of your WonderPush dashboard, or by email.
+
+
+[[cordova-getting-started-using-sdk]]
+[role="numbered-lvlfirst"]
+=== Using the SDK in your Cordova application
+
+[[cordova-getting-started-using-sdk-track-event]]
+==== Track your first event
+
+The SDK automatically tracks generic events. This is probably insufficient to help you analyze, segment and notify users properly.
+You will want to track events that make sense for your business, here is an simple example:
+
+[source,js]
+----
+cordova.plugins.WonderPush.trackEvent("customized_interests");
+----
+
+This would permit you to know easily whether a user kept the default set of "topics of interests", say in a newsstand application, or if they already chose a topics that represents well their center of interest.
+Your notification strategy could be to incite to customization for the lazy users, whereas you could engage in a more personalized communication with the users you performed the `customized_interests` event.
+
+[[cordova-getting-started-using-sdk-enriching-events]]
+==== Enriching the events
+
+Events can host a rich set of properties that WonderPush indexes to permit you to filter users based on finer criteria.
+To do so, simply give a JSON object as second parameter. Here is an example:
+
+[source,js]
+----
+cordova.plugins.WonderPush.trackEvent("browse_catalog", {
+  string_category: "fashion",
+});
+----
+
+Using this information, you could notify customers on new items for the categories that matters most to them.
+
+Here is another example:
+
+[source,js]
+----
+cordova.plugins.WonderPush.trackEvent("purchase", {
+  int_items: 3,
+  float_amount: 59.98,
+});
+----
+
+You could choose to thank customer for every purchase, or you could take advantage of the purchase amount to give differentiated coupons to best buyers.
+
+[[cordova-getting-started-using-sdk-tagging-users]]
+==== Tagging users
+
+Some information are better represented as properties on a user, rather than discrete events in a timeline.
+Here is an example:
+
+[source,js]
+----
+function didAddItemToCart(item, price) {
+  // Variables managed by your application
+  cartItems += 1;
+  cartAmount += price;
+  // ...
+
+  // Update this information in WonderPush
+  JSONObject custom = new JSONObject();
+  custom.put("int_itemsInCart", cartItems);
+  custom.put("float_cartAmount", cartAmount);
+  cordova.plugins.WonderPush.putInstallationCustomProperties({
+    int_itemsInCart: cartItems,
+    float_cartAmount: cartAmount,
+  });
+}
+
+function didPurchase() {
+  // Empty the information in WonderPush
+  cordova.plugins.WonderPush.putInstallationCustomProperties({
+    int_itemsInCart: null,
+    float_cartAmount: null,
+  });
+}
+----
+
+Inactive users with non-empty carts could then easily be notified. Combined with a free delivery coupon for carts above a given amount, your conversion rate will improve still!
+
+[[cordova-getting-started-using-sdk-opt-out]]
+==== Opt-out
+
+On Android, users are opt-in by default, and the SDK registers the device at the first opportunity (the first launch after either a new installation or an update).
+A user always has the option of opening the system settings and blocking notifications. This process does not prevent the application from receiving push notifications, but it prevents any notification from being displayed in the notification center, they are simply hidden silently, and the application has no mean to know it.
+
+On iOS, users are opt-out by default, and you need to call the `cordova.plugins.WonderPush.setNotificationEnabled(true)` function to register the device, at an appropriate time. A user always has the option of opening the system settings and blocking notifications. The application has no mean to know it.
+
+If a user no longer wants to receive notifications, you will rather want them to opt out of push notifications.
+This is done very simply using the following function call, and WonderPush will no longer send push notifications to this installation:
+
+[source,js]
+----
+cordova.plugins.WonderPush.setNotificationEnabled(false);
+----
+
+Note that the device is not actually unregistered from push notifications, so the registration id continues to be valid and the device stays reachable.
+The installation is simply marked and reported as _Soft opt-out_ in the dashboard, and WonderPush filters it out from the targeted users.
+
+[[cordova-getting-started-using-sdk-demo-application]]
+==== Demo application
+
+You can read an example integration by looking at the code of our https://github.com/wonderpush/wonderpush-cordova-demo["Demo application, available on Github", window="_blank"].
+
+
+[[cordova-getting-started-using-sdk-api-reference]]
+==== API Reference
+
+Take a look at the functions exposed by https://wonderpush.github.io/wonderpush-cordova-sdk/latest/api.html["cordova.plugins.WonderPush", window="_blank"].
+
+
+[[cordova-getting-started-advanced-usage]]
+=== Advanced usage
+
+[[cordova-getting-started-advanced-usage-own-deep-links]]
+==== Handling your own deep links
+
+WonderPush allows you to open a deep link with your notifications (`targetUrl` of your notification object, or set the tap/click action while composing your notification with our dashboard). To use deep links with cordova, you can use https://github.com/EddyVerbruggen/Custom-URL-scheme["a plugin", window="_blank"] maintained by the community.
