@@ -232,15 +232,34 @@ _false_ as the values: +0+, +false+, +f+, +n+, +no+, +false+
 and _true_ as the values: +1+, +true+, +t+, +y+, +yes+.
 
 [[concepts-api-conventions-timestamps]]
-=== Timestamps
+=== Dates, times and timestamps
 
-Unix timestamp in milliseconds.
-The name of fields containing such values end with +date+.
+The name of fields or parameters containing such values end with +Date+.
+
+WonderPush exclusively uses UNIX timestamps _in milliseconds_ (time
+elapsed since January 1st 1970), and expresses textual dates and times
+in _UTC_, always specifying the used timezone to avoid confusion.
+
+You can also use a textual representation of
+a date using the following ISO8601 format:
++YYYY[-MM[-DD]][T[HH[:MM[:SS[.SSS]]]][Z|+HH[:MM[:SS[.SSS]]]]]+.
+
+Here are valid examples: +2015+, +2015-12+, +2015-12-31+,
++2015-12-31T23+, +2015-12-31T23:59+, +2015-12-31T23:59:59+,
++2015-12-31T23:59:59.999+.
+
+Here are valid offsets you can also append: +Z+ for UTC, +-06+,
+`+02:00`.
+In the absence of an offset, the date is taken as UTC.
+Don't forget to write `T` before the offset if you gave no time-part.
+
+Unless explicitly mentioned, any missing part is taken as January 1st
+for date-part and midnight for the time-part.
 
 [[concepts-api-conventions-durations]]
 === Durations
 
-The name of fields containing durations end with +time+.
+The name of fields or parameters containing durations end with +Time+.
 
 Durations can be defined in two ways. As an integer or as a human
 readable string.
