@@ -1,48 +1,9 @@
 [[community-and-support]]
-[role="chunk-page chunk-toc"]
-= Community and support
+[role="chunk-page chunk-toc section-link"]
+= https://discuss.wonderpush.com/[Community and support]
 
-[partintro]
---
---
+[[community-and-support-discuss]]
+== Discuss WonderPush
 
-[[community-and-support-mailing-list]]
-== Mailing list
-
-https://groups.google.com/forum/#!forum/wonderpush[WonderPush User]
-is the mailing list where WonderPush users come to seek help, share
-tips and ideas, announce projects and discuss everything surrounding
-WonderPush and its community.
-
-[[community-and-support-follow-us]]
-== Follow us
-
-Want to know what's going on, get the latest news about WonderPush and
-take a look at what cool new features we are preparing for you? Follow us
-on image:twitter_20.png["WonderPush on Twitter"] https://www.twitter.com/WonderPush[Twitter@WonderPush].
-
-
-[[community-and-support-source-code]]
-== Source code
-
-WonderPush clients, documentation and sample games are Open Source under
-the http://www.apache.org/licenses/LICENSE-2.0.html[Apache 2 License].
-The code is hosted at https://github.com/wonderpush[GitHub] and we love
-receiving contributions from our community, whether they are bug
-reports, feature requests, documentation improvements or patches.
-
-[[community-and-support-issues-and-feature-requests]]
-== Issues and feature requests
-
-Have a bug? A great new idea of feature? Something is missing? At
-WonderPush, we deeply care about your feedback and we want to make sure
-you have all the tools you need to empower your games. Issues and
-feature requests can be filed for each project on
-https://github.com/wonderpush[GitHub]:
-
-* https://github.com/wonderpush/wonderpush[WonderPush service]
-* https://github.com/wonderpush/wonderpush-documentation[WonderPush documentation]
-* https://github.com/wonderpush/wonderpush-web-sdk[WonderPush JavaScript SDK]
-* https://github.com/wonderpush/wonderpush-android-sdk[WonderPush Android SDK]
-* https://github.com/wonderpush/wonderpush-ios-sdk[WonderPush iOS SDK]
-* https://github.com/wonderpush/wonderpush-cordova-sdk[WonderPush Cordova SDK]
+The https://discuss.wonderpush.com/[community forum] is the place to go discuss about WonderPush, ask
+questions, read other people insights or share your feedback.
