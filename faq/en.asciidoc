@@ -181,7 +181,7 @@ For your applications to be able to receive push notifications, the certificate 
 
 Here are the steps to follow:
 
-. In https://developer.apple.com/account/ios/certificate/certificateList.action[Apple Developer Certificates], choose the section +Certificates, Identifiers & Profiles+ and click +Add a new certificate+ (Add a new certificate)
+. In https://developer.apple.com/account/ios/certificate/[Apple Developer Certificates], click the `+` button (Add)
 . Select +Apple Push Notification service SSL (Sandbox & Production)+ and clcik +Continue+
 . Select the same App ID you are using for the current certificate and click +Continue+
 . You need then to generate a CSR (Certificate Signing Request) from your Mac:
@@ -191,6 +191,7 @@ Here are the steps to follow:
 .. Enter a name like: +YourApp Production APNs+ (leave +CA Email+ blank)
 .. Select +Saved to disk+ and click +Continue+
 . You then need to upload the file you just created
-. Click +Generate+, then +Download+ and open the certificate with +Keychain Access+
+. Click +Continue+, then +Download+ and open the certificate with +Keychain Access+
+. Find the new certificate under the +login+ Keychain in the upper left part and the +My certificates+ category in the bottom left part.
 . Click +File / Export Items...+ (you can leave the password blank)
 . Go then to https://dashboard.wonderpush.com[WonderPush] in the +Settings / Configuration+ section and upload the +.p12+ file
