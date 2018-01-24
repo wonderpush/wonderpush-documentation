@@ -202,7 +202,7 @@ Here is the https://developer.apple.com/library/prerelease/ios/documentation/UIK
 .ADVANCED
 [TIP]
 ====
-We propose an easy `AppDelegate` setup functionnality that should suit most needs: the WonderPush SDK overrides your `Application.delegate`, hooks on some methods, and always calls back your `AppDelegate`.
+We propose an easy `AppDelegate` setup functionality that should suit most needs: the WonderPush SDK overrides your `Application.delegate`, hooks on some methods, and always calls back your `AppDelegate`.
 
 If for some reason this does not suit your specific needs, you can resort back to manual `AppDelegate` forwarding using the code below:
 
