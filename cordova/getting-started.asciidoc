@@ -68,6 +68,37 @@ cordova plugin add --save wonderpush-cordova-sdk --variable CLIENT_ID='YOUR_CLIE
   Eg.: +0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef+.
  
 [role="skip-toc"]
+[[cordova-getting-started-integrate-update-sdk]]
+==== Updating the WonderPush SDK
+
+If you already have integrated the WonderPush SDK and wish to upgrade it, follow the instructions in this section.
+
+Note the current variables values if you do not want to read them again from the dashboard.
+They are listed in 3 places, choose the one you prefer:
+
+* in `package.json` under `cordova.plugins.wonderpush-cordova-sdk`
+* in `plugins/fetch.json` under `wonderpush-cordova-sdk.variables`
+* in `config.xml` under `<plugin name="wonderpush-cordova-sdk">`
+
+Remove and re-add the plugin:
+
+[source,bash]
+----
+cordova plugin remove --save wonderpush-cordova-sdk
+
+cordova plugin add --save wonderpush-cordova-sdk --variable CLIENT_ID='YOUR_CLIENT_ID' --variable CLIENT_SECRET='YOUR_CLIENT_SECRET'
+----
+<1> Replace *YOUR_CLIENT_ID* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"], under the `Settings / Configuration` menu. +
+  Eg.: +0123456789abcdef0123456789abcdef01234567+.
+<2> Replace *YOUR_CLIENT_ID* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id as described above. +
+  Eg.: +0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef+.
+
+Then check all integration steps again, including for the Notification Service Extension, especially:
+
+* Adding the necessary WonderPushExtension framework to the target
+* Fix a path issue
+
+[role="skip-toc"]
 [[cordova-getting-started-integrate-ios-add-push-notification-capability]]
 ==== For iOS: Add the Push Notifications capability
 
