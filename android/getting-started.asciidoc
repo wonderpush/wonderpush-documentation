@@ -20,8 +20,8 @@ different levels of permission (owner, editor…).
 [role="skip-toc"]
 ==== 2. Register your application
 
-Give a name to your project. e.g. MyGame
-Make sure to check `Android` under the `Platforms` section.
+Give a name to your project. e.g. _MyGame_.
+Make sure to check _Android_ under the _Platforms_ section.
 
 
 [role="skip-toc"]
