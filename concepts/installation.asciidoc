@@ -147,7 +147,6 @@ And here is a smaller example of an iOS installation:
     "model": "iPad 4 (WiFi)",
     "osVersion": "8.3",
     "screenWidth": 768,
-    "name": "John Doe's iPad",
     "brand": "Apple",
     "screenDensity": 2
   },
