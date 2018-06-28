@@ -240,9 +240,7 @@ WonderPush.ready(function(WonderPushSDK){
         // - user engagement is sufficient
         // - user is willing to accept notifications,
         //   using a non intrusive information message
-        // or use a subscription switch instead:
-        //   https://gist.github.com/ofavre/33b989284fc75997d65f
-        WonderPushSDK.askNativePushNotificationPermission();
+        WonderPushSDK.setNotificationEnabled(true);
     }
 });
 ----
@@ -410,14 +408,24 @@ Note that the switch can be used independently of the chosen mode.
 |=======================================================================
 
 *Ask permission on action*
-You can prompt your user in reaction to a click or any action using the `askNativePushNotificationPermission()`
-function:
+You can prompt your user in reaction to a click or any action using the `setNotificationEnabled` function:
 
 [source,js]
 ----
-WonderPush.ready(function(WonderPushSDK){
-    WonderPushSDK.askNativePushNotificationPermission();
+WonderPush.ready(function(WonderPushSDK) {
+    WonderPushSDK.setNotificationEnabled(true);
 });
+----
+
+If you are calling this function as a result of a user action, in an event handler, give the event as a second parameter to the function:
+
+[source,js]
+----
+function yourEventHandler(event) {
+    WonderPush.ready(function(WonderPushSDK) {
+        WonderPushSDK.setNotificationEnabled(true, event);
+    });
+}
 ----
 
 [[web-getting-started-advanced-usage-explore-user-data]]
