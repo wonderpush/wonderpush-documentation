@@ -499,7 +499,9 @@ This creates and keeps a reference to an actively monitoring `CLLocationManager`
 [role="numbered-lvlfirst"]
 === Configure remote notifications
 
-First of all you have to set up your application as described in the https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6["Configuring Push Notifications guide", window="_blank"]. +
+First of all you have to set up your application as described in the https://help.apple.com/xcode/mac/current/#/devdfd3d04a1["Configure capabilities / Enable push notifications", window="_blank"] XCode guide. +
+Second, you need to create a Universal Push Notification client SSL certificate for your application as described in the https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns?language=swift#2947597["Establishing a Certificate-Based Connection to APNs", window="_blank"] article.
+
 Once you created your provisioning profile and an associated push notifications certificate on your computer you will have to export your push notifications certificate in order to let WonderPush send notifications to your device:
 
 . Launch `KeyChain Access`.
