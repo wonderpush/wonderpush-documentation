@@ -383,7 +383,7 @@ public class WonderPushInitializerImpl implements WonderPushInitializer {
   Eg.: `com.your.package`.
 <2> Replace *YOUR_CLIENT_ID* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], under the `Settings / Configuration` menu. +
   Eg.: `0123456789abcdef0123456789abcdef01234567`.
-<3> Replace *YOUR_CLIENT_SECRET* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id described above. +
+<3> Replace *YOUR_CLIENT_SECRET* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id as described above. +
   Eg.: `0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef`.
 
 [TIP]

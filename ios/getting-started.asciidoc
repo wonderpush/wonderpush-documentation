@@ -184,7 +184,7 @@ Add this code to the corresponding method of you Application delegate:
 ----
 <1> Replace *YOUR_CLIENT_ID* with your client id found in your https://dashboard.wonderpush.com/["WonderPush dashboard",window="_blank"], under the `Settings / Configuration` menu. +
   Eg.: +0123456789abcdef0123456789abcdef01234567+.
-<2> Replace *YOUR_CLIENT_ID* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id as described above. +
+<2> Replace *YOUR_CLIENT_SECRET* with your client secret found in your https://dashboard.wonderpush.com/["WonderPush dashboard", window="_blank"], next to the client id as described above. +
   Eg.: +0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef+.
 <3> We place this call in `-application:willFinishLaunchingWithOptions:` so that it properly intercepts the following call to `-application:didFinishLaunchingWithOptions:`. +
   If you prefer to only use `-application:didFinishLaunchingWithOptions:`, then you should manually forward it to the SDK by simply calling `[WonderPush application:application didFinishLaunchingWithOptions:launchOptions];`.
