@@ -44,7 +44,7 @@ by adding the following into your `app/build.gradle` file:
 [source,java]
 ----
 dependencies {
-    compile 'com.wonderpush:wonderpush-android-sdk:1.2.7.1'
+    compile 'com.wonderpush:wonderpush-android-sdk:1.2.7.2'
 }
 ----
 +
