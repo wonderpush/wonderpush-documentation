@@ -38,10 +38,10 @@ An integer value between -128 and 127, inclusive.
 An integer value between -32,768 and 32,767, inclusive.
 
 `int`::
-An integer value between 2^31^ and 2^31^-1, inclusive.
+An integer value between -2^31^ and 2^31^-1, inclusive.
 
 `long`::
-An integer value between 2^63^ and 2^63^-1, inclusive.
+An integer value between -2^63^ and 2^63^-1, inclusive.
 
 `float`::
 An single precision floating point number.
